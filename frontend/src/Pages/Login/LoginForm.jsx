@@ -2,9 +2,9 @@ import React from "react";
 
 const LoginForm = () => {
   return (
-    <div className="flex h-[80vh] w-[80vw]">
+    <div className="flex h-[80vh] w-[70vw]">
       <section className="flex w-[40%] flex-col items-center justify-center gap-10 2xl:gap-16">
-        <h2 className="pb-1 text-3xl font-bold text-[#ff3a3a] 2xl:text-5xl">
+        <h2 className="pb-1 text-4xl font-bold text-[#ff3a3a] 2xl:text-5xl">
           Sign In
         </h2>
         <div className="flex flex-col gap-3">

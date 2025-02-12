@@ -8,6 +8,12 @@ const Home = () => {
         <div className="h-72 w-[800px] bg-red-50">
           <p className="text-center text-5xl font-bold">Placeholder</p>
         </div>
+        <div className="h-72 w-[800px] bg-red-50">
+          <p className="text-center text-5xl font-bold">Placeholder</p>
+        </div>
+        <div className="h-72 w-[800px] bg-red-50">
+          <p className="text-center text-5xl font-bold">Placeholder</p>
+        </div>
       </div>
     </div>
   );

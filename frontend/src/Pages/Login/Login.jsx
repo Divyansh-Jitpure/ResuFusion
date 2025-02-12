@@ -23,7 +23,7 @@ const Login = () => {
   return (
     <main>
       <dialog
-        className="m-auto rounded-xl bg-[#1D1616]/80 backdrop-blur-md"
+        className="m-auto rounded-xl bg-[#1D1616]/80 backdrop-blur-md backdrop:bg-black/40"
         ref={diaRef}
       >
         <button className="absolute top-0 right-0 m-4" onClick={closeDia}>
