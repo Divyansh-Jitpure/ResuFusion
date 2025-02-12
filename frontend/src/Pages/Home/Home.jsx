@@ -4,19 +4,9 @@ import Navbar from "../../Components/Navbar/Navbar";
 const Home = () => {
   return (
     <div className="flex justify-center">
-      {/* <div className="*:my-2">
-        <div className="h-40 w-40 bg-red-50"></div>
-        <div className="h-40 w-40 bg-red-50"></div>
-        <div className="h-40 w-40 bg-red-50"></div>
-        <div className="h-40 w-40 bg-red-50"></div>
-        <div className="h-40 w-40 bg-red-50"></div>
-        <div className="h-40 w-40 bg-red-50"></div>
-        <div className="h-40 w-40 bg-red-50"></div>
-        <div className="h-40 w-40 bg-red-50"></div>
-        <div className="h-40 w-40 bg-red-50"></div>
-        <div className="h-40 w-40 bg-red-50"></div>
-        <div className="h-40 w-40 bg-red-50"></div>
-      </div> */}
+      <div className="*:my-30">
+        <div className="h-72 w-[800px] bg-red-50"></div>
+      </div>
     </div>
   );
 };

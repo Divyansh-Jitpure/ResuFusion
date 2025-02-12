@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router";
+import Login from "../../Pages/Login/Login";
+import Register from "../../Pages/Register/Register";
 
 const Navbar = () => {
   return (
@@ -15,13 +17,9 @@ const Navbar = () => {
         <Link to={"/about"}>About</Link>
       </div>
       {/* Login/Register*/}
-      <div className="flex justify-between *:mx-1 *:rounded-2xl *:px-3 *:py-1 *:text-[17px] *:font-medium *:transition-all">
-        <Link to={"/register"} className="bg-[#ffb0b0] hover:bg-[#ff9090]">
-          Register
-        </Link>
-        <Link to={"/login"} className="bg-[#D84040] hover:bg-[#ff2d2d]">
-          Login
-        </Link>
+      <div className="flex justify-between">
+        <Register />
+        <Login />
       </div>
     </main>
   );
