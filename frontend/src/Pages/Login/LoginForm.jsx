@@ -12,7 +12,7 @@ const LoginForm = () => {
             Email/Username
             <input
               className="w-[40vh] rounded border-1 border-slate-300 p-1"
-              type="text"
+              type="email"
               placeholder="Enter Email/Username"
             />
           </label>
@@ -26,7 +26,7 @@ const LoginForm = () => {
           </label>
         </div>
         <button className="mx-1 rounded-md bg-[#ff3a3a] px-4 py-1 pb-2 font-medium text-white transition-all hover:cursor-pointer hover:bg-[#ff2d2d9c] 2xl:text-xl">
-          Sign In
+          Login
         </button>
       </section>
       <section className="w-[60%]">

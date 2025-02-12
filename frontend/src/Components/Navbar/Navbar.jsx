@@ -18,8 +18,8 @@ const Navbar = () => {
       </div>
       {/* Login/Register*/}
       <div className="flex justify-between">
-        <Register />
         <Login />
+        <Register />
       </div>
     </main>
   );
