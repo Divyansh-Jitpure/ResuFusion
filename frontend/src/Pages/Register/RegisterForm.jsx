@@ -56,7 +56,7 @@ const RegisterForm = () => {
         </button>
       </section>
       <section className="w-[60%]">
-        <img className="h-full w-full" src="loginBG2.png" alt="" />
+        <img className="h-full w-full" src="regBG.png" alt="" />
       </section>
     </div>
   );
