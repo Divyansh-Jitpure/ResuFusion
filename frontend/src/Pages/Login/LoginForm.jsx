@@ -3,6 +3,7 @@ import React from "react";
 const LoginForm = () => {
   return (
     <div className="flex h-[80vh] w-[70vw]">
+      {/* Left Section */}
       <section className="flex w-[40%] flex-col items-center justify-center gap-10 2xl:gap-16">
         <h2 className="pb-1 text-4xl font-bold text-[#ff3a3a] 2xl:text-5xl">
           Sign In
@@ -29,8 +30,20 @@ const LoginForm = () => {
           Login
         </button>
       </section>
-      <section className="w-[60%]">
+      {/* Right Section */}
+      <section className="relative w-[60%]">
         <img className="h-full w-full" src="loginBG2.png" alt="" />
+        <span className="absolute bottom-6 left-1/2 flex w-full -translate-x-1/2 transform flex-col items-center text-white 2xl:bottom-10">
+          <div>
+            <span className="text-4xl font-bold 2xl:text-6xl">
+              Log Into Your Account
+            </span>
+            <br />
+            <span className="text-xl text-white/60 2xl:text-3xl">
+              To access all your documents
+            </span>
+          </div>
+        </span>
       </section>
     </div>
   );

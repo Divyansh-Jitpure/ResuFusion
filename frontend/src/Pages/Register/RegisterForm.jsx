@@ -55,8 +55,15 @@ const RegisterForm = () => {
           Sign Up
         </button>
       </section>
-      <section className="w-[60%]">
+      <section className="relative w-[60%]">
         <img className="h-full w-full" src="regBG.png" alt="" />
+        <span className="absolute bottom-10 left-1/2 flex w-full -translate-x-1/2 transform flex-col items-center text-white 2xl:bottom-18">
+          <div>
+            <span className="text-[32px] font-bold 2xl:text-5xl">
+              Register To Create Your Account
+            </span>
+          </div>
+        </span>
       </section>
     </div>
   );

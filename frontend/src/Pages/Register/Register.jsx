@@ -26,7 +26,7 @@ const Register = () => {
         className="m-auto rounded-xl bg-[#1D1616]/80 backdrop-blur-md backdrop:bg-black/40"
         ref={diaRef}
       >
-        <button className="absolute top-0 right-0 m-4" onClick={closeDia}>
+        <button className="absolute right-0 z-10 m-2" onClick={closeDia}>
           <RiCloseLargeFill className="m-2 cursor-pointer text-xl text-white" />
         </button>
         <RegisterForm />
