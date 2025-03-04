@@ -1,59 +1,85 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const RegisterForm = () => {
+  const { register } = useContext(AuthContext);
+  const [userData, setUserData] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await register(userData);
+      alert(res.message);
+    } catch (err) {
+      setError(err.error);
+    }
+  };
+
   return (
     <div className="flex h-[80vh] w-[70vw]">
       <section className="flex w-[40%] flex-col items-center justify-center gap-5 2xl:gap-16">
         <h2 className="pb-1 text-4xl font-bold text-[#ff3a3a] 2xl:text-5xl">
           Sign Up
         </h2>
-        <div className="flex flex-col gap-2 2xl:gap-3">
-          <div className="flex gap-3 2xl:gap-4">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center justify-center gap-5 2xl:gap-16"
+        >
+          <div className="flex flex-col gap-2 2xl:gap-3">
             <label className="flex flex-col gap-1 text-white">
-              First Name
+              Username
               <input
-                className="w-[19vh] rounded border-1 border-slate-300 p-1"
+                className="w-[40vh] rounded border-1 border-slate-300 p-1"
                 type="text"
-                placeholder="First Name"
+                placeholder="Enter Username"
+                name="username"
+                value={userData.username}
+                onChange={handleChange}
               />
             </label>
             <label className="flex flex-col gap-1 text-white">
-              Last Name
+              Email
               <input
-                className="w-[19vh] rounded border-1 border-slate-300 p-1"
-                type="text"
-                placeholder="Last Name"
+                className="w-[40vh] rounded border-1 border-slate-300 p-1"
+                type="email"
+                placeholder="Enter Email"
+                name="email"
+                value={userData.email}
+                onChange={handleChange}
+              />
+            </label>
+            <label className="flex flex-col gap-1 text-white">
+              Password
+              <input
+                className="rounded border-1 border-slate-300 p-1"
+                type="password"
+                placeholder="Enter Password"
+                name="password"
+                value={userData.password}
+                onChange={handleChange}
+              />
+            </label>
+            <label className="flex flex-col gap-1 text-white">
+              Confirm Password
+              <input
+                className="rounded border-1 border-slate-300 p-1"
+                type="password"
+                placeholder="Enter Password"
               />
             </label>
           </div>
-          <label className="flex flex-col gap-1 text-white">
-            Email/Username
-            <input
-              className="w-[40vh] rounded border-1 border-slate-300 p-1"
-              type="email"
-              placeholder="Enter Email/Username"
-            />
-          </label>
-          <label className="flex flex-col gap-1 text-white">
-            Password
-            <input
-              className="rounded border-1 border-slate-300 p-1"
-              type="password"
-              placeholder="Enter Password"
-            />
-          </label>
-          <label className="flex flex-col gap-1 text-white">
-            Confirm Password
-            <input
-              className="rounded border-1 border-slate-300 p-1"
-              type="password"
-              placeholder="Enter Password"
-            />
-          </label>
-        </div>
-        <button className="mx-1 rounded-md bg-[#ff3a3a] px-4 py-1 pb-2 font-medium text-white transition-all hover:cursor-pointer hover:bg-[#ff2d2d9c] 2xl:text-xl">
-          Sign Up
-        </button>
+          <button
+            type="submit"
+            className="mx-1 rounded-md bg-[#ff3a3a] px-4 py-1 pb-2 font-medium text-white transition-all hover:cursor-pointer hover:bg-[#ff2d2d9c] 2xl:text-xl"
+          >
+            Sign Up
+          </button>
+        </form>
       </section>
       <section className="relative w-[60%]">
         <img className="h-full w-full" src="regBG.png" alt="" />
