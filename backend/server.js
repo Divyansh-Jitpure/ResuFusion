@@ -18,6 +18,10 @@ app.use(cookieParser());
 // Routes
 app.use("/api/auth", authRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Server is running...");
+});
+
 // Connect to DB
 mongoose
   .connect(process.env.MONGO_URL, {
