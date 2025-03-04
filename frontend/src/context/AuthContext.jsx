@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await API.post(`auth/register`, userData);
+      const response = await API.post(`/auth/register`, userData);
       return response.data;
     } catch (err) {
       return err.response?.data || { message: "Something went wrong!!" };
@@ -17,7 +17,8 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (userData) => {
     try {
-      const response = await API.post(`auth/login`, userData);
+      const response = await API.post(`/auth/login`, userData);
+
       return response.data;
     } catch (err) {
       return err.response?.data || { message: "Something went wrong!!" };
