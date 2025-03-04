@@ -48,14 +48,32 @@ router.post("/login", async (req, res) => {
     // Store token in cookie
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
-      sameSite: "Strict",
+      secure: false,
+      sameSite: "lax",
     });
 
     res.json({ message: "Login Successfull!!" });
   } catch (err) {
     res.status(500).json({ error: "Login Failed!!" });
   }
+});
+
+router.get("/me", (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) return res.status(401).json({ error: "Unauthorized!!" });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    res.json({ userId: decoded.userId });
+  } catch (err) {
+    res.status(401).json({ error: "Invalid token!!" });
+  }
+});
+
+router.post("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.json({ message: "Logged out successfully!!" });
 });
 
 export default router;
