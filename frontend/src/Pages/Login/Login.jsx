@@ -13,11 +13,6 @@ const Login = () => {
   const openDia = () => {
     diaRef.current?.showModal();
     document.body.style.overflow = "hidden";
-    diaRef.current?.addEventListener("close", closeDia);
-
-    return () => {
-      diaRef.current?.removeEventListener("close", closeDia);
-    };
   };
 
   return (
