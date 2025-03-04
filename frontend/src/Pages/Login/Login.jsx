@@ -24,7 +24,7 @@ const Login = () => {
         <button className="absolute right-0 z-10 m-2" onClick={closeDia}>
           <RiCloseLargeFill className="m-2 cursor-pointer text-xl text-white" />
         </button>
-        <LoginForm />
+        <LoginForm closeDia={closeDia} />
       </dialog>
 
       <button

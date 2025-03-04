@@ -52,7 +52,7 @@ router.post("/login", async (req, res) => {
       sameSite: "lax",
     });
 
-    res.json({ message: "Login Successfull!!" });
+    res.json({ message: "Login Successfull!!", user });
   } catch (err) {
     res.status(500).json({ error: "Login Failed!!" });
   }

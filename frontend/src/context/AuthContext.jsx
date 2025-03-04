@@ -1,4 +1,4 @@
-import { Children, createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import API from "../utils/api";
 
 export const AuthContext = createContext();
@@ -17,9 +17,10 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (userData) => {
     try {
-      const res = await API.post(`/auth/login`, userData);
-      await getUser(); // Fetch user details from backend
-
+      const res = await API.post(`/auth/login`, userData, {
+        withCredentials: true,
+      });
+      setUser(res.data.user); // Store user info
       return res.data;
     } catch (err) {
       return err.res?.data || { message: "Something went wrong!!" };
@@ -38,8 +39,7 @@ export const AuthProvider = ({ children }) => {
   const getUser = async () => {
     try {
       const res = await API.get("/auth/me", { withCredentials: true }); // API to get user from token
-      console.log(res.data);
-      setUser(res.data);
+      setUser(res.data.user);
     } catch (err) {
       setUser(null); // If error, reset user state
     }
