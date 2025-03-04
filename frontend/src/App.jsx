@@ -6,13 +6,15 @@ import Templates from "./Pages/Templates/Templates";
 import Navbar from "./Components/Navbar/Navbar";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, AuthContext } from "./context/AuthContext";
+
 
 function App() {
+  
   return (
     <AuthProvider>
       <Router>
-        <Navbar />
+        <Navbar/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

@@ -10,7 +10,7 @@ const Home = () => {
   }, [user]);
   return (
     <div className="flex justify-center">
-      <Toaster richColors position="bottom-right" />
+      <Toaster richColors />
       <div className="*:my-30">
         <div className="h-72 w-[800px] bg-red-50">
           <p className="text-center text-5xl font-bold">

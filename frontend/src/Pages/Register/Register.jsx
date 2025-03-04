@@ -31,7 +31,7 @@ const Register = () => {
         onClick={openDia}
         className="mx-1 rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
       >
-        Sign
+        Sign Up
       </button>
     </main>
   );
