@@ -9,12 +9,12 @@ const Home = () => {
   return (
     <div className="flex justify-center">
       <Toaster richColors />
-      <div className="*:my-30">
-        <div className="h-72 w-[800px] bg-red-50">
+      <div className="my-30">
+        {/* <div className="h-72 w-[800px] bg-red-50">
           <p className="text-center text-5xl font-bold">
-            {user ? user.username : "Loading..."}
           </p>
-        </div>
+          </div> */}
+        {user ? user.username : "Loading..."}
       </div>
     </div>
   );
