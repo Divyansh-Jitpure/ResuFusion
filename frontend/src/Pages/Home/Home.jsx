@@ -4,10 +4,8 @@ import { AuthContext } from "../../context/AuthContext";
 import { Toaster, toast } from "sonner";
 
 const Home = () => {
-  const { user, logout } = useContext(AuthContext);
-  useEffect(() => {
-    user && toast.success("Login Successful!!");
-  }, [user]);
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="flex justify-center">
       <Toaster richColors />

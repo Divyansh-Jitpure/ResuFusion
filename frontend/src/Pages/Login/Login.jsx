@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
 import LoginForm from "./LoginForm";
 import { RiCloseLargeFill } from "react-icons/ri";
+import { LuLogIn } from "react-icons/lu";
 
 const Login = () => {
   const diaRef = useRef();
 
-  const closeDia = () => {
+  const closeDia = (islogin) => {
     diaRef.current?.close();
     document.body.style.overflow = "";
   };
@@ -29,9 +30,9 @@ const Login = () => {
 
       <button
         onClick={openDia}
-        className="mx-1 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
+        className="mx-1 flex items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 font-medium transition-all *:text-[17px] hover:cursor-pointer hover:bg-[#ff2d2d]"
       >
-        Login
+        Login <LuLogIn />
       </button>
     </main>
   );

@@ -4,9 +4,12 @@ import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { LuLogOut } from "react-icons/lu";
+import { Toaster, toast } from "sonner";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   return (
     // Navbar Main
@@ -29,12 +32,23 @@ const Navbar = () => {
           <Register />
         </div>
       ) : (
-        <button
-          onClick={useNavigate("/templates")}
-          className="mx-1 rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
-        >
-          Create Resume
-        </button>
+        <div className="flex justify-between">
+          <button
+            onClick={() => navigate("/templates")}
+            className="mx-1 rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
+          >
+            Create Resume
+          </button>
+          <button
+            onClick={() => {
+              logout();
+              toast.success("Logout Successful!!");
+            }}
+            className="mx-1 flex items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
+          >
+            Logout <LuLogOut />
+          </button>
+        </div>
       )}
     </main>
   );
