@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 const LoginForm = () => {
-  const { login } = useContext(AuthContext);
+  const { login, setShowLoginModal } = useContext(AuthContext);
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
@@ -14,6 +14,7 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const res = await login(userData);
+      setShowLoginModal(false); // Close modal after successful login
     } catch (err) {
       setError(err.error);
     }

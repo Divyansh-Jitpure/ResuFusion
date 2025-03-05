@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }) => {
       });
       await getUser();
       setUser(res.data.user); // Store user info
-      setShowLoginModal(false); // Close modal after successful login
       setIsLoginToastShown(true);
       return res.data;
     } catch (err) {
