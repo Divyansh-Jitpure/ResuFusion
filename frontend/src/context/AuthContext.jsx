@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoginToastShown, setIsLoginToastShown] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const register = async (userData) => {
     try {
@@ -24,6 +25,7 @@ export const AuthProvider = ({ children }) => {
       });
       await getUser();
       setUser(res.data.user); // Store user info
+      setShowLoginModal(false); // Close modal after successful login
       setIsLoginToastShown(true);
       return res.data;
     } catch (err) {
@@ -61,7 +63,16 @@ export const AuthProvider = ({ children }) => {
   }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user, register, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        register,
+        login,
+        logout,
+        showLoginModal,
+        setShowLoginModal,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

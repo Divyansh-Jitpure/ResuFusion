@@ -1,12 +1,15 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import LoginForm from "./LoginForm";
 import { RiCloseLargeFill } from "react-icons/ri";
 import { LuLogIn } from "react-icons/lu";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
+  const { showLoginModal } = useContext(AuthContext);
   const diaRef = useRef();
+  const loginBtn = useRef();
 
-  const closeDia = (islogin) => {
+  const closeDia = () => {
     diaRef.current?.close();
     document.body.style.overflow = "";
   };
@@ -15,6 +18,8 @@ const Login = () => {
     diaRef.current?.showModal();
     document.body.style.overflow = "hidden";
   };
+
+  showLoginModal ? openDia() : closeDia();
 
   return (
     <main>
@@ -25,11 +30,12 @@ const Login = () => {
         <button className="absolute right-0 z-10 m-2" onClick={closeDia}>
           <RiCloseLargeFill className="m-2 cursor-pointer text-xl text-white" />
         </button>
-        <LoginForm closeDia={closeDia} />
+        <LoginForm />
       </dialog>
 
       <button
         onClick={openDia}
+        ref={loginBtn}
         className="mx-1 flex items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 font-medium transition-all *:text-[17px] hover:cursor-pointer hover:bg-[#ff2d2d]"
       >
         Login <LuLogIn />

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
-const LoginForm = ({ closeDia }) => {
+const LoginForm = () => {
   const { login } = useContext(AuthContext);
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -14,7 +14,6 @@ const LoginForm = ({ closeDia }) => {
     e.preventDefault();
     try {
       const res = await login(userData);
-      closeDia();
     } catch (err) {
       setError(err.error);
     }

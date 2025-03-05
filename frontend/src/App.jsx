@@ -7,20 +7,21 @@ import Navbar from "./Components/Navbar/Navbar";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import { AuthProvider, AuthContext } from "./context/AuthContext";
-
+import LoginForm from "./Pages/Login/LoginForm";
+import ResumeForm from "./Components/ResumeForm/ResumeForm";
 
 function App() {
-  
   return (
     <AuthProvider>
       <Router>
-        <Navbar/>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/templates" element={<Templates />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/resumeform" element={<ResumeForm />} />
         </Routes>
       </Router>
     </AuthProvider>
