@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { RiCloseLargeFill } from "react-icons/ri";
 import RegisterForm from "./RegisterForm";
+import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
+  const { showRegisterModal, setShowRegisterModal } = useContext(AuthContext);
   const diaRef = useRef();
 
   const closeDia = () => {
@@ -15,20 +17,25 @@ const Register = () => {
     document.body.style.overflow = "hidden";
   };
 
+  showRegisterModal ? openDia() : closeDia();
+
   return (
     <main>
       <dialog
         className="m-auto rounded-xl bg-[#1D1616]/80 backdrop-blur-md backdrop:bg-black/40"
         ref={diaRef}
       >
-        <button className="absolute right-0 z-10 m-2" onClick={closeDia}>
+        <button
+          className="absolute right-0 z-10 m-2"
+          onClick={() => setShowRegisterModal(false)}
+        >
           <RiCloseLargeFill className="m-2 cursor-pointer text-xl text-white" />
         </button>
         <RegisterForm />
       </dialog>
 
       <button
-        onClick={openDia}
+        onClick={() => setShowRegisterModal(true)}
         className="mx-1 rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
       >
         Sign Up

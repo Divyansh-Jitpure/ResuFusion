@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 const RegisterForm = () => {
-  const { register } = useContext(AuthContext);
+  const { register, setShowRegisterModal } = useContext(AuthContext);
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
@@ -13,8 +13,7 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await register(userData);
-      alert(res.message);
+      await register(userData);
     } catch (err) {
       setError(err.error);
     }
@@ -40,6 +39,7 @@ const RegisterForm = () => {
                 name="username"
                 value={userData.username}
                 onChange={handleChange}
+                required
               />
             </label>
             <label className="flex flex-col gap-1 text-white">
@@ -51,6 +51,7 @@ const RegisterForm = () => {
                 name="email"
                 value={userData.email}
                 onChange={handleChange}
+                required
               />
             </label>
             <label className="flex flex-col gap-1 text-white">
@@ -62,6 +63,7 @@ const RegisterForm = () => {
                 name="password"
                 value={userData.password}
                 onChange={handleChange}
+                required
               />
             </label>
             <label className="flex flex-col gap-1 text-white">
@@ -70,6 +72,7 @@ const RegisterForm = () => {
                 className="rounded border-1 border-slate-300 p-1"
                 type="password"
                 placeholder="Enter Password"
+                required
               />
             </label>
           </div>

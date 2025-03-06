@@ -13,8 +13,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await login(userData);
-      setShowLoginModal(false); // Close modal after successful login
+      await login(userData);
     } catch (err) {
       setError(err.error);
     }
@@ -33,12 +32,13 @@ const LoginForm = () => {
         >
           <div className="flex flex-col gap-3">
             <label className="flex flex-col gap-1 text-white">
-              Email/Username
+              Email
               <input
                 className="w-[40vh] rounded border-1 border-slate-300 p-1"
                 type="email"
-                placeholder="Enter Email/Username"
+                placeholder="Enter Email"
                 name="email"
+                required
                 value={userData.email}
                 onChange={handleChange}
               />
@@ -48,6 +48,7 @@ const LoginForm = () => {
               <input
                 className="rounded border-1 border-slate-300 p-1"
                 type="password"
+                required
                 placeholder="Enter Password"
                 name="password"
                 value={userData.password}

@@ -42,8 +42,8 @@ const Navbar = () => {
           <button
             onClick={() => {
               logout();
-              toast.success("Logout Successful!!");
               navigate("/");
+              // toast.success("Logout Successful!!");
             }}
             className="mx-1 flex items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
           >

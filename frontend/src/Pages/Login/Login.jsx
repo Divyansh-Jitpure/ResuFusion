@@ -7,7 +7,6 @@ import { AuthContext } from "../../context/AuthContext";
 const Login = () => {
   const { showLoginModal, setShowLoginModal } = useContext(AuthContext);
   const diaRef = useRef();
-  const loginBtn = useRef();
 
   const closeDia = () => {
     diaRef.current?.close();
@@ -40,7 +39,6 @@ const Login = () => {
 
       <button
         onClick={() => setShowLoginModal(true)}
-        ref={loginBtn}
         className="mx-1 flex items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
       >
         Login <LuLogIn className="text-xl" />

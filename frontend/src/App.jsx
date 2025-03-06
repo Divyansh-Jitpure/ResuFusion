@@ -7,19 +7,20 @@ import Navbar from "./Components/Navbar/Navbar";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import { AuthProvider, AuthContext } from "./context/AuthContext";
-import LoginForm from "./Pages/Login/LoginForm";
 import ResumeForm from "./Components/ResumeForm/ResumeForm";
+import ToastManager from "./Components/ToastManager";
 
 function App() {
   return (
     <AuthProvider>
+      <ToastManager />
       <Router>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/templates" element={<Templates />} />
-          <Route path="/login" element={<LoginForm />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/resumeform" element={<ResumeForm />} />
         </Routes>

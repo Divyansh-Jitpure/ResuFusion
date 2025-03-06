@@ -2,64 +2,75 @@ import { createContext, useEffect, useState } from "react";
 import API from "../utils/api";
 import { toast } from "sonner";
 
+// Creating authentication context
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  // State to store user info
   const [user, setUser] = useState(null);
-  const [isLoginToastShown, setIsLoginToastShown] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
 
+  // Toast state to prevent duplicate notifications
+  const [loginToastShown, setLoginToastShown] = useState(false);
+  const [logoutToastShown, setLogoutToastShown] = useState(false);
+  const [registerToastShown, setRegisterToastShown] = useState(false);
+
+  // State to handle modal visibility
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+
+  // Register a new user
   const register = async (userData) => {
     try {
       const res = await API.post(`/auth/register`, userData);
+      setShowRegisterModal(false); // Close register modal on success
+      setRegisterToastShown(true); // Show success toast
       return res.data;
     } catch (err) {
       return err.res?.data || { message: "Something went wrong!!" };
     }
   };
 
+  // Login user
   const login = async (userData) => {
     try {
       const res = await API.post(`/auth/login`, userData, {
-        withCredentials: true,
+        withCredentials: true, // Ensures cookies are sent
       });
-      await getUser();
+      await getUser(); // Fetch updated user data
       setUser(res.data.user); // Store user info
-      setIsLoginToastShown(true);
+      setShowLoginModal(false); // Close login modal after success
+      setLoginToastShown(true); // Show login success toast
       return res.data;
     } catch (err) {
       return err.res?.data || { message: "Something went wrong!!" };
     }
   };
 
+  // Logout user
   const logout = async () => {
     try {
-      await API.post("/auth/logout"); // Backend should clear cookie
+      await API.post("/auth/logout"); // Backend clears cookie/session
       setUser(null); // Reset user state
+      setLogoutToastShown(true); // Show logout success toast
     } catch (err) {
       console.log("Logout failed!!", err);
     }
   };
 
+  // Fetch the authenticated user
   const getUser = async () => {
     try {
-      const res = await API.get("/auth/me", { withCredentials: true }); // API to get user from token
+      const res = await API.get("/auth/me", { withCredentials: true }); // Fetch user from session
       setUser(res.data.user);
     } catch (err) {
       setUser(null); // If error, reset user state
     }
   };
 
+  // Get user data on mount
   useEffect(() => {
     getUser();
   }, []);
-
-  useEffect(() => {
-    if (user && isLoginToastShown) {
-      toast.success("Login Successful!!");
-      setIsLoginToastShown(false);
-    }
-  }, [user]);
 
   return (
     <AuthContext.Provider
@@ -68,8 +79,21 @@ export const AuthProvider = ({ children }) => {
         register,
         login,
         logout,
+
         showLoginModal,
         setShowLoginModal,
+
+        showRegisterModal,
+        setShowRegisterModal,
+
+        loginToastShown,
+        setLoginToastShown,
+
+        logoutToastShown,
+        setLogoutToastShown,
+
+        registerToastShown,
+        setRegisterToastShown,
       }}
     >
       {children}
