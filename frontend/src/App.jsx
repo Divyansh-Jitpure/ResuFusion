@@ -6,13 +6,25 @@ import Templates from "./Pages/Templates/Templates";
 import Navbar from "./Components/Navbar/Navbar";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthContext } from "./context/AuthContext";
 import ResumeForm from "./Components/ResumeForm/ResumeForm";
 import ToastManager from "./Components/ToastManager";
+import { useContext } from "react";
 
 function App() {
+  const { loading } = useContext(AuthContext);
+
+  // Show loading indicator while user data is being fetched
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center text-white">
+        Loading...
+      </div>
+    );
+  }
+
   return (
-    <AuthProvider>
+    <>
       <ToastManager /> {/* Handling toast notifications */}
       <Router>
         <Navbar />
@@ -28,7 +40,7 @@ function App() {
           {/* Resume Form Page */}
         </Routes>
       </Router>
-    </AuthProvider>
+    </>
   );
 }
 

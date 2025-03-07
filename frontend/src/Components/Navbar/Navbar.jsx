@@ -5,10 +5,9 @@ import Register from "../../Pages/Register/Register";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { LuLogOut } from "react-icons/lu";
-import { Toaster, toast } from "sonner";
 
 const Navbar = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, setShowLoginModal } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
