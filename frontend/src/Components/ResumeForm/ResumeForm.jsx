@@ -2,11 +2,13 @@ import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
 import { useMultiStepForm } from "./useMultiStepForm";
+import PersonalInfoForm from "./Forms/PersonalInfoForm";
+import EducationForm from "./Forms/EducationForm";
 
 const ResumeForm = () => {
   const { user, loading, setShowLoginModal } = useContext(AuthContext);
   const { step, steps, currentStepIndex, isFirstStep, isLastStep, back, next } =
-    useMultiStepForm([<div>One</div>, <div>Two</div>]);
+    useMultiStepForm([<PersonalInfoForm />, <EducationForm />]);
 
   // const navigate = useNavigate();
 
