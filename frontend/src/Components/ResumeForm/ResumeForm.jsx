@@ -9,11 +9,9 @@ const ResumeForm = () => {
   useEffect(() => {
     if (!loading && !user) {
       setShowLoginModal(true);
-      navigate("/");
+      // navigate("/");
     }
-  }, [user, loading, navigate, setShowLoginModal]);
-
-  if (loading) return <p>Loading...</p>;
+  }, [user, setShowLoginModal]); //navigate
 
   return <div>Resume Form</div>;
 };

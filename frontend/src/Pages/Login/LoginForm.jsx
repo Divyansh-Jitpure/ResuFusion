@@ -34,18 +34,16 @@ const LoginForm = () => {
         >
           <div className="flex flex-col gap-3">
             {/* Email Input */}
-            <label className="flex flex-col gap-1 text-white">
-              Email
-              <input
-                className="w-[40vh] rounded border-1 border-slate-300 p-1"
-                type="email"
-                placeholder="Enter Email"
-                name="email"
-                required
-                value={userData.email}
-                onChange={handleChange}
-              />
-            </label>
+            <label className="flex flex-col gap-1 text-white">Email</label>
+            <input
+              className="w-[40vh] rounded border-1 border-slate-300 p-1 text-white"
+              type="email"
+              placeholder="Enter Email"
+              name="email"
+              required
+              value={userData.email}
+              onChange={handleChange}
+            />
             {/* Password Input */}
             <label className="flex flex-col gap-1 text-white">
               Password
