@@ -1,17 +1,48 @@
 import React from "react";
 import FormWrapper from "../FormWrapper";
 
-const PersonalInfoForm = () => {
+const PersonalInfoForm = ({
+  fullName,
+  email,
+  phoneNumber,
+  address,
+  updateFields,
+}) => {
   return (
     <FormWrapper title="Personal Information">
       <label htmlFor="fullName">Full Name</label>
-      <input autoFocus required type="text" name="fullName" />
+      <input
+        autoFocus
+        required
+        type="text"
+        name="fullName"
+        value={fullName}
+        onChange={(e) => updateFields({ fullName: e.target.value })}
+      />
       <label htmlFor="email">Email </label>
-      <input required type="email" name="email" />
+      <input
+        required
+        type="email"
+        name="email"
+        value={email}
+        onChange={(e) => updateFields({ email: e.target.value })}
+      />
       <label htmlFor="phoneNumber">Phone Number</label>
-      <input required type="tel" name="phoneNumber" />
+      <input
+        required
+        type="tel"
+        name="phoneNumber"
+        value={phoneNumber}
+        onChange={(e) => updateFields({ phoneNumber: e.target.value })}
+      />
       <label htmlFor="address">Address </label>
-      <input required type="text" name="address" />
+      <input
+        required
+        type="text"
+        name="address"
+        value={address}
+        onChange={(e) => updateFields({ address: e.target.value })}
+      />
     </FormWrapper>
   );
 };
