@@ -17,6 +17,7 @@ const EducationForm = ({
         required
         type="text"
         name="degree"
+        placeholder="Enter Degree"
         value={degree}
         onChange={(e) => updateFields({ degree: e.target.value })}
       />
@@ -25,14 +26,16 @@ const EducationForm = ({
         required
         type="text"
         name="collage"
+        placeholder="Enter University/College"
         value={collage}
         onChange={(e) => updateFields({ collage: e.target.value })}
       />
-      <label htmlFor="location">Location </label>
+      <label htmlFor="location">Location</label>
       <input
         required
         type="text"
         name="location"
+        placeholder="Enter Location"
         value={location}
         onChange={(e) => updateFields({ location: e.target.value })}
       />
@@ -41,6 +44,7 @@ const EducationForm = ({
         required
         type="date"
         name="startYear"
+        placeholder="Enter Start Year"
         value={startYear}
         onChange={(e) => updateFields({ startYear: e.target.value })}
       />
@@ -49,6 +53,7 @@ const EducationForm = ({
         required
         type="date"
         name="endYear"
+        placeholder="Enter End Year"
         value={endYear}
         onChange={(e) => updateFields({ endYear: e.target.value })}
       />

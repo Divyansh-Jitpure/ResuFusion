@@ -48,7 +48,7 @@ const ResumeForm = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="relative mt-30 w-max rounded-lg border-[1px] border-black p-4">
+      <div className="relative mt-30 w-max rounded-lg border border-black bg-[#EEEEEE] px-18 py-10">
         <form onSubmit={handleSubmit}>
           <div className="absolute top-2 right-2">
             {currentStepIndex + 1}/{steps.length}
@@ -59,14 +59,18 @@ const ResumeForm = () => {
               <button
                 onClick={back}
                 type="button"
-                className="mx-1 flex items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
+                className="mx-1 flex items-center gap-1 rounded-lg bg-[#ffb0b0] px-3 py-1 text-lg font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
               >
                 Back
               </button>
             )}
             <button
               type="submit"
-              className="mx-1 flex items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
+              className={
+                isLastStep
+                  ? "mx-1 flex items-center gap-1 rounded-lg bg-[#D84040] px-3 py-1 text-lg font-medium transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
+                  : "mx-1 flex items-center gap-1 rounded-lg bg-[#ffb0b0] px-3 py-1 text-lg font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
+              }
             >
               {isLastStep ? "Finish" : "Next"}
             </button>

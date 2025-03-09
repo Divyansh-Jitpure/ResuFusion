@@ -16,6 +16,7 @@ const PersonalInfoForm = ({
         required
         type="text"
         name="fullName"
+        placeholder="Enter Full Name"
         value={fullName}
         onChange={(e) => updateFields({ fullName: e.target.value })}
       />
@@ -24,6 +25,7 @@ const PersonalInfoForm = ({
         required
         type="email"
         name="email"
+        placeholder="Enter Email"
         value={email}
         onChange={(e) => updateFields({ email: e.target.value })}
       />
@@ -32,14 +34,15 @@ const PersonalInfoForm = ({
         required
         type="tel"
         name="phoneNumber"
+        placeholder="Enter Phone Number"
         value={phoneNumber}
         onChange={(e) => updateFields({ phoneNumber: e.target.value })}
       />
       <label htmlFor="address">Address </label>
-      <input
+      <textarea
         required
-        type="text"
         name="address"
+        placeholder="Enter Address"
         value={address}
         onChange={(e) => updateFields({ address: e.target.value })}
       />

@@ -16,7 +16,7 @@ const Templates = () => {
       {/* Templates Section */}
       <section className="mt-10 flex w-[85%] flex-wrap justify-center gap-5 text-center">
         {/* Rendering multiple TemplateTile components */}
-        {[...Array(10)].map((_, index) => (
+        {[...Array(3)].map((_, index) => (
           <TemplateTile key={index} />
         ))}
         {/* <TemplateTile />

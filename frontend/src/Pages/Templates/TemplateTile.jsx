@@ -21,7 +21,7 @@ const TemplateTile = () => {
       <img className="px-2" src="SampleResume.png" alt="Resume Template" />
 
       {/* Template Name */}
-      <p className="my-1 text-[#EEEEEE]">Template Name</p>
+      <p className="my-1 text-[#EEEEEE]">Template</p>
     </div>
   );
 };
