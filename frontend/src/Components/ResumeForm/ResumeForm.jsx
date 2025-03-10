@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { useMultiStepForm } from "./useMultiStepForm";
 import PersonalInfoForm from "./Forms/PersonalInfoForm";
 import EducationForm from "./Forms/EducationForm";
+import SkillsForm from "./Forms/SkillsForm";
 
 const InitialData = {
   fullName: "",
@@ -15,6 +16,7 @@ const InitialData = {
   location: "",
   startYear: "",
   endYear: "",
+  skills: [],
 };
 
 const ResumeForm = () => {
@@ -32,12 +34,14 @@ const ResumeForm = () => {
     useMultiStepForm([
       <PersonalInfoForm {...data} updateFields={updateFields} />,
       <EducationForm {...data} updateFields={updateFields} />,
+      <SkillsForm {...data} updateFields={updateFields} />,
     ]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isLastStep) return next();
     alert("Done!!");
+    console.log(data);
   };
 
   useEffect(() => {
