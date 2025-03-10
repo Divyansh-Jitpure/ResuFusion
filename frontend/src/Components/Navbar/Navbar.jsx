@@ -1,14 +1,17 @@
-import React from "react";
-import { Link, useNavigate } from "react-router";
-import Login from "../../Pages/Login/Login";
-import Register from "../../Pages/Register/Register";
+import React, { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { LuLogOut } from "react-icons/lu";
+import Logout from "../Logout";
+import DashboardBtn from "../DashboardBtn";
 
 const Navbar = () => {
   const { user, logout, setShowLoginModal } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const path = location.pathname;
 
   return (
     // Navbar wrapper (fixed at the top with a glass effect)
@@ -24,32 +27,57 @@ const Navbar = () => {
         <Link to={"/about"}>About</Link>
       </div>
 
-      {/* Authentication Buttons (Login/Register or Logout) */}
-      {!user ? (
-        <div className="flex justify-between">
-          <Login /> {/* Open login modal */}
-          <Register /> {/* Open register modal */}
+      {path === "/" && !user && (
+        <div className="flex">
+          <Login />
+          <Register />
         </div>
-      ) : (
-        <div className="flex justify-between">
-          {/* Create Resume Button */}
-          <button
-            onClick={() => navigate("/templates")}
-            className="mx-1 rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
-          >
-            Create Resume
-          </button>
+      )}
 
-          {/* Logout Button */}
-          <button
-            onClick={() => {
-              logout(); // Call logout function
-              navigate("/"); // Redirect to homepage
-            }}
-            className="mx-1 flex items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
-          >
-            Logout <LuLogOut />
-          </button>
+      {path === "/" && user && (
+        <div className="flex">
+          <DashboardBtn />
+          <Logout />
+        </div>
+      )}
+
+      {path === "/templates" && !user && (
+        <div className="flex">
+          <Login />
+          <Register />
+        </div>
+      )}
+
+      {path === "/templates" && user && (
+        <div className="flex">
+          <DashboardBtn />
+          <Logout />
+        </div>
+      )}
+
+      {path === "/about" && !user && (
+        <div className="flex">
+          <Login />
+          <Register />
+        </div>
+      )}
+
+      {path === "/about" && user && (
+        <div className="flex">
+          <DashboardBtn />
+          <Logout />
+        </div>
+      )}
+
+      {path === "/dashboard" && user && (
+        <div className="flex">
+          <Logout />
+        </div>
+      )}
+
+      {path === "/resumeform" && user && (
+        <div className="flex">
+          <Logout />
         </div>
       )}
     </main>
@@ -57,3 +85,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+ 

@@ -16,6 +16,7 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       await login(userData);
+      
     } catch (err) {
       setError(err.error);
     }

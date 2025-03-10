@@ -4,12 +4,13 @@ import Home from "./Pages/Home/Home";
 import About from "./Pages/About";
 import Templates from "./Pages/Templates/Templates";
 import Navbar from "./Components/Navbar/Navbar";
-import Login from "./Pages/Login/Login";
-import Register from "./Pages/Register/Register";
+import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register";
 import { AuthContext } from "./context/AuthContext";
 import ResumeForm from "./Components/ResumeForm/ResumeForm";
 import ToastManager from "./Components/ToastManager";
 import { useContext } from "react";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 
 function App() {
   const { loading } = useContext(AuthContext);
@@ -38,6 +39,8 @@ function App() {
           {/* Register Page */}
           <Route path="/resumeform" element={<ResumeForm />} />{" "}
           {/* Resume Form Page */}
+          <Route path="/dashboard" element={<Dashboard />} />{" "}
+          {/* Dashboard Page */}
         </Routes>
       </Router>
     </>
