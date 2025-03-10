@@ -48,9 +48,17 @@ const ResumeForm = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="relative mt-30 w-max rounded-lg border border-black bg-[#EEEEEE] px-18 py-10">
+      <div className="relative mt-30 h-auto w-max rounded-lg border border-black bg-[#EEEEEE] px-18 py-10">
+        <div className="mx-auto mb-5 h-2 rounded border">
+          <div
+            style={{
+              width: `${Math.round(((currentStepIndex + 1) / steps.length) * 100)}%`,
+            }}
+            className={`h-full bg-linear-65 from-[#580c0c] to-[#D84040] transition-all`}
+          ></div>
+        </div>
         <form onSubmit={handleSubmit}>
-          <div className="absolute top-2 right-2">
+          <div className="absolute top-2 right-2 font-semibold">
             {currentStepIndex + 1}/{steps.length}
           </div>
           {step}
