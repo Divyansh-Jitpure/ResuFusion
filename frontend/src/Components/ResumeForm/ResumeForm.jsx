@@ -5,6 +5,7 @@ import { useMultiStepForm } from "./useMultiStepForm";
 import PersonalInfoForm from "./Forms/PersonalInfoForm";
 import EducationForm from "./Forms/EducationForm";
 import SkillsForm from "./Forms/SkillsForm";
+import API from "../../utils/api";
 
 const InitialData = {
   fullName: "",
@@ -40,8 +41,34 @@ const ResumeForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isLastStep) return next();
-    alert("Done!!");
-    console.log(data);
+
+    const formattedData = {
+      userId: user._id,
+      personalInfo: {
+        fullName: data.degree,
+        email: data.email,
+        phone: data.phoneNumber,
+        address: data.address,
+      },
+      education: [
+        {
+          degree: data.degree,
+          collage: data.collage,
+          location: data.location,
+          startYear: data.startYear,
+          endYear: data.endYear,
+        },
+      ],
+      skills: data.skills,
+      template: "Simple",
+    };
+
+    try {
+      API.post("/resumes", formattedData);
+      alert("Done!!");
+    } catch (err) {
+      console.error("Error submitting resume:", err);
+    }
   };
 
   useEffect(() => {

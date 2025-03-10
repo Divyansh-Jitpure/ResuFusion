@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.js";
+import resumeRoutes from "./routes/resumeRoutes.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 // Routes
 app.use("/api/auth", authRoutes); // Authentication-related API routes
+app.use("/api/resumes", resumeRoutes); 
 
 // Default route
 app.get("/", (req, res) => {

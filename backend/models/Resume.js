@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const ResumeSchema = new mongoose.Schema(
   {
-    userID: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    personalDetails: {
+    personalInfo: {
       fullName: String,
       email: String,
       phone: String,
