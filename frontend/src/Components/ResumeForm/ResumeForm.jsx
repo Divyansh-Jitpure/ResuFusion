@@ -40,7 +40,7 @@ const ResumeForm = () => {
       <SkillsForm {...data} updateFields={updateFields} />,
     ]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isLastStep) return next();
 
@@ -66,7 +66,10 @@ const ResumeForm = () => {
     };
 
     try {
-      API.post("/resumes", formattedData);
+      const res = await API.post("/resumes", formattedData);
+      const resumeId = res.data._id;
+      console.log("rid", resumeId);
+
       alert("Done!!");
     } catch (err) {
       console.error("Error submitting resume:", err);
