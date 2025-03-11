@@ -2,10 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import API from "../../utils/api";
 import { AuthContext } from "../../context/AuthContext";
 import { useParams } from "react-router";
-import PersonalInfo from "./PersonalInfo";
-import Education from "./Education";
-import Skills from "./Skills";
-import Summary from "./Summary";
+import Basic from "../../Pages/Templates/TemplateDesigns/Basic/Basic";
 
 const ResumePreview = () => {
   const { id: resumeId } = useParams();
@@ -27,8 +24,6 @@ const ResumePreview = () => {
     }
   }, [user, resumeId]);
 
-  const { personalInfo, education, skills, summary } = resumeData || {};
-
   return (
     <div className="flex flex-col items-center">
       <div className="mt-22 flex min-h-screen flex-col items-center justify-center">
@@ -38,10 +33,9 @@ const ResumePreview = () => {
         {resumeData && (
           // Resume Container
           <div className="flex h-[1123px] w-[794px] flex-col gap-3 overflow-auto bg-white">
-            <PersonalInfo personalInfo={personalInfo} />
-            <Summary summary={summary} />
-            <Education education={education} />
-            <Skills skills={skills} />
+            {resumeData.template === "basic" && (
+              <Basic resumeData={resumeData} />
+            )}
           </div>
         )}
       </div>
