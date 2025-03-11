@@ -6,6 +6,7 @@ import PersonalInfoForm from "./Forms/PersonalInfoForm";
 import EducationForm from "./Forms/EducationForm";
 import SkillsForm from "./Forms/SkillsForm";
 import API from "../../utils/api";
+import SummaryForm from "./Forms/SummaryForm";
 
 const InitialData = {
   fullName: "",
@@ -18,6 +19,7 @@ const InitialData = {
   startYear: "",
   endYear: "",
   skills: [],
+  summary: "",
 };
 
 const ResumeForm = () => {
@@ -37,6 +39,7 @@ const ResumeForm = () => {
     useMultiStepForm([
       <PersonalInfoForm {...data} updateFields={updateFields} />,
       <EducationForm {...data} updateFields={updateFields} />,
+      <SummaryForm {...data} updateFields={updateFields} />,
       <SkillsForm {...data} updateFields={updateFields} />,
     ]);
 
@@ -62,6 +65,7 @@ const ResumeForm = () => {
         },
       ],
       skills: data.skills,
+      summary: data.summary,
       template: templateName,
     };
 

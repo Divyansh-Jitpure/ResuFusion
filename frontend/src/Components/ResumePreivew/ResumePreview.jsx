@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import PersonalInfo from "./PersonalInfo";
 import Education from "./Education";
 import Skills from "./Skills";
+import Summary from "./Summary";
 
 const ResumePreview = () => {
   const { id: resumeId } = useParams();
@@ -26,7 +27,7 @@ const ResumePreview = () => {
     }
   }, [user, resumeId]);
 
-  const { personalInfo, education, skills } = resumeData || {};
+  const { personalInfo, education, skills, summary } = resumeData || {};
 
   return (
     <div className="flex flex-col items-center">
@@ -36,8 +37,9 @@ const ResumePreview = () => {
         </h2>
         {resumeData && (
           // Resume Container
-          <div className="h-[1123px] w-[794px] overflow-auto bg-white">
+          <div className="flex h-[1123px] w-[794px] flex-col gap-3 overflow-auto bg-white">
             <PersonalInfo personalInfo={personalInfo} />
+            <Summary summary={summary} />
             <Education education={education} />
             <Skills skills={skills} />
           </div>

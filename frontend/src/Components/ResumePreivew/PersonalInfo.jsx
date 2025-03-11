@@ -2,8 +2,8 @@ import React from "react";
 
 const PersonalInfo = ({ personalInfo }) => {
   return (
-    <div className="mx-5 flex flex-col items-center border-b py-2">
-      <h1 className="text-6xl">{personalInfo.fullName}</h1>
+    <div className="mt-2 flex flex-col items-center">
+      <h1 className="text-5xl">{personalInfo.fullName}</h1>
       {/* Add this in the resume Form Later \/ */}
       <h2 className="text-xl font-medium text-gray-700">System Engineer</h2>
       <section className="flex gap-2 text-gray-500">

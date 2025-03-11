@@ -23,6 +23,7 @@ const ResumeSchema = new mongoose.Schema(
       },
     ],
     skills: [String],
+    summary: String,
     template: { type: String, required: true },
   },
   { timestamps: true }
