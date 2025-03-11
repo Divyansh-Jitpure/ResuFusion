@@ -21,7 +21,7 @@ const InitialData = {
 };
 
 const ResumeForm = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [data, setData] = useState(InitialData);
   const { user, loading, setShowLoginModal } = useContext(AuthContext);
 
@@ -68,9 +68,7 @@ const ResumeForm = () => {
     try {
       const res = await API.post("/resumes", formattedData);
       const resumeId = res.data._id;
-      console.log("rid", resumeId);
-
-      alert("Done!!");
+      navigate(`/resumePreview/${resumeId}`);
     } catch (err) {
       console.error("Error submitting resume:", err);
     }

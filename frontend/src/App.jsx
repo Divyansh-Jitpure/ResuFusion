@@ -11,6 +11,7 @@ import ResumeForm from "./Components/ResumeForm/ResumeForm";
 import ToastManager from "./Components/ToastManager";
 import { useContext } from "react";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import ResumePreview from "./Components/ResumePreivew/ResumePreview";
 
 function App() {
   const { loading } = useContext(AuthContext);
@@ -41,6 +42,8 @@ function App() {
           {/* Resume Form Page */}
           <Route path="/dashboard" element={<Dashboard />} />{" "}
           {/* Dashboard Page */}
+          <Route path="/resumePreview/:id" element={<ResumePreview />} />{" "}
+          {/* Resume Preview Page */}
         </Routes>
       </Router>
     </>
