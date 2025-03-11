@@ -37,7 +37,7 @@ function App() {
           <Route path="/login" element={<Login />} /> {/* Login Page */}
           <Route path="/register" element={<Register />} />{" "}
           {/* Register Page */}
-          <Route path="/resumeform" element={<ResumeForm />} />{" "}
+          <Route path="/resumeform/:id" element={<ResumeForm />} />{" "}
           {/* Resume Form Page */}
           <Route path="/dashboard" element={<Dashboard />} />{" "}
           {/* Dashboard Page */}

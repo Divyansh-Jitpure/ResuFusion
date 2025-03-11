@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useMultiStepForm } from "./useMultiStepForm";
 import PersonalInfoForm from "./Forms/PersonalInfoForm";
 import EducationForm from "./Forms/EducationForm";
@@ -25,6 +25,8 @@ const ResumeForm = () => {
   const [data, setData] = useState(InitialData);
   const { user, loading, setShowLoginModal } = useContext(AuthContext);
 
+  const { id: templateName } = useParams();
+
   const updateFields = (fields) => {
     setData((prev) => {
       return { ...prev, ...fields };
@@ -45,7 +47,7 @@ const ResumeForm = () => {
     const formattedData = {
       userId: user._id,
       personalInfo: {
-        fullName: data.degree,
+        fullName: data.fullName,
         email: data.email,
         phone: data.phoneNumber,
         address: data.address,
@@ -60,7 +62,7 @@ const ResumeForm = () => {
         },
       ],
       skills: data.skills,
-      template: "Simple",
+      template: templateName,
     };
 
     try {
