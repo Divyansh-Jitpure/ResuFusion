@@ -37,7 +37,6 @@ const Dashboard = () => {
           <ResumeTile
             key={index}
             dateCreated={resume.createdAt.slice(0, 10)}
-            userId={user._id}
             resumeId={resume._id}
           />
         ))}

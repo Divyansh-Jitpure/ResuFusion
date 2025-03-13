@@ -15,7 +15,7 @@ const TemplateTile = ({ templateName }) => {
   return (
     <div
       onClick={handleSelectTemplate}
-      className="w-72 cursor-pointer rounded-lg border border-[#ff9090] pt-2"
+      className="w-64 cursor-pointer rounded-lg border border-[#ff9090] pt-2 transition-shadow hover:shadow-md hover:shadow-amber-700"
     >
       {/* Template Image */}
       <img className="px-2" src="SampleResume.png" alt="Resume Template" />

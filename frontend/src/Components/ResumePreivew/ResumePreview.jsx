@@ -32,7 +32,7 @@ const ResumePreview = () => {
         </h2>
         {resumeData && (
           // Resume Container
-          <div className="flex h-[1123px] w-[794px] flex-col gap-3 overflow-auto bg-white">
+          <div className="mb-10 flex h-[1123px] w-[794px] flex-col gap-3 overflow-auto bg-white">
             {resumeData.template === "basic" && (
               <Basic resumeData={resumeData} />
             )}
