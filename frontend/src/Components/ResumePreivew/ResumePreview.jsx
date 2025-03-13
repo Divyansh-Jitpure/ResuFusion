@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 import Basic from "../../Pages/Templates/TemplateDesigns/Basic/Basic";
 
 const ResumePreview = () => {
-  const { id: resumeId } = useParams();
+  const { resumeId: resumeId } = useParams();
   const { user } = useContext(AuthContext);
   const [resumeData, setResumeData] = useState(null);
 

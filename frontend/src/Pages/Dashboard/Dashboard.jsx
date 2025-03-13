@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ResumeTile from "./ResumeTile";
+import { AuthContext } from "../../context/AuthContext";
+import API from "../../utils/api";
 
 const Dashboard = () => {
+  const [allResumes, setAllResumes] = useState([]);
+  const { user } = useContext(AuthContext);
+
+  const getResumeData = async () => {
+    try {
+      const resumes = await API.get(`/resumes/${user._id}`);
+      setAllResumes(resumes.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      getResumeData();
+    }
+  }, [user]);
+
   return (
     <div className="flex flex-col items-center">
       {/* Heading Section */}
@@ -13,12 +33,14 @@ const Dashboard = () => {
       </p>
       <section className="mt-10 flex w-[85%] flex-wrap justify-center gap-5 text-center">
         {/* Rendering multiple ResumeTile components */}
-        {/* {[...Array(3)].map((_, index) => (
-          <ResumeTile key={index} />
-        ))} */}
-        <ResumeTile />
-        <ResumeTile />
-        <ResumeTile />
+        {allResumes.map((resume, index) => (
+          <ResumeTile
+            key={index}
+            dateCreated={resume.createdAt.slice(0, 10)}
+            userId={user._id}
+            resumeId={resume._id}
+          />
+        ))}
       </section>
     </div>
   );

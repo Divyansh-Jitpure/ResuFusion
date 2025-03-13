@@ -19,7 +19,7 @@ router.get("/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     const resumes = await Resume.find({ userId });
-    console.log(resumes);
+    // console.log(resumes);
     res.status(200).json(resumes);
   } catch (err) {
     res.status(500).json({ message: "Sever Error", err });

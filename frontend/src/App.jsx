@@ -42,7 +42,10 @@ function App() {
           {/* Resume Form Page */}
           <Route path="/dashboard" element={<Dashboard />} />{" "}
           {/* Dashboard Page */}
-          <Route path="/resumePreview/:id" element={<ResumePreview />} />{" "}
+          <Route
+            path="/resumePreview/:resumeId"
+            element={<ResumePreview />}
+          />{" "}
           {/* Resume Preview Page */}
         </Routes>
       </Router>
