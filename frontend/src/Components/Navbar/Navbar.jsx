@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
@@ -8,10 +8,18 @@ import Logout from "../Logout";
 import DashboardBtn from "../DashboardBtn";
 
 const Navbar = () => {
-  const { user, logout, setShowLoginModal } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   const location = useLocation();
   const path = location.pathname;
+
+  // Routes where login/register should be shown if user is NOT logged in
+  const showAuthButtonsRoutes = ["/", "/templates", "/about"];
+
+  // Routes where dashboard/logout should be shown if user is logged in
+  const showDashboardRoutes = ["/", "/templates", "/about"];
+
+  // Routes where only Dashboard & Logout should be shown
+  const showDashboardAndLogout = ["/resumePreview", "/resumeForm"];
 
   return (
     // Navbar wrapper (fixed at the top with a glass effect)
@@ -27,62 +35,39 @@ const Navbar = () => {
         <Link to={"/about"}>About</Link>
       </div>
 
-      {path === "/" && !user && (
+      {/* Show Login/Register if user is NOT logged in */}
+      {showAuthButtonsRoutes.includes(path) && !user && (
         <div className="flex">
           <Login />
           <Register />
         </div>
       )}
 
-      {path === "/" && user && (
+      {/* Show Dashboard/Logout if user is logged in */}
+      {showDashboardRoutes.includes(path) && user && (
         <div className="flex">
           <DashboardBtn />
           <Logout />
         </div>
       )}
 
-      {path === "/templates" && !user && (
-        <div className="flex">
-          <Login />
-          <Register />
-        </div>
-      )}
-
-      {path === "/templates" && user && (
-        <div className="flex">
-          <DashboardBtn />
-          <Logout />
-        </div>
-      )}
-
-      {path === "/about" && !user && (
-        <div className="flex">
-          <Login />
-          <Register />
-        </div>
-      )}
-
-      {path === "/about" && user && (
-        <div className="flex">
-          <DashboardBtn />
-          <Logout />
-        </div>
-      )}
-
-      {path === "/dashboard" && user && (
+      {/* Show only Logout on dashboard & resume form */}
+      {user && path === "/dashboard" && (
         <div className="flex">
           <Logout />
         </div>
       )}
 
-      {path === "/resumeform" && user && (
-        <div className="flex">
-          <Logout />
-        </div>
-      )}
+      {/* Show Dashboard & Logout on resumePreview and resumeForm */}
+      {user &&
+        showDashboardAndLogout.some((route) => path.startsWith(route)) && (
+          <div className="flex">
+            <DashboardBtn />
+            <Logout />
+          </div>
+        )}
     </main>
   );
 };
 
 export default Navbar;
- 
