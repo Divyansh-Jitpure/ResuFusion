@@ -13,14 +13,15 @@ const Education = ({ education }) => {
       </h2>
       {education.map((item, index) => {
         return (
-          <div key={index} className="flex justify-between px-10">
+          <div key={index} className="flex justify-between px-10 gap-2">
             <section className="flex flex-col items-start">
-              <span className="">{item.collage}</span>
+              <span className="text-gray-600">{item.collage}</span>
               <span className="">{item.degree}</span>
             </section>
             <section className="flex flex-col items-start">
               <article>
-                <span>{item.city}</span>, <span>{item.country}</span>
+                <span className="text-gray-600">{item.city}</span>,{" "}
+                <span>{item.country}</span>
               </article>
               <article>
                 <span className="">{formattedDate(item.startYear)}</span> -{" "}
