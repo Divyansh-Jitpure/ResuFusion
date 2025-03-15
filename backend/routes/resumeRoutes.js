@@ -40,4 +40,14 @@ router.get("/:userId/:resumeId", async (req, res) => {
   }
 });
 
+router.delete("/:userId/:resumeId", async (req, res) => {
+  try {
+    const { userId, resumeId } = req.params;
+    await Resume.deleteOne({ _id: resumeId, userId });
+    res.status(200).json({ message: "Resume Deleted Successfully" });
+  } catch (error) {
+    res.status(404).json({ message: "Resume not found!!!", err });
+  }
+});
+
 export default router;

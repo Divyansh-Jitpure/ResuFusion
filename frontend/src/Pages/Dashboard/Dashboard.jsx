@@ -33,13 +33,18 @@ const Dashboard = () => {
       </p>
       <section className="mt-10 flex w-[85%] flex-wrap justify-center gap-5 text-center">
         {/* Rendering multiple ResumeTile components */}
-        {allResumes.map((resume, index) => (
-          <ResumeTile
-            key={index}
-            dateCreated={resume.createdAt.slice(0, 10)}
-            resumeId={resume._id}
-          />
-        ))}
+        {allResumes.length === 0 ? (
+          <p className="mt-2 text-xl text-gray-300">No Resumes Found</p>
+        ) : (
+          allResumes.map((resume, index) => (
+            <ResumeTile
+              getResumeData={getResumeData}
+              key={index}
+              dateCreated={resume.createdAt.slice(0, 10)}
+              resumeId={resume._id}
+            />
+          ))
+        )}
       </section>
     </div>
   );
