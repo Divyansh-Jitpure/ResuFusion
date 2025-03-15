@@ -30,14 +30,23 @@ const EducationForm = ({
         value={collage}
         onChange={(e) => updateFields({ collage: e.target.value })}
       />
-      <label htmlFor="location">Location</label>
+      <label htmlFor="city">City</label>
       <input
         required
         type="text"
-        name="location"
-        placeholder="Enter Location"
+        name="city"
+        placeholder="Enter City"
         value={location}
-        onChange={(e) => updateFields({ location: e.target.value })}
+        onChange={(e) => updateFields({ city: e.target.value })}
+      />
+      <label htmlFor="country">Country</label>
+      <input
+        required
+        type="text"
+        name="country"
+        placeholder="Enter Country"
+        value={location}
+        onChange={(e) => updateFields({ country: e.target.value })}
       />
       <label htmlFor="startYear">Start Year</label>
       <input

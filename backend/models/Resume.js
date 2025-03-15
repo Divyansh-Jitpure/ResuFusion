@@ -17,7 +17,8 @@ const ResumeSchema = new mongoose.Schema(
       {
         degree: String,
         collage: String,
-        location: String,
+        city: String,
+        country: String,
         startYear: Date,
         endYear: Date,
       },
