@@ -6,6 +6,8 @@ const Education = ({ education }) => {
       year: "numeric",
       month: "long",
     });
+
+  if (education.length === 0) return "";
   return (
     <div className="text-center">
       <h2 className="mx-5 border-b pb-1 text-xl font-medium text-gray-700">
@@ -13,7 +15,7 @@ const Education = ({ education }) => {
       </h2>
       {education.map((item, index) => {
         return (
-          <div key={index} className="flex justify-between px-10 gap-2">
+          <div key={index} className="flex justify-between gap-2 px-10">
             <section className="flex flex-col items-start">
               <span className="text-gray-600">{item.collage}</span>
               <span className="">{item.degree}</span>
