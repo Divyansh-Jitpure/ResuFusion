@@ -20,18 +20,18 @@ const ResumeSchema = new mongoose.Schema(
         city: String,
         country: String,
         startYear: Date,
-        endYear: Date,
+        endYear: Date, // !!!!! Make this optional later if someone is working in present and UI aswell
       },
     ],
     experience: [
       {
-        company: String,
-        role: String,
+        companyName: String,
+        jobTitle: String,
         description: [String],
         city: String,
         country: String,
-        startYear: Date,
-        endYear: Date, // !!!!! Make this optional later if someone is working in present and UI aswell
+        startDate: Date,
+        endDate: Date, // !!!!! Make this optional later if someone is working in present and UI aswell
       },
     ],
     skills: [String],

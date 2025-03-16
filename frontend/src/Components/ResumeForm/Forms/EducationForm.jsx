@@ -54,24 +54,28 @@ const EducationForm = ({ education, updateFields }) => {
               value={edu.collage}
               onChange={(e) => handleChange(index, "collage", e.target.value)}
             />
-            <label htmlFor={`city-${index}`}>City</label>
-            <input
-              required
-              type="text"
-              name="city"
-              placeholder="Enter City"
-              value={edu.city}
-              onChange={(e) => handleChange(index, "city", e.target.value)}
-            />
-            <label htmlFor={`country-${index}`}>Country</label>
-            <input
-              required
-              type="text"
-              name="country"
-              placeholder="Enter Country"
-              value={edu.country}
-              onChange={(e) => handleChange(index, "country", e.target.value)}
-            />
+            <div className="grid grid-cols-2 [&>input]:w-30 [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
+              <label htmlFor={`city-${index}`}>City</label>
+              <input
+                required
+                type="text"
+                name="city"
+                placeholder="Enter City"
+                value={edu.city}
+                onChange={(e) => handleChange(index, "city", e.target.value)}
+              />
+            </div>
+            <div className="grid grid-cols-2 [&>input]:w-30 [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
+              <label htmlFor={`country-${index}`}>Country</label>
+              <input
+                required
+                type="text"
+                name="country"
+                placeholder="Enter Country"
+                value={edu.country}
+                onChange={(e) => handleChange(index, "country", e.target.value)}
+              />
+            </div>
             <label htmlFor={`startYear-${index}`}>Start Year</label>
             <input
               required

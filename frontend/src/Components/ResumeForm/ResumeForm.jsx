@@ -38,10 +38,10 @@ const ResumeForm = () => {
       <PersonalInfoForm {...data} updateFields={updateFields} />,
       <SummaryForm {...data} updateFields={updateFields} />,
       <EducationForm education={data.education} updateFields={updateFields} />,
-      // <ExperienceForm
-      //   experience={data.experience}
-      //   updateFields={updateFields}
-      // />,
+      <ExperienceForm
+        experience={data.experience}
+        updateFields={updateFields}
+      />,
       <SkillsForm {...data} updateFields={updateFields} />,
     ]);
 

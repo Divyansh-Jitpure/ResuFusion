@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     // Navbar wrapper (fixed at the top with a glass effect)
-    <main className="fixed inset-x-0 mx-auto mt-5 flex h-[50px] w-fit items-center justify-evenly rounded-full bg-slate-600/50 px-4 backdrop-blur-md *:mx-6">
+    <main className="fixed inset-x-0 z-100 mx-auto mt-5 flex h-[50px] w-fit items-center justify-evenly rounded-full bg-slate-600/50 px-4 backdrop-blur-md *:mx-6">
       {/* Brand Logo */}
       <div className="pb-1 text-2xl font-bold text-[#f83232]">
         <Link to={"/"}>ResuFusion</Link>
