@@ -6,8 +6,25 @@ const ExperienceForm = ({ experience, updateFields }) => {
     updateFields({
       experience: [
         ...experience,
-        { companyName: "", jobTitle: "", city: "", country: "" },
+        {
+          companyName: "",
+          jobTitle: "",
+          city: "",
+          country: "",
+          startDate: "",
+          endDate: "",
+          description: [],
+        },
       ],
+    });
+  };
+
+  const addDescriptions = (index) => {
+    const updatedExperience = experience.map((exp, i) =>
+      i === index ? { ...exp, description: [...exp.description, ""] } : exp,
+    );
+    updateFields({
+      experience: updatedExperience,
     });
   };
 
@@ -88,6 +105,44 @@ const ExperienceForm = ({ experience, updateFields }) => {
               value={exp.endDate}
               onChange={(e) => handleChange(index, "endDate", e.target.value)}
             />
+            {exp.description.map((des, desIndex) => (
+              <div
+                className="grid grid-cols-2 [&>label]:font-semibold [&>textarea]:w-30 [&>textarea]:rounded [&>textarea]:border [&>textarea]:p-1"
+                key={desIndex}
+              >
+                <label htmlFor={`description-${desIndex}`}>
+                  {desIndex + 1}. Description
+                </label>
+                <textarea
+                  name="description"
+                  rows="1"
+                  value={des}
+                  onChange={(e) => {
+                    const updatedExperience = experience.map((exp, i) =>
+                      i === index
+                        ? {
+                            ...exp,
+                            description: exp.description.map(
+                              (desc, descIndex) =>
+                                descIndex === desIndex ? e.target.value : desc,
+                            ),
+                          }
+                        : exp,
+                    );
+                    updateFields({ experience: updatedExperience });
+                  }}
+                ></textarea>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              className="w-max rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
+              onClick={() => addDescriptions(index)}
+            >
+              Add Description
+            </button>
+            <div></div>
 
             <button
               className="w-max rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
