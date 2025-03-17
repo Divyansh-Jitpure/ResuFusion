@@ -9,30 +9,31 @@ const Education = ({ education }) => {
 
   if (education.length === 0) return "";
   return (
-    <div className="text-center">
-      <h2 className="mx-5 border-b pb-1 text-xl font-medium text-gray-700">
+    <div className="">
+      <h2 className="mx-5 border-b pb-1 text-center text-xl font-medium text-gray-700">
         Education
       </h2>
-      {education.map((item, index) => {
-        return (
-          <div key={index} className="flex justify-between gap-2 px-10">
-            <section className="flex flex-col items-start">
-              <span className="text-gray-600">{item.collage}</span>
-              <span className="">{item.degree}</span>
-            </section>
-            <section className="flex flex-col items-start">
-              <article>
-                <span className="text-gray-600">{item.city}</span>,{" "}
-                <span>{item.country}</span>
-              </article>
-              <article>
-                <span className="">{formattedDate(item.startYear)}</span> -{" "}
-                <span className="">{formattedDate(item.endYear)}</span>
-              </article>
-            </section>
-          </div>
-        );
-      })}
+      <div className="flex flex-col gap-2">
+        {education.map((item, index) => {
+          return (
+            <div key={index} className="grid grid-cols-2 px-10">
+              <section className="flex flex-col items-start">
+                <span>{item.collage}</span>
+                <span className="text-gray-500">{item.degree}</span>
+              </section>
+              <section className="flex flex-col items-end">
+                <article>
+                  <span>{item.city}</span>, <span>{item.country}</span>
+                </article>
+                <article className="text-gray-500">
+                  <span>{formattedDate(item.startYear)}</span> -{" "}
+                  <span>{formattedDate(item.endYear)}</span>
+                </article>
+              </section>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
