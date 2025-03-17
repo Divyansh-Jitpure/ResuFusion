@@ -65,7 +65,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
               value={exp.jobTitle}
               onChange={(e) => handleChange(index, "jobTitle", e.target.value)}
             />
-            <div className="grid grid-cols-2 [&>input]:w-30 [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
+            <div className="col-span-2 grid grid-cols-4 gap-2 [&>input]:w-30 [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
               <label htmlFor={`city-${index}`}>City</label>
               <input
                 required
@@ -75,8 +75,6 @@ const ExperienceForm = ({ experience, updateFields }) => {
                 value={exp.city}
                 onChange={(e) => handleChange(index, "city", e.target.value)}
               />
-            </div>
-            <div className="grid grid-cols-2 [&>input]:w-30 [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
               <label htmlFor={`country-${index}`}>Country</label>
               <input
                 required
@@ -107,7 +105,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
             />
             {exp.description.map((des, desIndex) => (
               <div
-                className="grid grid-cols-2 [&>label]:font-semibold [&>textarea]:w-30 [&>textarea]:rounded [&>textarea]:border [&>textarea]:p-1"
+                className="col-span-2 grid grid-cols-2 gap-2 [&>label]:font-semibold [&>textarea]:rounded [&>textarea]:border [&>textarea]:p-1"
                 key={desIndex}
               >
                 <label htmlFor={`description-${desIndex}`}>

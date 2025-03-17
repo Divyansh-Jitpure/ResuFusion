@@ -54,7 +54,7 @@ const EducationForm = ({ education, updateFields }) => {
               value={edu.collage}
               onChange={(e) => handleChange(index, "collage", e.target.value)}
             />
-            <div className="grid grid-cols-2 [&>input]:w-30 [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
+            <div className="col-span-2 grid grid-cols-4 gap-2 [&>input]:w-30 [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
               <label htmlFor={`city-${index}`}>City</label>
               <input
                 required
@@ -64,8 +64,6 @@ const EducationForm = ({ education, updateFields }) => {
                 value={edu.city}
                 onChange={(e) => handleChange(index, "city", e.target.value)}
               />
-            </div>
-            <div className="grid grid-cols-2 [&>input]:w-30 [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
               <label htmlFor={`country-${index}`}>Country</label>
               <input
                 required
