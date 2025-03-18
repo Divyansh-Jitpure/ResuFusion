@@ -50,7 +50,6 @@ const ResumePreview = () => {
           Download
         </button>
         {resumeData && (
-          // Resume Container
           <div
             ref={contentRef}
             className="flex h-[1123px] w-[794px] flex-col gap-3 bg-white"
