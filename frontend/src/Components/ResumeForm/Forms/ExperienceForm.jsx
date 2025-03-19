@@ -1,6 +1,8 @@
 import React from "react";
 import FormWrapper from "../FormWrapper";
 
+import { MdDelete } from "react-icons/md";
+
 const ExperienceForm = ({ experience, updateFields }) => {
   const addExperience = () => {
     updateFields({
@@ -26,6 +28,14 @@ const ExperienceForm = ({ experience, updateFields }) => {
     updateFields({
       experience: updatedExperience,
     });
+  };
+
+  const removeDescription = (index) => {
+    const updatedExperience = experience.map(
+      (exp, i) =>
+        i === index && exp.description.filter((_, desIndex) => desIndex !== i),
+    );
+    updateFields({ experience: updatedExperience });
   };
 
   const removeExperience = (index) => {
@@ -111,25 +121,34 @@ const ExperienceForm = ({ experience, updateFields }) => {
                 <label htmlFor={`description-${desIndex}`}>
                   {desIndex + 1}. Description
                 </label>
-                <textarea
-                  name="description"
-                  rows="1"
-                  value={des}
-                  onChange={(e) => {
-                    const updatedExperience = experience.map((exp, i) =>
-                      i === index
-                        ? {
-                            ...exp,
-                            description: exp.description.map(
-                              (desc, descIndex) =>
-                                descIndex === desIndex ? e.target.value : desc,
-                            ),
-                          }
-                        : exp,
-                    );
-                    updateFields({ experience: updatedExperience });
-                  }}
-                ></textarea>
+                <div className="flex items-center gap-1">
+                  <textarea
+                    className="w-full"
+                    name="description"
+                    rows="1"
+                    value={des}
+                    onChange={(e) => {
+                      const updatedExperience = experience.map((exp, i) =>
+                        i === index
+                          ? {
+                              ...exp,
+                              description: exp.description.map(
+                                (desc, descIndex) =>
+                                  descIndex === desIndex
+                                    ? e.target.value
+                                    : desc,
+                              ),
+                            }
+                          : exp,
+                      );
+                      updateFields({ experience: updatedExperience });
+                    }}
+                  />
+                  <MdDelete
+                    onClick={() => removeDescription(desIndex)}
+                    className="cursor-pointer text-3xl"
+                  />
+                </div>
               </div>
             ))}
 
