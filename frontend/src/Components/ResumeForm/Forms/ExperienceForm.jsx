@@ -23,17 +23,23 @@ const ExperienceForm = ({ experience, updateFields }) => {
 
   const addDescriptions = (index) => {
     const updatedExperience = experience.map((exp, i) =>
-      i === index ? { ...exp, description: [...exp.description, ""] } : exp,
+      i === index ? { ...exp, description: [...exp?.description, ""] } : exp,
     );
     updateFields({
       experience: updatedExperience,
     });
   };
 
-  const removeDescription = (index) => {
-    const updatedExperience = experience.map(
-      (exp, i) =>
-        i === index && exp.description.filter((_, desIndex) => desIndex !== i),
+  const removeDescription = (index, descriptionIndex) => {
+    const updatedExperience = experience.map((exp, i) =>
+      i === index
+        ? {
+            ...exp,
+            description: exp.description.filter(
+              (_, desIndex) => desIndex !== descriptionIndex,
+            ),
+          }
+        : exp,
     );
     updateFields({ experience: updatedExperience });
   };
@@ -113,7 +119,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
               value={exp.endDate}
               onChange={(e) => handleChange(index, "endDate", e.target.value)}
             />
-            {exp.description.map((des, desIndex) => (
+            {exp.description?.map((des, desIndex) => (
               <div
                 className="col-span-2 grid grid-cols-2 gap-2 [&>label]:font-semibold [&>textarea]:rounded [&>textarea]:border [&>textarea]:p-1"
                 key={desIndex}
@@ -145,7 +151,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
                     }}
                   />
                   <MdDelete
-                    onClick={() => removeDescription(desIndex)}
+                    onClick={() => removeDescription(index, desIndex)}
                     className="cursor-pointer text-3xl"
                   />
                 </div>

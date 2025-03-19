@@ -14,8 +14,8 @@ const InitialData = {
   email: "",
   phoneNumber: "",
   address: "",
-  education: [],
-  experience: [],
+  education: [""],
+  experience: [""],
   skills: [],
   summary: "",
 };
