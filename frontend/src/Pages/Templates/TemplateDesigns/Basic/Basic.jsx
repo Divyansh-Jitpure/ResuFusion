@@ -7,6 +7,7 @@ import Experience from "./Experience";
 import Certifications from "./Certifications";
 import Projects from "./Projects";
 import Languages from "./Languages";
+import Hobbies from "./Hobbies";
 
 const Basic = ({ resumeData }) => {
   const {
@@ -18,6 +19,7 @@ const Basic = ({ resumeData }) => {
     certifications,
     projects,
     languages,
+    hobbies,
   } = resumeData || {};
   return (
     <>
@@ -29,6 +31,7 @@ const Basic = ({ resumeData }) => {
       <Skills skills={skills} />
       <Certifications certifications={certifications} />
       <Languages languages={languages} />
+      <Hobbies hobbies={hobbies} />
     </>
   );
 };
