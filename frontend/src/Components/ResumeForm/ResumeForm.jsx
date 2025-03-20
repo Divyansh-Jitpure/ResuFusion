@@ -10,6 +10,7 @@ import SummaryForm from "./Forms/SummaryForm";
 import ExperienceForm from "./Forms/ExperienceForm";
 import Certifications from "./Forms/CertificationsForm";
 import ProjectsForm from "./Forms/ProjectsForm";
+import LanguagesForm from "./Forms/LanguagesForm";
 
 const InitialData = {
   fullName: "",
@@ -21,6 +22,7 @@ const InitialData = {
   projects: [""],
   skills: [],
   certifications: [""],
+  languages: [""],
   summary: "",
 };
 
@@ -52,6 +54,7 @@ const ResumeForm = () => {
         updateFields={updateFields}
       />,
       <ProjectsForm projects={data.projects} updateFields={updateFields} />,
+      <LanguagesForm languages={data.languages} updateFields={updateFields} />,
     ]);
 
   const handleSubmit = async (e) => {
@@ -72,6 +75,7 @@ const ResumeForm = () => {
       skills: data.skills,
       certifications: data.certifications,
       summary: data.summary,
+      languages: data.languages,
       template: templateName,
     };
 
