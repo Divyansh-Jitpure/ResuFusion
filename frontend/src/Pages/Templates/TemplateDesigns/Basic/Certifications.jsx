@@ -11,7 +11,8 @@ const Certifications = ({ certifications }) => {
         {certifications.map((cert, index) => {
           return (
             <div key={index} className="">
-              {cert.certification} - {cert.description}
+              {cert.certification} -{" "}
+              <span className="text-gray-500">{cert.description}</span>
             </div>
           );
         })}
