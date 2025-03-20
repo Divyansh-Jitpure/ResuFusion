@@ -4,10 +4,17 @@ import Summary from "./Summary";
 import Education from "./Education";
 import Skills from "./Skills";
 import Experience from "./Experience";
+import Certifications from "./Certifications";
 
 const Basic = ({ resumeData }) => {
-  const { personalInfo, experience, education, skills, summary } =
-    resumeData || {};
+  const {
+    personalInfo,
+    experience,
+    education,
+    skills,
+    summary,
+    certifications,
+  } = resumeData || {};
   return (
     <>
       <PersonalInfo personalInfo={personalInfo} />
@@ -15,6 +22,7 @@ const Basic = ({ resumeData }) => {
       <Experience experience={experience} />
       <Education education={education} />
       <Skills skills={skills} />
+      <Certifications certifications={certifications} />
     </>
   );
 };

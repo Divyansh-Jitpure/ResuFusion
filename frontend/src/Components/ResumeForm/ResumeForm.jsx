@@ -8,7 +8,7 @@ import SkillsForm from "./Forms/SkillsForm";
 import API from "../../utils/api";
 import SummaryForm from "./Forms/SummaryForm";
 import ExperienceForm from "./Forms/ExperienceForm";
-import Certifications from "./Forms/Certifications";
+import Certifications from "./Forms/CertificationsForm";
 
 const InitialData = {
   fullName: "",
