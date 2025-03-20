@@ -11,6 +11,7 @@ import ExperienceForm from "./Forms/ExperienceForm";
 import Certifications from "./Forms/CertificationsForm";
 import ProjectsForm from "./Forms/ProjectsForm";
 import LanguagesForm from "./Forms/LanguagesForm";
+import HobbiesForm from "./Forms/HobbiesForm";
 
 const InitialData = {
   fullName: "",
@@ -23,6 +24,7 @@ const InitialData = {
   skills: [],
   certifications: [""],
   languages: [""],
+  hobbies: [],
   summary: "",
 };
 
@@ -55,6 +57,7 @@ const ResumeForm = () => {
       />,
       <ProjectsForm projects={data.projects} updateFields={updateFields} />,
       <LanguagesForm languages={data.languages} updateFields={updateFields} />,
+      <HobbiesForm hobbies={data.hobbies} updateFields={updateFields} />,
     ]);
 
   const handleSubmit = async (e) => {
@@ -76,6 +79,7 @@ const ResumeForm = () => {
       certifications: data.certifications,
       summary: data.summary,
       languages: data.languages,
+      hobbies: data.hobbies,
       template: templateName,
     };
 
