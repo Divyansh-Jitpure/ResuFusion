@@ -18,12 +18,48 @@ const InitialData = {
   email: "",
   phoneNumber: "",
   address: "",
-  education: [""],
-  experience: [""],
-  projects: [""],
+  education: [
+    {
+      degree: "",
+      collage: "",
+      city: "",
+      country: "",
+      startYear: "",
+      endYear: "",
+    },
+  ],
+  experience: [
+    {
+      companyName: "",
+      jobTitle: "",
+      city: "",
+      country: "",
+      startDate: "",
+      endDate: "",
+      description: [""],
+    },
+  ],
+  projects: [
+    {
+      projectName: "",
+      projectLink: "",
+      teckStack: "",
+      description: [""],
+    },
+  ],
   skills: [],
-  certifications: [""],
-  languages: [""],
+  certifications: [
+    {
+      certification: "",
+      description: "",
+    },
+  ],
+  languages: [
+    {
+      language: "",
+      level: "",
+    },
+  ],
   hobbies: [],
   summary: "",
 };
