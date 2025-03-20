@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useParams } from "react-router";
 import Basic from "../../Pages/Templates/TemplateDesigns/Basic/Basic";
 import { useReactToPrint } from "react-to-print";
+import { FaDownload } from "react-icons/fa6";
 
 const ResumePreview = () => {
   const { resumeId: resumeId } = useParams();
@@ -18,7 +19,7 @@ const ResumePreview = () => {
 
   const handlePrint = useReactToPrint({
     content: () => contentRef.current,
-    documentTitle: "YourResume",
+    documentTitle: "ResuFusion",
   });
 
   const getResumeData = async () => {
@@ -42,13 +43,7 @@ const ResumePreview = () => {
         <h2 className="mb-2 cursor-default text-4xl font-semibold text-gray-50">
           Resume Preview
         </h2>
-        <button
-          className="mx-1 flex items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
-          onClick={() => handlePrint(reactToPrintContent)}
-          type="button"
-        >
-          Download
-        </button>
+
         {resumeData && (
           <div
             ref={contentRef}
@@ -59,6 +54,13 @@ const ResumePreview = () => {
             )}
           </div>
         )}
+        <button
+          className="col-span-2 mx-auto flex w-max items-center gap-2 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium text-white transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
+          onClick={() => handlePrint(reactToPrintContent)}
+          type="button"
+        >
+          <FaDownload /> Download Resume
+        </button>
       </div>
     </div>
   );

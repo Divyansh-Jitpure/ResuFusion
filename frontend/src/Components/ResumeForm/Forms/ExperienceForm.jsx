@@ -60,13 +60,13 @@ const ExperienceForm = ({ experience, updateFields }) => {
       {experience.map((exp, index) => (
         <div key={index}>
           <FormWrapper title={`Experience - ${index + 1}`}>
-            <label htmlFor={`companyName-${index}`}>CompanyName</label>
+            <label htmlFor={`companyName-${index}`}>Company Name</label>
             <input
               autoFocus
               required
               type="text"
               name="companyName"
-              placeholder="Enter Company / Employer Name"
+              placeholder="Enter Company Name"
               value={exp.companyName}
               onChange={(e) =>
                 handleChange(index, "companyName", e.target.value)
@@ -168,11 +168,11 @@ const ExperienceForm = ({ experience, updateFields }) => {
             <div></div>
 
             <button
-              className="w-max rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
+              className="col-span-2 mx-auto flex w-max items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium text-white transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
               type="button"
               onClick={() => removeExperience(index)}
             >
-              Remove ❌
+              <MdDelete className="text-xl" /> {`Experience - ${index + 1}`}
             </button>
           </FormWrapper>
         </div>
