@@ -8,6 +8,7 @@ import SkillsForm from "./Forms/SkillsForm";
 import API from "../../utils/api";
 import SummaryForm from "./Forms/SummaryForm";
 import ExperienceForm from "./Forms/ExperienceForm";
+import Certifications from "./Forms/Certifications";
 
 const InitialData = {
   fullName: "",
@@ -17,6 +18,7 @@ const InitialData = {
   education: [""],
   experience: [""],
   skills: [],
+  certifications: [],
   summary: "",
 };
 
@@ -43,6 +45,10 @@ const ResumeForm = () => {
         updateFields={updateFields}
       />,
       <SkillsForm {...data} updateFields={updateFields} />,
+      <Certifications
+        certifications={data.certifications}
+        updateFields={updateFields}
+      />,
     ]);
 
   const handleSubmit = async (e) => {
@@ -60,6 +66,7 @@ const ResumeForm = () => {
       experience: data.experience,
       education: data.education,
       skills: data.skills,
+      certifications: data.certifications,
       summary: data.summary,
       template: templateName,
     };

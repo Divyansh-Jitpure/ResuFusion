@@ -35,6 +35,12 @@ const ResumeSchema = new mongoose.Schema(
       },
     ],
     skills: [String],
+    certifications: [
+      {
+        certification: String,
+        description: String,
+      },
+    ],
     summary: String,
     template: { type: String, required: true },
   },
