@@ -15,6 +15,7 @@ import HobbiesForm from "./Forms/HobbiesForm";
 
 const InitialData = {
   fullName: "",
+  title: "",
   email: "",
   phoneNumber: "",
   address: "",
@@ -104,6 +105,7 @@ const ResumeForm = () => {
       userId: user._id,
       personalInfo: {
         fullName: data.fullName,
+        title: data.title,
         email: data.email,
         phone: data.phoneNumber,
         address: data.address,

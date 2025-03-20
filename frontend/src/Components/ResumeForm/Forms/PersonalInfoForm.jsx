@@ -3,6 +3,7 @@ import FormWrapper from "../FormWrapper";
 
 const PersonalInfoForm = ({
   fullName,
+  title,
   email,
   phoneNumber,
   address,
@@ -19,6 +20,15 @@ const PersonalInfoForm = ({
         placeholder="Enter Full Name"
         value={fullName}
         onChange={(e) => updateFields({ fullName: e.target.value })}
+      />
+      <label htmlFor="title">Title</label>
+      <input
+        required
+        type="text"
+        name="title"
+        placeholder="Enter Title"
+        value={title}
+        onChange={(e) => updateFields({ title: e.target.value })}
       />
       <label htmlFor="email">Email </label>
       <input

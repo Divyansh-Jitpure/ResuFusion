@@ -9,6 +9,7 @@ const ResumeSchema = new mongoose.Schema(
     },
     personalInfo: {
       fullName: String,
+      title: String,
       email: String,
       phone: String,
       address: String,
