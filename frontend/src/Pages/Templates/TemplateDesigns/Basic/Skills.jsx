@@ -7,7 +7,7 @@ const Skills = ({ skills }) => {
       <h2 className="mx-5 border-b pb-1 text-xl font-medium text-gray-700">
         Skills
       </h2>
-      <section className="flex flex-wrap justify-center ">
+      <section className="flex flex-wrap justify-center">
         {skills.map((skill, index) => {
           return (
             <span key={index} className="text-gray-600">

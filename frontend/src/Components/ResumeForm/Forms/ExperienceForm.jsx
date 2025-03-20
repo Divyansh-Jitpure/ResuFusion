@@ -131,6 +131,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
                   <textarea
                     className="w-full"
                     name="description"
+                    placeholder="Enter Description"
                     rows="1"
                     value={des}
                     onChange={(e) => {
