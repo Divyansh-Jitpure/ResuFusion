@@ -21,7 +21,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
     });
   };
 
-  const addDescriptions = (index) => {
+  const addDescription = (index) => {
     const updatedExperience = experience.map((exp, i) =>
       i === index ? { ...exp, description: [...exp?.description, ""] } : exp,
     );
@@ -161,7 +161,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
             <button
               type="button"
               className="w-max rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
-              onClick={() => addDescriptions(index)}
+              onClick={() => addDescription(index)}
             >
               Add Description
             </button>

@@ -9,6 +9,7 @@ import API from "../../utils/api";
 import SummaryForm from "./Forms/SummaryForm";
 import ExperienceForm from "./Forms/ExperienceForm";
 import Certifications from "./Forms/CertificationsForm";
+import ProjectsForm from "./Forms/ProjectsForm";
 
 const InitialData = {
   fullName: "",
@@ -17,8 +18,9 @@ const InitialData = {
   address: "",
   education: [""],
   experience: [""],
+  projects: [""],
   skills: [],
-  certifications: [],
+  certifications: [""],
   summary: "",
 };
 
@@ -49,6 +51,7 @@ const ResumeForm = () => {
         certifications={data.certifications}
         updateFields={updateFields}
       />,
+      <ProjectsForm projects={data.projects} updateFields={updateFields} />,
     ]);
 
   const handleSubmit = async (e) => {
@@ -64,6 +67,7 @@ const ResumeForm = () => {
         address: data.address,
       },
       experience: data.experience,
+      projects: data.projects,
       education: data.education,
       skills: data.skills,
       certifications: data.certifications,

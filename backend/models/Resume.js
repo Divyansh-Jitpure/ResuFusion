@@ -34,6 +34,14 @@ const ResumeSchema = new mongoose.Schema(
         endDate: Date, // !!!!! Make this optional later if someone is working in present and UI aswell
       },
     ],
+    projects: [
+      {
+        projectName: String,
+        projectLink: String,
+        techStack: String,
+        description: [String],
+      },
+    ],
     skills: [String],
     certifications: [
       {
@@ -41,6 +49,13 @@ const ResumeSchema = new mongoose.Schema(
         description: String,
       },
     ],
+    languages: [
+      {
+        language: String,
+        level: String,
+      },
+    ],
+    hobbies: [String],
     summary: String,
     template: { type: String, required: true },
   },
