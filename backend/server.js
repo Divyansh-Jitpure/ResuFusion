@@ -14,11 +14,11 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "https://resufusion.web.app/", credentials: true }));
 
 // Routes
 app.use("/api/auth", authRoutes); // Authentication-related API routes
-app.use("/api/resumes", resumeRoutes); 
+app.use("/api/resumes", resumeRoutes);
 
 // Default route
 app.get("/", (req, res) => {
