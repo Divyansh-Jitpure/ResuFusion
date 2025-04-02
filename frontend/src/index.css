@@ -3,3 +3,7 @@
 body {
     background-color: #413939;
 }
+
+.no-break {
+    break-inside: avoid;
+}

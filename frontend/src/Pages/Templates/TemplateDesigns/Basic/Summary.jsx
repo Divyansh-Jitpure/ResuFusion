@@ -2,7 +2,7 @@ import React from "react";
 
 const Summary = ({ summary }) => {
   return (
-    <div>
+    <div className="no-break">
       <h2 className="mx-5 border-b pb-1 text-center text-xl font-medium text-gray-700">
         Summary
       </h2>

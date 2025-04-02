@@ -12,7 +12,7 @@ const Experience = ({ experience }) => {
   if (experience.length === 0) return "";
 
   return (
-    <div className="text-center">
+    <div className="no-break text-center">
       {/* Section heading */}
       <h2 className="mx-5 border-b pb-1 text-xl font-medium text-gray-700">
         Experience

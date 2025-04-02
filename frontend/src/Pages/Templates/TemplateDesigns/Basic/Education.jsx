@@ -9,7 +9,7 @@ const Education = ({ education }) => {
 
   if (education.length === 0) return "";
   return (
-    <div>
+    <div className="no-break">
       <h2 className="mx-5 border-b pb-1 text-center text-xl font-medium text-gray-700">
         Education
       </h2>

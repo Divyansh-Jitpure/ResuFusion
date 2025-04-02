@@ -47,7 +47,7 @@ const ResumePreview = () => {
         {resumeData && (
           <div
             ref={contentRef}
-            className="flex h-[1123px] w-[794px] flex-col gap-3 bg-white"
+            className="flex min-h-[1123px] w-[794px] flex-col py-2 gap-3 bg-white"
           >
             {resumeData.template === "basic" && (
               <Basic resumeData={resumeData} />

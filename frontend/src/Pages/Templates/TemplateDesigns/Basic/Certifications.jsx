@@ -3,7 +3,7 @@ import React from "react";
 const Certifications = ({ certifications }) => {
   if (certifications.length === 0) return "";
   return (
-    <div>
+    <div className="no-break">
       <h2 className="mx-5 border-b pb-1 text-center text-xl font-medium text-gray-700">
         Certifications
       </h2>
