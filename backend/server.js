@@ -14,7 +14,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: "https://resufusion.web.app/", credentials: true }));
+app.use(cors({ origin: "https://resufusion.web.app", credentials: true }));
 
 // Routes
 app.use("/api/auth", authRoutes); // Authentication-related API routes
