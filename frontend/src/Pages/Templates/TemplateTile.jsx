@@ -9,7 +9,14 @@ const TemplateTile = ({ templateName }) => {
 
   // Handles template selection
   const handleSelectTemplate = () => {
-    !user ? setShowLoginModal(true) : navigate(`/resumeform/${templateName}`);
+    // !user ? setShowLoginModal(true) : navigate(`/resumeform/${templateName}`);
+    if (user && templateName === "basic") {
+      navigate(`/resumeform/${templateName}`);
+    } else if (!user) {
+      setShowLoginModal(true);
+    } else {
+      alert("Available Soon!!");
+    }
   };
 
   return (

@@ -39,16 +39,25 @@ export const AuthProvider = ({ children }) => {
 
   // Register a new user
   const register = async (userData) => {
-    try {
-      const res = await API.post(`/auth/register`, userData, {
-        withCredentials: true,
-      });
-      setShowRegisterModal(false); // Close register modal on success
-      setRegisterToastShown(true); // Show success toast
-      return res.data;
-    } catch (err) {
-      return err.res?.data || { message: "Something went wrong!!" };
-    }
+    const registerPromise = new Promise(async (resolve, reject) => {
+      try {
+        const res = await API.post(`/auth/register`, userData, {
+          withCredentials: true,
+        });
+        setShowRegisterModal(false); // Close register modal on success
+        resolve(res.data);
+      } catch (err) {
+        reject(err.res?.data?.message || "Something went wrong!!");
+      }
+    });
+
+    toast.promise(registerPromise, {
+      loading: "Registering...",
+      success: "Registration Successful!!",
+      error: (errMsg) => errMsg, // Show the specific error message
+    });
+
+    return registerPromise;
   };
 
   // Login user
@@ -98,6 +107,8 @@ export const AuthProvider = ({ children }) => {
       success: "Logout Successful!!",
       error: (errMsg) => errMsg, // Show the specific error message
     });
+
+    return logoutPromise;
   };
 
   return (
