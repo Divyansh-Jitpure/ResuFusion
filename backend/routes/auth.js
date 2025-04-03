@@ -48,7 +48,8 @@ router.post("/login", async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true, // Prevents JavaScript access for security
       secure: true, // !!! Set to true on Deployement (HTTPS)
-      sameSite: "lax", // Controls cross-site cookie behavior
+      sameSite: "None", // Allows cross-origin cookies
+      path: "/", // Ensure it's available across all routes
     });
 
     res.json({ message: "Login Successful!!", user });
