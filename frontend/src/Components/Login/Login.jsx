@@ -3,6 +3,7 @@ import LoginForm from "./LoginForm";
 import { RiCloseLargeFill } from "react-icons/ri";
 import { LuLogIn } from "react-icons/lu";
 import { AuthContext } from "../../context/AuthContext";
+import { Toaster } from "sonner";
 
 const Login = () => {
   const { showLoginModal, setShowLoginModal } = useContext(AuthContext); // Login modal state from context
@@ -26,8 +27,9 @@ const Login = () => {
   return (
     <main>
       {/* Login Modal */}
+
       <dialog
-        className="m-auto rounded-xl bg-[#1D1616]/80 backdrop-blur-md backdrop:bg-black/40"
+        className="z-[9000] m-auto rounded-xl bg-[#1D1616]/80 backdrop-blur-md backdrop:bg-black/40"
         ref={diaRef}
       >
         {/* Close Button */}

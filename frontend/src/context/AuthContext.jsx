@@ -53,35 +53,51 @@ export const AuthProvider = ({ children }) => {
 
   // Login user
   const login = async (userData) => {
-    try {
-      const res = await API.post(`/auth/login`, userData, {
-        withCredentials: true, // Ensures cookies are sent
-      });
-      await getUser(); // Fetch updated user data
-      setUser(res.data.user); // Store user info
-      setShowLoginModal(false); // Close login modal after success
-      setLoginToastShown(true); // Show login success toast
-      return res.data;
-    } catch (err) {
-      return err.res?.data || { message: "Something went wrong!!" };
-    }
+    const loginPromise = new Promise(async (resolve, reject) => {
+      try {
+        const res = await API.post(`/auth/login`, userData, {
+          withCredentials: true, // Ensures cookies are sent
+        });
+        await getUser(); // Fetch updated user data
+        setUser(res.data.user); // Store user info
+        setShowLoginModal(false); // Close login modal after success
+        resolve(res.data);
+      } catch (err) {
+        reject(err.res?.data?.message || "Something went wrong!!");
+      }
+    });
+
+    toast.promise(loginPromise, {
+      loading: "Logging in...",
+      success: "Login Successful!!",
+      error: (errMsg) => errMsg, // Show the specific error message
+    });
+
+    return loginPromise;
   };
 
   // Logout user
   const logout = async () => {
-    try {
-      await API.post(
-        "/auth/logout",
-        {},
-        {
-          withCredentials: true, // Ensures cookies are sent
-        },
-      ); // Backend clears cookie/session
-      setUser(null); // Reset user state
-      setLogoutToastShown(true); // Show logout success toast
-    } catch (err) {
-      console.log("Logout failed!!", err);
-    }
+    const logoutPromise = new Promise(async (resolve, reject) => {
+      try {
+        const res = await API.post(
+          "/auth/logout",
+          {},
+          {
+            withCredentials: true, // Ensures cookies are sent
+          },
+        ); // Backend clears cookie/session
+        setUser(null); // Reset user state
+        resolve(res);
+      } catch (err) {
+        reject(err.res?.data?.message || "Logout failed!!");
+      }
+    });
+    toast.promise(logoutPromise, {
+      loading: "Logging out...",
+      success: "Logout Successful!!",
+      error: (errMsg) => errMsg, // Show the specific error message
+    });
   };
 
   return (
@@ -98,12 +114,6 @@ export const AuthProvider = ({ children }) => {
 
         showRegisterModal,
         setShowRegisterModal,
-
-        loginToastShown,
-        setLoginToastShown,
-
-        logoutToastShown,
-        setLogoutToastShown,
 
         registerToastShown,
         setRegisterToastShown,
