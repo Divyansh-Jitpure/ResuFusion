@@ -19,7 +19,11 @@ const Navbar = () => {
   const showDashboardRoutes = ["/", "/templates", "/about"];
 
   // Routes where only Dashboard & Logout should be shown
-  const showDashboardAndLogout = ["/resumePreview", "/resumeForm"];
+  const showDashboardAndLogout = [
+    "/resumePreview",
+    "/resumeform",
+    "/dashboard",
+  ];
 
   return (
     // Navbar wrapper (fixed at the top with a glass effect)
@@ -51,21 +55,13 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Show only Logout on dashboard & resume form */}
-      {user && path === "/dashboard" && (
+      {/* Show Dashboard & Logout on resumePreview, dashboard and resumeForm */}
+      {user && showDashboardAndLogout.some((route) => path.includes(route)) && (
         <div className="flex">
+          <DashboardBtn />
           <Logout />
         </div>
       )}
-
-      {/* Show Dashboard & Logout on resumePreview and resumeForm */}
-      {user &&
-        showDashboardAndLogout.some((route) => path.startsWith(route)) && (
-          <div className="flex">
-            <DashboardBtn />
-            <Logout />
-          </div>
-        )}
     </main>
   );
 };
