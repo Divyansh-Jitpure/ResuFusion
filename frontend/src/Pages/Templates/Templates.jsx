@@ -9,7 +9,7 @@ const Templates = () => {
       <h1 className="mt-22 cursor-default text-4xl font-semibold text-gray-50">
         Resume Templates
       </h1>
-      <p className="mt-2 text-xl text-gray-300">
+      <p className="mt-2 cursor-default text-xl text-gray-300">
         Select Any Template Of Your Choice To Create An Amazing Resume
       </p>
 
