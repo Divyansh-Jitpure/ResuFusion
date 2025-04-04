@@ -30,6 +30,8 @@ const RegisterForm = () => {
 
     try {
       await register(userData); // Call register() from context
+      setUserData({ username: "", email: "", password: "" });
+      setConfirmPassword("");
     } catch (err) {
       setError(err.error);
     }

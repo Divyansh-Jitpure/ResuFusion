@@ -19,8 +19,20 @@ function App() {
   // Show loading indicator while user data is being fetched
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center text-white">
-        Loading...
+      // <div className="flex h-screen items-center justify-center text-white">
+      //   Loading...
+      // </div>
+      /* From Uiverse.io by Cybercom682 */
+      <div class="flex h-screen flex-col items-center justify-center pb-10">
+        <div class="mx-auto h-20 w-20 animate-spin rounded-full border-4 border-dashed border-[#D84040]"></div>
+        <section className="text-center">
+          <h2 class="mt-4 text-3xl text-zinc-900 dark:text-white">
+            Loading...
+          </h2>
+          <p class="text-2xl text-zinc-600 dark:text-zinc-400">
+            ResuFusion is about to begin!!
+          </p>
+        </section>
       </div>
     );
   }

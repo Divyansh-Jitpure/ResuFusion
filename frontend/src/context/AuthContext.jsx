@@ -11,11 +11,6 @@ export const AuthProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(true);
 
-  // Toast state to prevent duplicate notifications
-  const [loginToastShown, setLoginToastShown] = useState(false);
-  const [logoutToastShown, setLogoutToastShown] = useState(false);
-  const [registerToastShown, setRegisterToastShown] = useState(false);
-
   // State to handle modal visibility
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -125,9 +120,6 @@ export const AuthProvider = ({ children }) => {
 
         showRegisterModal,
         setShowRegisterModal,
-
-        registerToastShown,
-        setRegisterToastShown,
       }}
     >
       {children}
