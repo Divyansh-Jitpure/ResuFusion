@@ -12,6 +12,7 @@ import Certifications from "./Forms/CertificationsForm";
 import ProjectsForm from "./Forms/ProjectsForm";
 import LanguagesForm from "./Forms/LanguagesForm";
 import HobbiesForm from "./Forms/HobbiesForm";
+import { toast } from "sonner";
 
 const InitialData = {
   fullName: "",
@@ -70,7 +71,56 @@ const ResumeForm = () => {
   const [data, setData] = useState(InitialData);
   const { user, loading, setShowLoginModal } = useContext(AuthContext);
 
-  const { id: templateName } = useParams();
+  const { id } = useParams();
+  const templateTypes = ["basic", "creative", "modern"];
+  const [templateName, setTemplateName] = useState(
+    templateTypes.includes(id) && id,
+  );
+
+  // const templateName = templateTypes.includes(id) && id;
+  const resId = !templateTypes.includes(id) && id;
+
+  useEffect(() => {
+    async function getResumeData() {
+      if (resId) {
+        const rData = await API.get(`/resumes/${user._id}/${resId}`);
+
+        function formattedDate(dateStr) {
+          return dateStr ? dateStr.split("T")[0] : "";
+        }
+
+        const formattedEducation = rData.data.education.map((edu) => ({
+          ...edu,
+          startYear: formattedDate(edu.startYear),
+          endYear: formattedDate(edu.endYear),
+        }));
+        const formattedExperience = rData.data.experience.map((exp) => ({
+          ...exp,
+          startDate: formattedDate(exp.startDate),
+          endDate: formattedDate(exp.endDate),
+        }));
+
+        setData({
+          fullName: rData.data.personalInfo.fullName,
+          title: rData.data.personalInfo.title,
+          email: rData.data.personalInfo.email,
+          phoneNumber: rData.data.personalInfo.phone,
+          address: rData.data.personalInfo.address,
+          education: formattedEducation,
+          experience: formattedExperience,
+          projects: rData.data.projects,
+          skills: rData.data.skills,
+          certifications: rData.data.certifications,
+          languages: rData.data.languages,
+          hobbies: rData.data.hobbies,
+          summary: rData.data.summary,
+        });
+        setTemplateName(rData.data.template);
+        console.log(rData.data);
+      }
+    }
+    getResumeData();
+  }, [resId]);
 
   const updateFields = (fields) => {
     setData((prev) => {
@@ -121,13 +171,31 @@ const ResumeForm = () => {
       template: templateName,
     };
 
-    try {
-      const res = await API.post("/resumes", formattedData);
-      const resumeId = res.data._id;
-      navigate(`/resumePreview/${resumeId}`);
-    } catch (err) {
-      console.error("Error submitting resume:", err);
-    }
+    const resumeCreatedPromise = new Promise(async (resolve, reject) => {
+      try {
+        if (resId) {
+          await API.put(`/resumes/${resId}`, formattedData);
+          navigate(`/resumePreview/${resId}`);
+        } else {
+          const res = await API.post("/resumes", formattedData);
+          const resumeId = res.data._id;
+          navigate(`/resumePreview/${resumeId}`);
+        }
+        resolve();
+      } catch (err) {
+        reject(console.error("Error submitting resume:", err));
+      }
+    });
+
+    toast.promise(resumeCreatedPromise, {
+      loading: "Creating Resume...",
+      success: resId
+        ? "Resume Successfully Updated!!"
+        : "Resume Successfully Created!!",
+      error: (errMsg) => errMsg, // Show the specific error message
+    });
+
+    return resumeCreatedPromise;
   };
 
   useEffect(() => {

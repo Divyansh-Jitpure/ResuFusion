@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { MdDelete, MdRemoveRedEye } from "react-icons/md";
+import { MdDelete, MdEdit, MdRemoveRedEye } from "react-icons/md";
 import API from "../../utils/api";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
+import { toast } from "sonner";
 
 const ResumeTile = ({ dateCreated, resumeId, getResumeData }) => {
   const navigate = useNavigate();
@@ -13,13 +14,28 @@ const ResumeTile = ({ dateCreated, resumeId, getResumeData }) => {
     day: "numeric",
   });
 
+  const handleEdit = () => {
+    navigate(`/resumeform/${resumeId}`);
+  };
+
   const handleDelete = async () => {
-    try {
-      await API.delete(`/resumes/${user._id}/${resumeId}`);
-      getResumeData();
-    } catch (error) {
-      console.error(error);
-    }
+    const resumeDeletePromise = new Promise(async (resolve, reject) => {
+      try {
+        await API.delete(`/resumes/${user._id}/${resumeId}`);
+        getResumeData();
+        resolve();
+      } catch (error) {
+        reject(console.error(error));
+      }
+    });
+
+    toast.promise(resumeDeletePromise, {
+      loading: "Deleting...",
+      success: "Resume Successfully Deleted!!",
+      error: (errMsg) => errMsg, // Show the specific error message
+    });
+
+    return resumeDeletePromise;
   };
 
   return (
@@ -27,8 +43,11 @@ const ResumeTile = ({ dateCreated, resumeId, getResumeData }) => {
       // onClick={() => navigate(`/resumePreview/${resumeId}`)}
       className="group relative w-64 rounded-lg border border-[#ff9090] pt-2 transition-all hover:shadow-md hover:shadow-amber-700"
     >
-      <span onClick={() => handleDelete()} className="absolute top-2 right-2">
+      <span onClick={() => handleDelete()} className="absolute top-3 right-3">
         <MdDelete className="cursor-pointer text-2xl" />
+      </span>
+      <span onClick={() => handleEdit()} className="absolute top-3 right-11">
+        <MdEdit className="cursor-pointer text-2xl" />
       </span>
       <span
         onClick={() => navigate(`/resumePreview/${resumeId}`)}

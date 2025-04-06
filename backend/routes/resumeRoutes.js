@@ -15,6 +15,20 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/:resId", async (req, res) => {
+  try {
+    const updateData = req.body;
+    const { resId } = req.params;
+    const updatedResume = await Resume.findByIdAndUpdate(resId, updateData, {
+      new: true,
+    });
+    // console.log(data);
+    res.status(200).json(updatedResume);
+  } catch (err) {
+    res.status(500).json({ message: "Sever Error", err });
+  }
+});
+
 router.get("/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
