@@ -37,7 +37,7 @@ const LanguagesForm = ({ languages, updateFields }) => {
               type="text"
               name="language"
               autoFocus
-              required
+              // required
               placeholder="Enter language"
               value={lang.language}
               onChange={(e) => handleChange(index, "language", e.target.value)}
@@ -45,7 +45,7 @@ const LanguagesForm = ({ languages, updateFields }) => {
             <label htmlFor={`level-${index}`}>Level</label>
             <select
               name="level"
-              required
+              // required
               value={lang.level}
               onChange={(e) => handleChange(index, "level", e.target.value)}
             >

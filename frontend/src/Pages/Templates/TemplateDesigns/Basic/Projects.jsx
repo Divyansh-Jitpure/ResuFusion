@@ -13,25 +13,29 @@ const Projects = ({ projects }) => {
             <div key={index} className="mx-10">
               <section className="flex gap-2">
                 <span>{item.projectName}</span>
-                <a
-                  href={item.projectLink}
-                  target="_blank"
-                  className="text-gray-500"
-                >
-                  (Project Link)
-                </a>
+                {item.projectLink && (
+                  <a
+                    href={item.projectLink}
+                    target="_blank"
+                    className="text-gray-500"
+                  >
+                    (Project Link)
+                  </a>
+                )}
               </section>
               <section>
-                Tech Stack -{" "}
+                Skills / Tech Stack -{" "}
                 <span className="text-gray-500">{item.techStack}</span>
               </section>
-              <section>
-                {item.description.map((desc, i) => (
-                  <p key={i}>
-                    • <span className="text-gray-500">{desc}</span>
-                  </p>
-                ))}
-              </section>
+              {item.description.length !== 0 && item.description[0] !== "" && (
+                <section>
+                  {item.description.map((desc, i) => (
+                    <p key={i}>
+                      • <span className="text-gray-500">{desc}</span>
+                    </p>
+                  ))}
+                </section>
+              )}
             </div>
           );
         })}

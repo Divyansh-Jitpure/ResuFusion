@@ -37,7 +37,6 @@ const Certifications = ({ certifications, updateFields }) => {
               type="text"
               name="certification"
               autoFocus
-              required
               placeholder="Enter Certification Name"
               value={cert.certification}
               onChange={(e) =>
@@ -49,7 +48,6 @@ const Certifications = ({ certifications, updateFields }) => {
               type="text"
               name="description"
               rows={1}
-              required
               placeholder="Enter Description"
               value={cert.description}
               onChange={(e) =>

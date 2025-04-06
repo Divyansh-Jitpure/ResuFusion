@@ -23,9 +23,9 @@ const Dashboard = () => {
   }, [user]);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex cursor-default flex-col items-center">
       {/* Heading Section */}
-      <h1 className="mt-22 cursor-default text-4xl font-semibold text-gray-50">
+      <h1 className="mt-22 text-4xl font-semibold text-gray-50">
         Your Documents
       </h1>
       <p className="mt-2 text-xl text-gray-300">

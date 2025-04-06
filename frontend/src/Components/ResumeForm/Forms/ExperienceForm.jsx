@@ -60,7 +60,9 @@ const ExperienceForm = ({ experience, updateFields }) => {
       {experience.map((exp, index) => (
         <div key={index}>
           <FormWrapper title={`Experience - ${index + 1}`}>
-            <label htmlFor={`companyName-${index}`}>Company Name</label>
+            <label htmlFor={`companyName-${index}`}>
+              Company / Employer Name <span className="text-red-600">*</span>
+            </label>
             <input
               autoFocus
               required
@@ -72,7 +74,9 @@ const ExperienceForm = ({ experience, updateFields }) => {
                 handleChange(index, "companyName", e.target.value)
               }
             />
-            <label htmlFor={`jobTitle-${index}`}>Job Title</label>
+            <label htmlFor={`jobTitle-${index}`}>
+              Job Title <span className="text-red-600">*</span>
+            </label>
             <input
               required
               type="text"
@@ -82,7 +86,9 @@ const ExperienceForm = ({ experience, updateFields }) => {
               onChange={(e) => handleChange(index, "jobTitle", e.target.value)}
             />
             <div className="col-span-2 grid grid-cols-4 gap-2 [&>input]:w-30 [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
-              <label htmlFor={`city-${index}`}>City</label>
+              <label htmlFor={`city-${index}`}>
+                City <span className="text-red-600">*</span>
+              </label>
               <input
                 required
                 type="text"
@@ -91,7 +97,9 @@ const ExperienceForm = ({ experience, updateFields }) => {
                 value={exp.city}
                 onChange={(e) => handleChange(index, "city", e.target.value)}
               />
-              <label htmlFor={`country-${index}`}>Country</label>
+              <label htmlFor={`country-${index}`}>
+                Country <span className="text-red-600">*</span>
+              </label>
               <input
                 required
                 type="text"
@@ -101,7 +109,9 @@ const ExperienceForm = ({ experience, updateFields }) => {
                 onChange={(e) => handleChange(index, "country", e.target.value)}
               />
             </div>
-            <label htmlFor={`startDate-${index}`}>Start Date</label>
+            <label htmlFor={`startDate-${index}`}>
+              Start Date <span className="text-red-600">*</span>
+            </label>
             <input
               required
               type="date"
@@ -110,7 +120,9 @@ const ExperienceForm = ({ experience, updateFields }) => {
               value={exp.startDate}
               onChange={(e) => handleChange(index, "startDate", e.target.value)}
             />
-            <label htmlFor={`endDate-${index}`}>End Date</label>
+            <label htmlFor={`endDate-${index}`}>
+              End Date <span className="text-red-600">*</span>
+            </label>
             <input
               required
               type="date"

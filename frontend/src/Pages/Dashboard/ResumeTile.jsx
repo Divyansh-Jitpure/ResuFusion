@@ -4,6 +4,7 @@ import API from "../../utils/api";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
+import { Tooltip } from "react-tooltip";
 
 const ResumeTile = ({ dateCreated, resumeId, getResumeData }) => {
   const navigate = useNavigate();
@@ -43,10 +44,22 @@ const ResumeTile = ({ dateCreated, resumeId, getResumeData }) => {
       // onClick={() => navigate(`/resumePreview/${resumeId}`)}
       className="group relative w-64 rounded-lg border border-[#ff9090] pt-2 transition-all hover:shadow-md hover:shadow-amber-700"
     >
-      <span onClick={() => handleDelete()} className="absolute top-3 right-3">
+      <Tooltip id="delete-tooltip" style={{ padding: "2px 5px" }} />
+      <span
+        data-tooltip-id="delete-tooltip"
+        data-tooltip-content="Delete Resume"
+        onClick={() => handleDelete()}
+        className="absolute top-3 right-3"
+      >
         <MdDelete className="cursor-pointer text-2xl" />
       </span>
-      <span onClick={() => handleEdit()} className="absolute top-3 right-11">
+      <Tooltip id="edit-tooltip" style={{ padding: "2px 5px" }} />
+      <span
+        data-tooltip-id="edit-tooltip"
+        data-tooltip-content="Edit Resume"
+        onClick={() => handleEdit()}
+        className="absolute top-3 right-11"
+      >
         <MdEdit className="cursor-pointer text-2xl" />
       </span>
       <span

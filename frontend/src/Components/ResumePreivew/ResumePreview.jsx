@@ -1,17 +1,47 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import API from "../../utils/api";
 import { AuthContext } from "../../context/AuthContext";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Basic from "../../Pages/Templates/TemplateDesigns/Basic/Basic";
 import { useReactToPrint } from "react-to-print";
 import { FaDownload } from "react-icons/fa6";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { Tooltip } from "react-tooltip";
+import { toast } from "sonner";
 
 const ResumePreview = () => {
-  const { resumeId: resumeId } = useParams();
+  const { resumeId } = useParams();
   const { user } = useContext(AuthContext);
   const [resumeData, setResumeData] = useState(null);
 
   const contentRef = useRef(null);
+
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate(`/resumeform/${resumeId}`);
+  };
+
+  const handleDelete = async () => {
+    const resumeDeletePromise = new Promise(async (resolve, reject) => {
+      try {
+        await API.delete(`/resumes/${user._id}/${resumeId}`);
+        getResumeData();
+        navigate("/dashboard");
+        resolve();
+      } catch (error) {
+        reject(console.error(error));
+      }
+    });
+
+    toast.promise(resumeDeletePromise, {
+      loading: "Deleting...",
+      success: "Resume Successfully Deleted!!",
+      error: (errMsg) => errMsg, // Show the specific error message
+    });
+
+    return resumeDeletePromise;
+  };
 
   const reactToPrintContent = () => {
     return contentRef.current;
@@ -43,17 +73,40 @@ const ResumePreview = () => {
         <h2 className="mb-2 cursor-default text-4xl font-semibold text-gray-50">
           Resume Preview
         </h2>
+        <section className="relative">
+          {resumeData && (
+            <div
+              ref={contentRef}
+              className="relative flex min-h-[1123px] w-[794px] flex-col gap-3 bg-white py-2"
+            >
+              {resumeData.template === "basic" && (
+                <Basic resumeData={resumeData} />
+              )}
+            </div>
+          )}
 
-        {resumeData && (
-          <div
-            ref={contentRef}
-            className="flex min-h-[1123px] w-[794px] flex-col py-2 gap-3 bg-white"
+          <span
+            data-tooltip-id="delete-tooltip"
+            data-tooltip-content="Delete Resume"
+            data-tooltip-place="right"
+            onClick={() => handleDelete()}
+            className="absolute top-10 -right-10 text-white"
           >
-            {resumeData.template === "basic" && (
-              <Basic resumeData={resumeData} />
-            )}
-          </div>
-        )}
+            <MdDelete className="cursor-pointer text-2xl" />
+          </span>
+          <Tooltip id="delete-tooltip" style={{ padding: "2px 5px" }} />
+          <span
+            data-tooltip-id="edit-tooltip"
+            data-tooltip-content="Edit Resume"
+            data-tooltip-place="right"
+            onClick={() => handleEdit()}
+            className="absolute top-0 -right-10 text-white"
+          >
+            <MdEdit className="cursor-pointer text-2xl" />
+          </span>
+          <Tooltip id="edit-tooltip" style={{ padding: "2px 5px" }} />
+        </section>
+
         <button
           className="col-span-2 mx-auto flex w-max items-center gap-2 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium text-white transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
           onClick={() => handlePrint(reactToPrintContent)}

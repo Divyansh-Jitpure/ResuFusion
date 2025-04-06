@@ -11,7 +11,9 @@ const PersonalInfoForm = ({
 }) => {
   return (
     <FormWrapper title="Personal Information">
-      <label htmlFor="fullName">Full Name</label>
+      <label htmlFor="fullName">
+        Full Name <span className="text-red-600">*</span>
+      </label>
       <input
         autoFocus
         required
@@ -21,7 +23,9 @@ const PersonalInfoForm = ({
         value={fullName}
         onChange={(e) => updateFields({ fullName: e.target.value })}
       />
-      <label htmlFor="title">Title</label>
+      <label htmlFor="title">
+        Title <span className="text-red-600">*</span>
+      </label>
       <input
         required
         type="text"
@@ -30,7 +34,9 @@ const PersonalInfoForm = ({
         value={title}
         onChange={(e) => updateFields({ title: e.target.value })}
       />
-      <label htmlFor="email">Email </label>
+      <label htmlFor="email">
+        Email <span className="text-red-600">*</span>
+      </label>
       <input
         required
         type="email"
@@ -39,7 +45,9 @@ const PersonalInfoForm = ({
         value={email}
         onChange={(e) => updateFields({ email: e.target.value })}
       />
-      <label htmlFor="phoneNumber">Phone Number</label>
+      <label htmlFor="phoneNumber">
+        Phone Number <span className="text-red-600">*</span>
+      </label>
       <input
         required
         type="tel"
@@ -48,7 +56,9 @@ const PersonalInfoForm = ({
         value={phoneNumber}
         onChange={(e) => updateFields({ phoneNumber: e.target.value })}
       />
-      <label htmlFor="address">Address </label>
+      <label htmlFor="address">
+        Address <span className="text-red-600">*</span>
+      </label>
       <textarea
         required
         name="address"

@@ -41,13 +41,13 @@ const Experience = ({ experience }) => {
               </section>
 
               {/* Description spanning full width */}
-              <section className="col-span-2 ml-5 text-left">
-                {exp.description.map((des, i) => (
-                  <p key={i}>
-                    <span className="text-gray-500">{i + 1}.</span> {des}
-                  </p>
-                ))}
-              </section>
+              {exp.description.length !== 0 && exp.description[0] !== "" && (
+                <section className="col-span-2 ml-5 text-left">
+                  {exp.description.map((des, i) => (
+                    <p key={i}>• {des}</p>
+                  ))}
+                </section>
+              )}
             </div>
           );
         })}

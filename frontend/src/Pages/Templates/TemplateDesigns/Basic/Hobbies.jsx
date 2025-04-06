@@ -1,6 +1,7 @@
 import React from "react";
 
 const Hobbies = ({ hobbies }) => {
+  if (hobbies.length === 0) return "";
   return (
     <div className="no-break page-break">
       <h2 className="mx-5 border-b pb-1 text-center text-xl font-medium text-gray-700">

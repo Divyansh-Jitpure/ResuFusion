@@ -36,7 +36,9 @@ const EducationForm = ({ education, updateFields }) => {
       {education.map((edu, index) => (
         <div key={index}>
           <FormWrapper title={`Education - ${index + 1}`}>
-            <label htmlFor={`degree-${index}`}>Degree</label>
+            <label htmlFor={`degree-${index}`}>
+              Degree <span className="text-red-600">*</span>
+            </label>
             <input
               autoFocus
               required
@@ -46,7 +48,9 @@ const EducationForm = ({ education, updateFields }) => {
               value={edu.degree}
               onChange={(e) => handleChange(index, "degree", e.target.value)}
             />
-            <label htmlFor={`collage-${index}`}>University/College</label>
+            <label htmlFor={`collage-${index}`}>
+              University/College <span className="text-red-600">*</span>
+            </label>
             <input
               required
               type="text"
@@ -56,7 +60,9 @@ const EducationForm = ({ education, updateFields }) => {
               onChange={(e) => handleChange(index, "collage", e.target.value)}
             />
             <div className="col-span-2 grid grid-cols-4 gap-2 [&>input]:w-30 [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
-              <label htmlFor={`city-${index}`}>City</label>
+              <label htmlFor={`city-${index}`}>
+                City <span className="text-red-600">*</span>
+              </label>
               <input
                 required
                 type="text"
@@ -65,7 +71,9 @@ const EducationForm = ({ education, updateFields }) => {
                 value={edu.city}
                 onChange={(e) => handleChange(index, "city", e.target.value)}
               />
-              <label htmlFor={`country-${index}`}>Country</label>
+              <label htmlFor={`country-${index}`}>
+                Country <span className="text-red-600">*</span>
+              </label>
               <input
                 required
                 type="text"
@@ -75,7 +83,9 @@ const EducationForm = ({ education, updateFields }) => {
                 onChange={(e) => handleChange(index, "country", e.target.value)}
               />
             </div>
-            <label htmlFor={`startYear-${index}`}>Start Year</label>
+            <label htmlFor={`startYear-${index}`}>
+              Start Year <span className="text-red-600">*</span>
+            </label>
             <input
               required
               type="date"
@@ -84,7 +94,9 @@ const EducationForm = ({ education, updateFields }) => {
               value={edu.startYear}
               onChange={(e) => handleChange(index, "startYear", e.target.value)}
             />
-            <label htmlFor={`endYear-${index}`}>End Year</label>
+            <label htmlFor={`endYear-${index}`}>
+              End Year <span className="text-red-600">*</span>
+            </label>
             <input
               required
               type="date"

@@ -12,6 +12,7 @@ import ToastManager from "./Components/ToastManager";
 import { useContext } from "react";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import ResumePreview from "./Components/ResumePreivew/ResumePreview";
+import "react-tooltip/dist/react-tooltip.css";
 
 function App() {
   const { loading } = useContext(AuthContext);

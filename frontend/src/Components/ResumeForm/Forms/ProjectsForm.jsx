@@ -59,7 +59,9 @@ const ProjectsForm = ({ projects, updateFields }) => {
       {projects.map((project, index) => (
         <div key={index}>
           <FormWrapper title={`Project - ${index + 1}`}>
-            <label htmlFor={`projectName-${index}`}>Project Name</label>
+            <label htmlFor={`projectName-${index}`}>
+              Project Name <span className="text-red-600">*</span>
+            </label>
             <input
               autoFocus
               required
@@ -73,7 +75,6 @@ const ProjectsForm = ({ projects, updateFields }) => {
             />
             <label htmlFor={`projectLink-${index}`}>Project Link</label>
             <input
-              required
               type="text"
               name="projectLink"
               placeholder="Enter Project Link"
@@ -82,12 +83,14 @@ const ProjectsForm = ({ projects, updateFields }) => {
                 handleChange(index, "projectLink", e.target.value)
               }
             />
-            <label htmlFor={`techStack-${index}`}>Teck Stack</label>
+            <label htmlFor={`techStack-${index}`}>
+              Skills / Tech Stack <span className="text-red-600">*</span>
+            </label>
             <input
               required
               type="text"
               name="techStack"
-              placeholder="Enter Technologies"
+              placeholder="Enter Skills / Teck Stack"
               value={project.techStack}
               onChange={(e) => handleChange(index, "techStack", e.target.value)}
             />

@@ -8,7 +8,7 @@ const SummaryForm = ({ summary, updateFields }) => {
         className="col-end-1 w-[418px]"
         name="summary"
         rows="3"
-        required
+        // required
         placeholder="Write your summary here"
         value={summary}
         onChange={(e) => updateFields({ summary: e.target.value })}
