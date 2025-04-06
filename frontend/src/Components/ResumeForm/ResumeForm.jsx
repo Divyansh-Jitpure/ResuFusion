@@ -171,7 +171,7 @@ const ResumeForm = () => {
       template: templateName,
     };
 
-    const resumeCreatedPromise = new Promise(async (resolve, reject) => {
+    const resumeUpdatePromise = new Promise(async (resolve, reject) => {
       try {
         if (resId) {
           await API.put(`/resumes/${resId}`, formattedData);
@@ -187,15 +187,15 @@ const ResumeForm = () => {
       }
     });
 
-    toast.promise(resumeCreatedPromise, {
-      loading: "Creating Resume...",
+    toast.promise(resumeUpdatePromise, {
+      loading: resId ? "Updating Resume..." : "Creating Resume...",
       success: resId
         ? "Resume Successfully Updated!!"
         : "Resume Successfully Created!!",
       error: (errMsg) => errMsg, // Show the specific error message
     });
 
-    return resumeCreatedPromise;
+    return resumeUpdatePromise;
   };
 
   useEffect(() => {
