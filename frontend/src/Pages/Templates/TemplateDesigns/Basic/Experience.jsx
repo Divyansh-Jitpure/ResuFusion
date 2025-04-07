@@ -26,7 +26,7 @@ const Experience = ({ experience }) => {
               {/* Company name and job title */}
               <section className="flex flex-col items-start">
                 <span>{exp.companyName}</span>
-                <span className="text-gray-500">{exp.jobTitle}</span>
+                <span className="text-gray-600">{exp.jobTitle}</span>
               </section>
 
               {/* Location and date range */}
@@ -44,7 +44,9 @@ const Experience = ({ experience }) => {
               {exp.description.length !== 0 && exp.description[0] !== "" && (
                 <section className="col-span-2 ml-5 text-left">
                   {exp.description.map((des, i) => (
-                    <p key={i}>• {des}</p>
+                    <p key={i}>
+                      • <span className="text-gray-500">{des}</span>
+                    </p>
                   ))}
                 </section>
               )}

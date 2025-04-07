@@ -25,7 +25,7 @@ function App() {
       // </div>
       /* From Uiverse.io by Cybercom682 */
       <div className="flex h-screen flex-col items-center justify-center pb-10">
-        <div className="mx-auto h-20 w-20 animate-spin rounded-full border-4 border-dashed border-[#D84040]"></div>
+        <div className="mx-auto h-20 w-20 animate-spin rounded-full border-6 border-dashed border-[#D84040]"></div>
         <section className="text-center">
           <h2 className="mt-4 text-3xl text-zinc-900 dark:text-white">
             Loading...

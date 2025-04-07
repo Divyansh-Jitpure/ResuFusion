@@ -5,9 +5,9 @@ const About = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="flex flex-col items-center gap-3">
+      <div className="flex cursor-default flex-col items-center gap-3">
         {/* Header */}
-        <h1 className="mt-22 cursor-default text-4xl font-semibold text-gray-50">
+        <h1 className="mt-22 text-4xl font-semibold text-gray-50">
           About ResuFusion
         </h1>
 

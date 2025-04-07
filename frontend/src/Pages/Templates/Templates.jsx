@@ -3,6 +3,7 @@ import TemplateTile from "./TemplateTile";
 
 //Templates Component
 const Templates = () => {
+  const templateTypes = ["basic", "creative", "modern"];
   return (
     <div className="flex flex-col items-center">
       {/* Heading Section */}
@@ -15,13 +16,9 @@ const Templates = () => {
 
       {/* Templates Section */}
       <section className="mt-10 flex w-[85%] flex-wrap justify-center gap-5 text-center">
-        {/* Rendering multiple TemplateTile components */}
-        {/* {[...Array(3)].map((_, index) => (
-          <TemplateTile key={index} />
-        ))} */}
-        <TemplateTile templateName="basic" />
-        <TemplateTile templateName="creative" />
-        <TemplateTile templateName="modern" />
+        {templateTypes.map((temp, index) => {
+          return <TemplateTile templateName={temp} key={index} />;
+        })}
       </section>
     </div>
   );
