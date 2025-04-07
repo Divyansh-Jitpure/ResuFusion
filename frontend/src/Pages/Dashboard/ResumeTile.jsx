@@ -70,7 +70,12 @@ const ResumeTile = ({ dateCreated, resumeId, getResumeData }) => {
       </span>
 
       {/* Template Image */}
-      <img className="px-2" src="SampleResume.png" alt="Resume Template" />
+      {/* <img className="px-2" src="SampleResume.png" alt="Resume Template" /> */}
+      <img
+        className="h-40 w-full object-cover object-top px-2"
+        src="BasicResumeBlur.jpeg"
+        alt="Resume Template"
+      />
 
       {/* Template Name */}
       <p className="my-1 text-xl text-gray-50 capitalize">
