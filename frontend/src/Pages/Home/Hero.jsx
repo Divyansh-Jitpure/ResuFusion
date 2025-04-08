@@ -7,7 +7,7 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="grid w-full cursor-default grid-cols-1 text-gray-50 md:grid-cols-2 2xl:px-20">
+    <div className="grid w-full cursor-default grid-cols-1 text-red-100 md:grid-cols-2 2xl:px-20">
       <section className="flex flex-col justify-center gap-3 px-10 2xl:gap-6">
         {user ? (
           <h1 className="text-5xl font-semibold 2xl:text-6xl">
@@ -19,7 +19,7 @@ const Hero = () => {
           </h1>
         )}
 
-        <p className="text-lg text-gray-200 2xl:text-xl">
+        <p className="text-lg text-red-50/60 2xl:text-xl">
           Create stunning professional resumes effortlessly with ResuFusion.
           Choose from a variety of modern templates and make a lasting
           impression on recruiters. Start building your perfect resume today and
@@ -47,7 +47,6 @@ const Hero = () => {
         src="resumeGraphic.png"
         alt="resume-graphic"
       />
-      {/* {user && `UserName : ${user.username}`} */}
     </div>
   );
 };
