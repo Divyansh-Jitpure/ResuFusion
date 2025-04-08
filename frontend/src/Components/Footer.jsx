@@ -6,8 +6,8 @@ const Footer = () => {
   const { user, setShowLoginModal, setShowRegisterModal, logout } =
     useContext(AuthContext);
   return (
-    <div className="flex h-50 w-full cursor-default flex-col items-center justify-between rounded-t-4xl bg-linear-to-br from-[#D84040] to-[#8E1616]">
-      <section className="grid h-full w-[80%] grid-cols-2 p-2">
+    <div className="flex h-55 w-full cursor-default flex-col items-center justify-between rounded-t-4xl bg-linear-to-br from-[#D84040] to-[#8E1616]">
+      <section className="grid h-full w-[80%] grid-cols-2 py-5">
         <div className="flex flex-col items-center">
           <div>
             <Link
@@ -16,13 +16,15 @@ const Footer = () => {
             >
               ResuFusion
             </Link>
-            <p className="text-xl text-red-300">Fusion of Design and Purpose</p>
+            <p className="text-xl text-red-300 2xl:text-2xl">
+              Fusion of Design and Purpose
+            </p>
           </div>
         </div>
         <div className="flex justify-evenly">
           <div className="">
-            <p className="text-xl text-red-100">Links</p>
-            <ul className="[&>li]:text-red-300 [&>li]:hover:text-red-200">
+            <p className="text-xl text-red-100 2xl:text-2xl">Links</p>
+            <ul className="[&>li]:text-red-300 [&>li]:hover:text-red-200 2xl:[&>li]:text-lg">
               <li>
                 <Link to={"/"}>Home</Link>
               </li>
@@ -35,8 +37,8 @@ const Footer = () => {
             </ul>
           </div>
           <div className="">
-            <p className="text-xl text-red-100">More</p>
-            <ul className="text-red-300 [&>li>button]:cursor-pointer [&>li>button]:hover:text-red-200">
+            <p className="text-xl text-red-100 2xl:text-2xl">More</p>
+            <ul className="text-red-300 2xl:[&>li]:text-lg [&>li>button]:cursor-pointer [&>li>button]:hover:text-red-200">
               {!user ? (
                 <>
                   <li>
@@ -82,7 +84,7 @@ const Footer = () => {
           </a>{" "}
           - All Rights Reserved
         </p>
-        <span className="text-red-200">Beta v0.5</span>
+        <span className="text-red-200 2xl:text-lg">Beta v0.5</span>
       </section>
     </div>
   );

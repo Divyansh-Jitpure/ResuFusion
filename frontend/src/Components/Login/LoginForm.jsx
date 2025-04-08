@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { Toaster } from "sonner";
 
 const LoginForm = () => {
-  const { login } = useContext(AuthContext); // Login function from AuthContext
+  const { login, showLoginModal } = useContext(AuthContext); // Login function from AuthContext
   const [userData, setUserData] = useState({ email: "", password: "" }); // State to manage user input
   const [error, setError] = useState(""); // State to handle errors
 
@@ -16,7 +17,6 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       await login(userData);
-      
     } catch (err) {
       setError(err.error);
     }
@@ -24,6 +24,8 @@ const LoginForm = () => {
 
   return (
     <div className="flex h-[80vh] w-[70vw]">
+      {showLoginModal && <Toaster position="top-center" richColors />}
+
       {/* Left Section => Login Form */}
       <section className="flex w-[40%] flex-col items-center justify-center gap-10 2xl:gap-16">
         <h2 className="pb-1 text-4xl font-bold text-[#ff3a3a] 2xl:text-5xl">

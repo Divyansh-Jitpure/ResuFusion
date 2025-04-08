@@ -9,14 +9,15 @@ import Register from "./Components/Register/Register";
 import { AuthContext } from "./context/AuthContext";
 import ResumeForm from "./Components/ResumeForm/ResumeForm";
 import ToastManager from "./Components/ToastManager";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import ResumePreview from "./Components/ResumePreivew/ResumePreview";
 import "react-tooltip/dist/react-tooltip.css";
 import Footer from "./Components/Footer";
 
 function App() {
-  const { loading } = useContext(AuthContext);
+  const { loading, showLoginModal, showRegisterModal } =
+    useContext(AuthContext);
 
   // Show loading indicator while user data is being fetched
   if (loading) {
@@ -41,7 +42,18 @@ function App() {
 
   return (
     <div className="bg-linear-to-l from-[#413939] to-[#1D1616]">
-      <ToastManager /> {/* Handling toast notifications */}
+      <div
+        style={
+          !showLoginModal && !showRegisterModal
+            ? { display: "block" }
+            : { display: "none" }
+        }
+      >
+        <ToastManager />
+      </div>
+
+      {/* {!showLoginModal && <ToastManager />} */}
+
       <Router>
         <Navbar />
         <Routes>

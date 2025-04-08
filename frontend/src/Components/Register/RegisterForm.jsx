@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { Toaster } from "sonner";
 
 const RegisterForm = () => {
-  const { register } = useContext(AuthContext);
+  const { register, showRegisterModal } = useContext(AuthContext);
 
   // State for user input fields
   const [userData, setUserData] = useState({
@@ -39,6 +40,8 @@ const RegisterForm = () => {
 
   return (
     <div className="flex h-[80vh] w-[70vw]">
+      {showRegisterModal && <Toaster position="top-center" richColors />}
+
       {/* Left Section - Register Form */}
       <section className="flex w-[40%] flex-col items-center justify-center gap-5 2xl:gap-16">
         <h2 className="pb-1 text-4xl font-bold text-[#ff3a3a] 2xl:text-5xl">
