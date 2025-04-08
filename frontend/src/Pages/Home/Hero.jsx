@@ -7,7 +7,7 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="grid h-screen w-full cursor-default grid-cols-1 bg-linear-to-l from-[#413939] to-[#1D1616] text-gray-50 md:grid-cols-2 2xl:px-20">
+    <div className="grid w-full cursor-default grid-cols-1 text-gray-50 md:grid-cols-2 2xl:px-20">
       <section className="flex flex-col justify-center gap-3 px-10 2xl:gap-6">
         {user ? (
           <h1 className="text-5xl font-semibold 2xl:text-6xl">

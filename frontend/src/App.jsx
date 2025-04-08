@@ -13,6 +13,7 @@ import { useContext } from "react";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import ResumePreview from "./Components/ResumePreivew/ResumePreview";
 import "react-tooltip/dist/react-tooltip.css";
+import Footer from "./Components/Footer";
 
 function App() {
   const { loading } = useContext(AuthContext);
@@ -39,7 +40,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="bg-linear-to-l from-[#413939] to-[#1D1616]">
       <ToastManager /> {/* Handling toast notifications */}
       <Router>
         <Navbar />
@@ -61,8 +62,9 @@ function App() {
           />{" "}
           {/* Resume Preview Page */}
         </Routes>
+        <Footer />
       </Router>
-    </>
+    </div>
   );
 }
 

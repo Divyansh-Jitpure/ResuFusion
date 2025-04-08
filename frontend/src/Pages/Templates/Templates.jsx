@@ -5,7 +5,7 @@ import TemplateTile from "./TemplateTile";
 const Templates = () => {
   const templateTypes = ["basic", "creative", "modern"];
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex h-screen flex-col items-center">
       {/* Heading Section */}
       <h1 className="mt-22 cursor-default text-4xl font-semibold text-gray-50">
         Resume Templates

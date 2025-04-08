@@ -205,8 +205,8 @@ const ResumeForm = () => {
   }, [user, setShowLoginModal]); //navigate
 
   return (
-    <div className="flex justify-center">
-      <div className="relative mt-30 h-auto w-max rounded-lg border border-black bg-[#EEEEEE] px-18 py-10">
+    <div className="flex min-h-screen justify-center">
+      <div className="relative mt-30 mb-15 h-fit w-max rounded-lg border border-black bg-[#EEEEEE] px-18 py-10">
         <div className="mx-auto mb-5 h-2 rounded border">
           <div
             style={{

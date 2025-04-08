@@ -23,7 +23,7 @@ const Dashboard = () => {
   }, [user]);
 
   return (
-    <div className="flex cursor-default flex-col items-center">
+    <div className="flex h-screen cursor-default flex-col items-center">
       {/* Heading Section */}
       <h1 className="mt-22 text-4xl font-semibold text-gray-50">
         Your Documents
