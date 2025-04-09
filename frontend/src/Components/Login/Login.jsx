@@ -3,7 +3,6 @@ import LoginForm from "./LoginForm";
 import { RiCloseLargeFill } from "react-icons/ri";
 import { LuLogIn } from "react-icons/lu";
 import { AuthContext } from "../../context/AuthContext";
-import { Toaster } from "sonner";
 
 const Login = () => {
   const { showLoginModal, setShowLoginModal } = useContext(AuthContext); // Login modal state from context
@@ -47,9 +46,12 @@ const Login = () => {
       {/* Login Button */}
       <button
         onClick={() => setShowLoginModal(true)}
-        className="mx-1 flex items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff2d2d] 2xl:text-xl"
+        className="mx-1 mt-[2px] flex items-center justify-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 font-semibold transition-all hover:cursor-pointer hover:bg-[#ff2d2d] md:mt-0 md:text-[17px] 2xl:text-xl"
       >
-        Login <LuLogIn className="text-xl" />
+        Login
+        <span className="hidden md:inline">
+          <LuLogIn className="md:text-xl" />
+        </span>
       </button>
     </main>
   );

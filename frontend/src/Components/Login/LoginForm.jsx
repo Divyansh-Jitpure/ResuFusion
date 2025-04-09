@@ -39,7 +39,7 @@ const LoginForm = () => {
             {/* Email Input */}
             <label className="flex flex-col gap-1 text-white">Email</label>
             <input
-              className="w-[40vh] rounded border-1 border-slate-300 p-1 text-white"
+              className="w-[60vw] rounded border-1 border-slate-300 p-1 text-white md:w-[20vw]"
               type="email"
               placeholder="Enter Email"
               name="email"

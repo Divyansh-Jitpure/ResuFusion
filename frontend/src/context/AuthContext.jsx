@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(true);
 
+  const [isOpen, setIsOpen] = useState(false);
   // State to handle modal visibility
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -120,6 +121,8 @@ export const AuthProvider = ({ children }) => {
 
         showRegisterModal,
         setShowRegisterModal,
+        isOpen,
+        setIsOpen,
       }}
     >
       {children}

@@ -44,9 +44,9 @@ const Register = () => {
       {/* Sign Up Button */}
       <button
         onClick={() => setShowRegisterModal(true)}
-        className="mx-1 rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090] 2xl:text-xl"
+        className="mx-1 mt-[2px] rounded-2xl bg-[#ffb0b0] px-3 py-1 font-semibold transition-all hover:cursor-pointer hover:bg-[#ff9090] md:mt-0 md:text-[17px] 2xl:text-xl"
       >
-        Sign Up
+        SignUp
       </button>
     </main>
   );

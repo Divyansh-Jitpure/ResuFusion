@@ -1,5 +1,5 @@
 // Importing necessary dependencies and components
-import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router";
 import Home from "./Pages/Home/Home";
 import About from "./Pages/About";
 import Templates from "./Pages/Templates/Templates";
@@ -14,10 +14,18 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import ResumePreview from "./Components/ResumePreivew/ResumePreview";
 import "react-tooltip/dist/react-tooltip.css";
 import Footer from "./Components/Footer";
+import Logout from "./Components/Logout";
 
 function App() {
-  const { loading, showLoginModal, showRegisterModal } =
-    useContext(AuthContext);
+  const {
+    loading,
+    showLoginModal,
+    logout,
+    user,
+    showRegisterModal,
+    isOpen,
+    setIsOpen,
+  } = useContext(AuthContext);
 
   // Show loading indicator while user data is being fetched
   if (loading) {
@@ -52,10 +60,31 @@ function App() {
         <ToastManager />
       </div>
 
-      {/* {!showLoginModal && <ToastManager />} */}
-
       <Router>
         <Navbar />
+        <div
+          className={`fixed top-[72px] right-12 z-10 w-[75%] rounded-b-xl bg-slate-600/50 py-2 text-center shadow-md backdrop-blur-md backdrop-saturate-150 transition-all duration-300 md:hidden ${isOpen ? "block" : "hidden"} `}
+        >
+          <ul className="flex flex-col items-center space-y-2 [&>li]:w-full [&>li]:py-1 [&>li]:text-xl [&>li]:font-semibold [&>li]:text-white">
+            <li>
+              <Link to={"/"}>Home</Link>
+            </li>
+            <li>
+              <Link to={"/templates"}>Templates</Link>
+            </li>
+            <li>
+              <Link to={"/about"}>About</Link>
+            </li>
+
+            {user && (
+              <>
+                <li onClick={() => setIsOpen(!isOpen)}>
+                  <Link to={"/dashboard"}>Dashboard</Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
         <Routes>
           <Route path="/" element={<Home />} /> {/* Home Page */}
           <Route path="/about" element={<About />} /> {/* About Page */}

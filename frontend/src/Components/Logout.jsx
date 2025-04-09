@@ -13,7 +13,7 @@ const Logout = () => {
         await logout(); // Call logout function
         navigate("/"); // Redirect to homepage
       }}
-      className="mx-1 flex items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff2d2d] 2xl:text-xl"
+      className="mx-1 flex items-center justify-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 font-semibold transition-all hover:cursor-pointer hover:bg-[#ff2d2d] md:text-[17px] 2xl:text-xl"
     >
       Logout <LuLogOut />
     </button>

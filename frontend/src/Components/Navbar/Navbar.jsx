@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
@@ -9,7 +9,7 @@ import DashboardBtn from "../DashboardBtn";
 import { IoMenu } from "react-icons/io5";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, isOpen, setIsOpen } = useContext(AuthContext);
   const location = useLocation();
   const path = location.pathname;
 
@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     // Navbar wrapper (fixed at the top with a glass effect)
-    <main className="fixed inset-x-0 z-100 mx-auto mt-5 flex w-[90%] items-center justify-between rounded-full bg-slate-600/50 px-2 py-2 backdrop-blur-md *:mx-6 md:w-fit md:px-4">
+    <main className="fixed inset-x-0 z-40 mx-2 mt-5 flex items-center justify-between rounded-full bg-slate-600/50 py-2 backdrop-blur-md *:mx-6 md:mx-auto md:w-fit md:px-4">
       {/* Brand Logo */}
       <div className="pb-1 text-2xl font-bold text-[#f83232] 2xl:text-3xl">
         <Link to={"/"}>ResuFusion</Link>
@@ -40,17 +40,26 @@ const Navbar = () => {
         <Link to={"/about"}>About</Link>
       </div>
 
-      <div className="text-4xl text-red-300 md:hidden">
-        <IoMenu />
+      <div className="flex gap-2">
+        {/* Show Login/Register if user is NOT logged in */}
+        {showAuthButtonsRoutes.includes(path) && !user && (
+          <div className="flex">
+            <Login />
+            <Register />
+          </div>
+        )}
+        {user && (
+          <span className="mt-[2px] md:hidden">
+            <Logout />
+          </span>
+        )}
+        <button
+          className="text-4xl text-red-300 md:hidden"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <IoMenu />
+        </button>
       </div>
-
-      {/* Show Login/Register if user is NOT logged in */}
-      {showAuthButtonsRoutes.includes(path) && !user && (
-        <div className="hidden md:flex">
-          <Login />
-          <Register />
-        </div>
-      )}
 
       {/* Show Dashboard/Logout if user is logged in */}
       {showDashboardRoutes.includes(path) && user && (

@@ -61,7 +61,7 @@ const RegisterForm = () => {
             <label className="flex flex-col gap-1 text-white">
               Username
               <input
-                className="w-[40vh] rounded border-1 border-slate-300 p-1"
+                className="w-[60vw] rounded border-1 border-slate-300 p-1 text-white md:w-[20vw]"
                 type="text"
                 placeholder="Enter Username"
                 name="username"
@@ -75,7 +75,7 @@ const RegisterForm = () => {
             <label className="flex flex-col gap-1 text-white">
               Email
               <input
-                className="w-[40vh] rounded border-1 border-slate-300 p-1"
+                className="rounded border-1 border-slate-300 p-1"
                 type="email"
                 placeholder="Enter Email"
                 name="email"
