@@ -96,7 +96,7 @@ const ProjectsForm = ({ projects, updateFields }) => {
             />
             {project.description?.map((des, desIndex) => (
               <div
-                className="col-span-2 grid grid-cols-2 gap-2 [&>label]:font-semibold [&>textarea]:rounded [&>textarea]:border [&>textarea]:p-1"
+                className="col-span-2 grid grid-cols-1 gap-2 md:grid-cols-2 [&>label]:font-semibold [&>textarea]:rounded [&>textarea]:border [&>textarea]:p-1"
                 key={desIndex}
               >
                 <label htmlFor={`description-${desIndex}`}>
@@ -136,7 +136,7 @@ const ProjectsForm = ({ projects, updateFields }) => {
 
             <button
               type="button"
-              className="w-max rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
+              className="mx-auto w-max rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
               onClick={() => addDescription(index)}
             >
               Add Description

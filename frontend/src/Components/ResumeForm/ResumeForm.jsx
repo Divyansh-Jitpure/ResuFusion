@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate, useParams } from "react-router";
 import { useMultiStepForm } from "./useMultiStepForm";
+
+// Importing all form steps
 import PersonalInfoForm from "./Forms/PersonalInfoForm";
 import EducationForm from "./Forms/EducationForm";
 import SkillsForm from "./Forms/SkillsForm";
@@ -14,6 +16,7 @@ import LanguagesForm from "./Forms/LanguagesForm";
 import HobbiesForm from "./Forms/HobbiesForm";
 import { toast } from "sonner";
 
+// Initial empty form data
 const InitialData = {
   fullName: "",
   title: "",
@@ -72,23 +75,27 @@ const ResumeForm = () => {
   const { user, loading, setShowLoginModal } = useContext(AuthContext);
 
   const { id } = useParams();
+
+  // Determine if the id param is a template name or resume ID
   const templateTypes = ["basic", "creative", "modern"];
   const [templateName, setTemplateName] = useState(
     templateTypes.includes(id) && id,
   );
 
-  // const templateName = templateTypes.includes(id) && id;
   const resId = !templateTypes.includes(id) && id;
 
+  // Fetch existing resume data for editing
   useEffect(() => {
     async function getResumeData() {
       if (resId) {
         const rData = await API.get(`/resumes/${user._id}/${resId}`);
 
+        // Format date to yyyy-mm-dd
         function formattedDate(dateStr) {
           return dateStr ? dateStr.split("T")[0] : "";
         }
 
+        // Reformat education & experience dates
         const formattedEducation = rData.data.education.map((edu) => ({
           ...edu,
           startYear: formattedDate(edu.startYear),
@@ -100,6 +107,7 @@ const ResumeForm = () => {
           endDate: formattedDate(exp.endDate),
         }));
 
+        // Populate form with fetched data
         setData({
           fullName: rData.data.personalInfo.fullName,
           title: rData.data.personalInfo.title,
@@ -116,18 +124,19 @@ const ResumeForm = () => {
           summary: rData.data.summary,
         });
         setTemplateName(rData.data.template);
-        console.log(rData.data);
       }
     }
     getResumeData();
   }, [resId]);
 
+  // Function to update form data fields
   const updateFields = (fields) => {
     setData((prev) => {
       return { ...prev, ...fields };
     });
   };
 
+  // Multi-step form hook
   const { step, steps, currentStepIndex, isFirstStep, isLastStep, back, next } =
     useMultiStepForm([
       <PersonalInfoForm {...data} updateFields={updateFields} />,
@@ -147,10 +156,12 @@ const ResumeForm = () => {
       <HobbiesForm hobbies={data.hobbies} updateFields={updateFields} />,
     ]);
 
+  // Form submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isLastStep) return next();
+    if (!isLastStep) return next(); // Go to next step instead of submitting
 
+    // Final formatted data to send to backend
     const formattedData = {
       userId: user._id,
       personalInfo: {
@@ -171,6 +182,7 @@ const ResumeForm = () => {
       template: templateName,
     };
 
+    // Show toast while updating or creating resume
     const resumeUpdatePromise = new Promise(async (resolve, reject) => {
       try {
         if (resId) {
@@ -198,15 +210,17 @@ const ResumeForm = () => {
     return resumeUpdatePromise;
   };
 
+  // Redirect to login if not authenticated
   useEffect(() => {
     if (!loading && !user) {
-      setShowLoginModal(true); // navigate("/");
+      setShowLoginModal(true); // Show login modal if not logged in
     }
-  }, [user, setShowLoginModal]); //navigate
+  }, [user, setShowLoginModal]);
 
   return (
-    <div className="flex min-h-screen justify-center">
-      <div className="relative mt-30 mb-15 h-fit w-max rounded-lg border border-black bg-[#EEEEEE] px-18 py-10">
+    <div className="mx-auto flex min-h-screen w-[90%] justify-center md:w-auto">
+      <div className="relative mt-25 mb-10 h-fit max-w-200 rounded-lg border border-black bg-[#EEEEEE] px-10 py-10 md:px-18">
+        {/* Progress bar */}
         <div className="mx-auto mb-5 h-2 rounded border">
           <div
             style={{
@@ -215,11 +229,18 @@ const ResumeForm = () => {
             className={`h-full bg-linear-65 from-[#580c0c] to-[#D84040] transition-all`}
           ></div>
         </div>
+
+        {/* Multi-step form */}
         <form onSubmit={handleSubmit}>
+          {/* Current step indicator */}
           <div className="absolute top-2 right-2 font-semibold">
             {currentStepIndex + 1}/{steps.length}
           </div>
+
+          {/* Current step component */}
           {step}
+
+          {/* Navigation buttons */}
           <div className="mt-4 flex justify-center gap-4">
             {!isFirstStep && (
               <button

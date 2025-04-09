@@ -12,7 +12,7 @@ const HobbiesForm = ({ hobbies, updateFields }) => {
   return (
     <>
       <FormWrapper title="Hobbies">
-        <label htmlFor="hobbies">
+        <label htmlFor="hobbies" className="text-center">
           Write down your hobbies and press "Enter"
         </label>
         <input

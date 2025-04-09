@@ -7,19 +7,19 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="grid w-full cursor-default grid-cols-1 text-red-100 md:grid-cols-2 2xl:px-20">
-      <section className="flex flex-col justify-center gap-3 px-10 2xl:gap-6">
+    <div className="grid min-h-screen w-full cursor-default grid-cols-1 text-red-100 md:mt-0 md:grid-cols-2 2xl:px-20">
+      <section className="mt-22 flex flex-col justify-center gap-3 px-10 md:mt-0 2xl:gap-6">
         {user ? (
-          <h1 className="text-5xl font-semibold 2xl:text-6xl">
+          <h1 className="text-4xl font-semibold md:text-5xl 2xl:text-6xl">
             Welcome Back <em>{user.username}</em>
           </h1>
         ) : (
-          <h1 className="text-5xl font-semibold 2xl:text-6xl">
+          <h1 className="text-4xl font-semibold md:text-5xl 2xl:text-6xl">
             Welcome To ResuFusion
           </h1>
         )}
 
-        <p className="text-lg text-red-50/60 2xl:text-xl">
+        <p className="text-xl text-red-50/60 2xl:text-xl">
           Create stunning professional resumes effortlessly with ResuFusion.
           Choose from a variety of modern templates and make a lasting
           impression on recruiters. Start building your perfect resume today and
@@ -43,7 +43,7 @@ const Hero = () => {
         )}
       </section>
       <img
-        className="m-auto w-1/2 rotate-4 rounded-2xl transition-all duration-300 ease-in-out hover:scale-105"
+        className="mx-auto my-4 w-1/2 rotate-4 rounded-2xl transition-all duration-300 ease-in-out hover:scale-105 md:m-auto"
         src="resumeGraphic.png"
         alt="resume-graphic"
       />

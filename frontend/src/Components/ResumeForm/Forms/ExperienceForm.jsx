@@ -85,7 +85,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
               value={exp.jobTitle}
               onChange={(e) => handleChange(index, "jobTitle", e.target.value)}
             />
-            <div className="col-span-2 grid grid-cols-4 gap-2 [&>input]:w-30 [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
+            <div className="col-span-2 grid grid-cols-1 gap-2 md:grid-cols-4 [&>input]:rounded [&>input]:border [&>input]:p-1 md:[&>input]:w-30 [&>label]:font-semibold">
               <label htmlFor={`city-${index}`}>
                 City <span className="text-red-600">*</span>
               </label>
@@ -133,7 +133,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
             />
             {exp.description?.map((des, desIndex) => (
               <div
-                className="col-span-2 grid grid-cols-2 gap-2 [&>label]:font-semibold [&>textarea]:rounded [&>textarea]:border [&>textarea]:p-1"
+                className="col-span-2 grid grid-cols-1 gap-2 md:grid-cols-2 [&>label]:font-semibold [&>textarea]:rounded [&>textarea]:border [&>textarea]:p-1"
                 key={desIndex}
               >
                 <label htmlFor={`description-${desIndex}`}>
@@ -173,7 +173,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
 
             <button
               type="button"
-              className="w-max rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
+              className="mx-auto w-max rounded-2xl bg-[#ffb0b0] px-3 py-1 text-[17px] font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
               onClick={() => addDescription(index)}
             >
               Add Description

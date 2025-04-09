@@ -43,7 +43,7 @@ const EducationForm = ({ education, updateFields }) => {
               autoFocus
               required
               type="text"
-              name="degree"
+              name={`degree-${index}`}
               placeholder="Enter Degree"
               value={edu.degree}
               onChange={(e) => handleChange(index, "degree", e.target.value)}
@@ -59,7 +59,7 @@ const EducationForm = ({ education, updateFields }) => {
               value={edu.collage}
               onChange={(e) => handleChange(index, "collage", e.target.value)}
             />
-            <div className="col-span-2 grid grid-cols-4 gap-2 [&>input]:w-30 [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
+            <div className="col-span-2 grid grid-cols-1 gap-2 md:grid-cols-4 [&>input]:rounded [&>input]:border [&>input]:p-1 md:[&>input]:w-30 [&>label]:font-semibold">
               <label htmlFor={`city-${index}`}>
                 City <span className="text-red-600">*</span>
               </label>

@@ -64,7 +64,7 @@ const ResumeTile = ({ dateCreated, resumeId, getResumeData }) => {
       </span>
       <span
         onClick={() => navigate(`/resumePreview/${resumeId}`)}
-        className="invisible absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer gap-1 rounded-full border border-black bg-white/30 px-2 font-medium transition-all group-hover:visible hover:scale-125"
+        className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer gap-1 rounded-full border border-black bg-white/80 px-2 font-medium transition-all group-hover:visible hover:scale-125 md:invisible"
       >
         View <MdRemoveRedEye className="text-2xl" />
       </span>

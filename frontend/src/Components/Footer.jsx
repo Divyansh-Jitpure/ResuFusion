@@ -1,15 +1,20 @@
 import React, { useContext } from "react";
-import { Link } from "react-router";
-import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router"; // For internal navigation
+import { AuthContext } from "../context/AuthContext"; // Context for auth state
 
 const Footer = () => {
+  // Destructure auth-related values from context
   const { user, setShowLoginModal, setShowRegisterModal, logout } =
     useContext(AuthContext);
+
   return (
+    // Main footer container
     <div className="flex h-55 w-full cursor-default flex-col items-center justify-between rounded-t-4xl bg-linear-to-br from-[#D84040] to-[#8E1616]">
-      <section className="grid h-full w-[80%] grid-cols-2 py-5">
-        <div className="flex flex-col items-center">
-          <div>
+      {/* Top Section: Logo and Links */}
+      <section className="grid h-full w-[80%] grid-cols-1 py-5 md:grid-cols-2">
+        {/* Left Side: Logo and Tagline */}
+        <div className="flex flex-col items-center justify-center md:justify-normal">
+          <div className="text-center md:text-start">
             <Link
               className="text-4xl font-bold text-red-100 2xl:text-5xl"
               to={"/"}
@@ -21,8 +26,11 @@ const Footer = () => {
             </p>
           </div>
         </div>
-        <div className="flex justify-evenly">
-          <div className="">
+
+        {/* Right Side: Navigation Links */}
+        <div className="hidden justify-evenly md:flex">
+          {/* Static Navigation Links */}
+          <div>
             <p className="text-xl text-red-100 2xl:text-2xl">Links</p>
             <ul className="[&>li]:text-red-300 [&>li]:hover:text-red-200 2xl:[&>li]:text-lg">
               <li>
@@ -36,10 +44,13 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="">
+
+          {/* Conditional Links Based on Authentication */}
+          <div>
             <p className="text-xl text-red-100 2xl:text-2xl">More</p>
             <ul className="text-red-300 2xl:[&>li]:text-lg [&>li>button]:cursor-pointer [&>li>button]:hover:text-red-200">
               {!user ? (
+                // If not logged in, show Login and Sign Up buttons
                 <>
                   <li>
                     <button onClick={() => setShowLoginModal(true)}>
@@ -53,6 +64,7 @@ const Footer = () => {
                   </li>
                 </>
               ) : (
+                // If logged in, show Dashboard and Logout options
                 <>
                   <li>
                     <Link to={"/dashboard"}>Dashboard</Link>
@@ -66,12 +78,15 @@ const Footer = () => {
           </div>
         </div>
       </section>
+
+      {/* Bottom Section: Copyright */}
       <section className="flex w-[80%] justify-between border-t-2 py-4">
-        <p className="text-lg text-red-200 2xl:text-xl">
+        <p className="mx-auto text-center text-lg text-red-200 md:mx-0 2xl:text-xl">
           © 2025{" "}
           <span className="rounded-sm bg-[#EEEEEE] px-1 text-[#1D1616]">
             ResuFusion
           </span>{" "}
+          <br className="md:hidden" />
           <a
             className="group text-white"
             href="https://divyansh-jitpure.web.app/"
@@ -81,10 +96,15 @@ const Footer = () => {
             <span className="group-hover:text-red-300 group-hover:underline">
               Divyansh Jitpure
             </span>
-          </a>{" "}
-          - All Rights Reserved
+          </a>
+          <span className="hidden md:inline"> - </span>
+          <br className="md:hidden" /> All Rights Reserved
         </p>
-        <span className="text-red-200 2xl:text-lg">Beta v0.5</span>
+
+        {/* Version Info */}
+        <span className="hidden text-red-200 md:block 2xl:text-lg">
+          Beta v0.6
+        </span>
       </section>
     </div>
   );

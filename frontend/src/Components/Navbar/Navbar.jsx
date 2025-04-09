@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Logout from "../Logout";
 import DashboardBtn from "../DashboardBtn";
+import { IoMenu } from "react-icons/io5";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
@@ -27,21 +28,25 @@ const Navbar = () => {
 
   return (
     // Navbar wrapper (fixed at the top with a glass effect)
-    <main className="fixed inset-x-0 z-100 mx-auto mt-5 flex w-fit items-center justify-evenly rounded-full bg-slate-600/50 px-4 py-2 backdrop-blur-md *:mx-6">
+    <main className="fixed inset-x-0 z-100 mx-auto mt-5 flex w-[90%] items-center justify-between rounded-full bg-slate-600/50 px-2 py-2 backdrop-blur-md *:mx-6 md:w-fit md:px-4">
       {/* Brand Logo */}
       <div className="pb-1 text-2xl font-bold text-[#f83232] 2xl:text-3xl">
         <Link to={"/"}>ResuFusion</Link>
       </div>
 
       {/* Nav Links */}
-      <div className="*:mx-2 *:text-[17px] *:font-medium *:text-slate-300 *:hover:underline 2xl:*:text-xl">
+      <div className="hidden *:mx-2 *:text-[17px] *:font-medium *:text-slate-300 *:hover:underline md:block 2xl:*:text-xl">
         <Link to={"/templates"}>Templates</Link>
         <Link to={"/about"}>About</Link>
       </div>
 
+      <div className="text-4xl text-red-300 md:hidden">
+        <IoMenu />
+      </div>
+
       {/* Show Login/Register if user is NOT logged in */}
       {showAuthButtonsRoutes.includes(path) && !user && (
-        <div className="flex">
+        <div className="hidden md:flex">
           <Login />
           <Register />
         </div>
@@ -49,7 +54,7 @@ const Navbar = () => {
 
       {/* Show Dashboard/Logout if user is logged in */}
       {showDashboardRoutes.includes(path) && user && (
-        <div className="flex">
+        <div className="hidden md:flex">
           <DashboardBtn />
           <Logout />
         </div>
@@ -57,7 +62,7 @@ const Navbar = () => {
 
       {/* Show Dashboard & Logout on resumePreview, dashboard and resumeForm */}
       {user && showDashboardAndLogout.some((route) => path.includes(route)) && (
-        <div className="flex">
+        <div className="hidden md:flex">
           <DashboardBtn />
           <Logout />
         </div>

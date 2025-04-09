@@ -4,14 +4,14 @@ import { useNavigate } from "react-router";
 const About = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex h-screen cursor-default flex-col items-center gap-3">
+    <div className="mb-15 flex min-h-screen cursor-default flex-col items-center gap-3">
       {/* Header */}
       <h1 className="mt-22 text-4xl font-semibold text-gray-50">
         About ResuFusion
       </h1>
 
       {/* Description */}
-      <p className="w-1/2 text-xl text-gray-300">
+      <p className="w-[80%] text-center text-xl text-gray-300 md:w-1/2">
         ResuFusion is a powerful and easy-to-use resume builder that helps you
         create stunning, professional resumes effortlessly. Whether you're a job
         seeker, a student, or a professional, ResuFusion gives you the tools to
@@ -19,7 +19,7 @@ const About = () => {
       </p>
 
       {/* Key Features */}
-      <div className="mt-5 w-1/2 rounded-lg bg-white px-10 py-6 shadow-md 2xl:w-1/3">
+      <div className="mt-5 w-[80%] rounded-lg bg-white px-10 py-6 shadow-md md:w-1/2 2xl:w-1/3">
         {/* rounded-lg bg-white p-6 text-center shadow-md */}
         <h2 className="mb-2 text-center text-2xl font-semibold">
           Why Choose ResuFusion?

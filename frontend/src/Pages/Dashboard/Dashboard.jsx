@@ -23,12 +23,12 @@ const Dashboard = () => {
   }, [user]);
 
   return (
-    <div className="flex h-screen cursor-default flex-col items-center">
+    <div className="mb-15 flex min-h-screen cursor-default flex-col items-center">
       {/* Heading Section */}
       <h1 className="mt-22 text-4xl font-semibold text-gray-50">
         Your Documents
       </h1>
-      <p className="mt-2 text-xl text-gray-300">
+      <p className="mx-5 mt-3 w-[80%] text-center text-xl text-gray-300 md:w-full">
         View, Edit or Download all your resumes here.
       </p>
       <section className="mt-10 flex w-[85%] flex-wrap justify-center gap-5 text-center">

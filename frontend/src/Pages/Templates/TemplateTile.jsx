@@ -54,10 +54,10 @@ const TemplateTile = ({ templateName }) => {
         className="z-[9000] m-auto rounded-xl bg-[#1D1616]/80 backdrop-blur-md backdrop:bg-black/40"
       >
         <button
-          className="absolute right-3 z-10 m-2"
+          className="absolute right-0 z-10 m-[2px] md:right-3"
           onClick={() => setShowPrevModal(false)}
         >
-          <RiCloseLargeFill className="m-2 cursor-pointer text-xl text-white" />
+          <RiCloseLargeFill className="m-1 cursor-pointer text-xl text-white md:m-2" />
         </button>
 
         <TemplatePreview
@@ -85,7 +85,7 @@ const TemplateTile = ({ templateName }) => {
       {/* Preview Button */}
       <span
         onClick={() => setShowPrevModal(true)}
-        className="invisible absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer gap-1 rounded-full border border-black bg-white/30 px-2 font-medium transition-all group-hover:visible hover:scale-125"
+        className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer gap-1 rounded-full border border-black bg-white/80 px-2 font-medium transition-all group-hover:visible hover:scale-125 md:invisible"
       >
         Preview <MdRemoveRedEye className="text-2xl" />
       </span>

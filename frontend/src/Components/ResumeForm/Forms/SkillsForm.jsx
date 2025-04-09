@@ -11,7 +11,9 @@ const SkillsForm = ({ skills, updateFields }) => {
   return (
     <>
       <FormWrapper title="Skills">
-        <label htmlFor="skills">Write down your skill and press "Enter"</label>
+        <label className="text-center" htmlFor="skills">
+          Write down your skill and press "Enter"
+        </label>
         <input
           type="text"
           name="skills"

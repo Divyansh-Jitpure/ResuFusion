@@ -5,12 +5,12 @@ import TemplateTile from "./TemplateTile";
 const Templates = () => {
   const templateTypes = ["basic", "creative", "modern"];
   return (
-    <div className="flex h-screen flex-col items-center">
+    <div className="mb-15 flex min-h-screen cursor-default flex-col items-center">
       {/* Heading Section */}
-      <h1 className="mt-22 cursor-default text-4xl font-semibold text-gray-50">
+      <h1 className="mt-22 text-4xl font-semibold text-gray-50">
         Resume Templates
       </h1>
-      <p className="mt-2 cursor-default text-xl text-gray-300">
+      <p className="mx-5 mt-3 w-[80%] text-center text-xl text-gray-300 md:w-full">
         Select Any Template Of Your Choice To Create An Amazing Resume
       </p>
 
