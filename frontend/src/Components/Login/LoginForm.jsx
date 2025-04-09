@@ -23,11 +23,11 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex h-[80vh] w-[70vw]">
+    <div className="flex h-[70vh] w-[80vw] justify-center md:h-[80vh] md:w-[70vw]">
       {showLoginModal && <Toaster position="top-center" richColors />}
 
       {/* Left Section => Login Form */}
-      <section className="flex w-[40%] flex-col items-center justify-center gap-10 2xl:gap-16">
+      <section className="flex flex-col items-center justify-center gap-5 md:w-[40%] md:gap-10 2xl:gap-16">
         <h2 className="pb-1 text-4xl font-bold text-[#ff3a3a] 2xl:text-5xl">
           Sign In
         </h2>
@@ -72,7 +72,7 @@ const LoginForm = () => {
       </section>
 
       {/* Right Section => Background Image & Text */}
-      <section className="relative w-[60%]">
+      <section className="relative hidden w-[60%] md:block">
         <img
           className="h-full w-full"
           src="loginBG2.png"
