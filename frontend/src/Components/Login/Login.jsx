@@ -5,27 +5,29 @@ import { LuLogIn } from "react-icons/lu";
 import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
-  const { showLoginModal, setShowLoginModal } = useContext(AuthContext); // Login modal state from context
-  const diaRef = useRef(); // Ref for the dialog element
+  const { showLoginModal, setShowLoginModal } = useContext(AuthContext);
+  const diaRef = useRef();
 
-  // Close the login modal
-  const closeDia = () => {
-    diaRef.current?.close();
-    document.body.style.overflow = ""; // Restore page scrolling
-  };
+  // Open/Close dialog when state changes
+  useEffect(() => {
+    const dialog = diaRef.current;
+    if (!dialog) return;
 
-  // Open the login modal
-  const openDia = () => {
-    diaRef.current?.showModal();
-    document.body.style.overflow = "hidden"; // Prevent background scrolling when modal is open
-  };
+    if (showLoginModal) {
+      dialog.showModal();
+      document.body.style.overflow = "hidden"; // Lock scroll
+    } else {
+      dialog.close();
+      document.body.style.overflow = ""; // Restore scroll
+    }
+  }, [showLoginModal]);
 
+  // Close login modal on resize to mobile
   useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth < 768;
-
       if (isMobile && showLoginModal) {
-        setShowLoginModal(false); // Close modal on breakpoint switch
+        setShowLoginModal(false);
       }
     };
 
@@ -33,16 +35,12 @@ const Login = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [showLoginModal, setShowLoginModal]);
 
-  // Open/close modal based on state
-  showLoginModal ? openDia() : closeDia();
-
   return (
     <main>
       {/* Login Modal */}
-
       <dialog
-        className="m-auto rounded-xl bg-[#1D1616]/80 backdrop-blur-md backdrop:bg-black/40"
         ref={diaRef}
+        className="m-auto rounded-xl bg-[#1D1616]/80 backdrop-blur-md backdrop:bg-black/40"
       >
         {/* Close Button */}
         <button
@@ -52,7 +50,7 @@ const Login = () => {
           <RiCloseLargeFill className="m-2 cursor-pointer text-xl text-white" />
         </button>
 
-        {/* Login Form Component */}
+        {/* Login Form */}
         <LoginForm />
       </dialog>
 

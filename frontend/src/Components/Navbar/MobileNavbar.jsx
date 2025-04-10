@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { IoMenu } from "react-icons/io5";
 import Logout from "../Logout";
 import MobileLogin from "../Login/MobileLogin";
+import MobileRegister from "../Register/MobileRegister";
 
 const MobileNavbar = () => {
   const {
@@ -16,7 +17,7 @@ const MobileNavbar = () => {
     setIsOpen,
   } = useContext(AuthContext);
   return (
-    <nav className="fixed inset-x-0 z-40 mx-2 mt-5 flex items-center justify-between rounded-full bg-slate-600/50 px-4 py-2 backdrop-blur-md md:hidden">
+    <nav className="fixed inset-x-0 z-40 mx-4 mt-5 flex items-center justify-between rounded-full bg-slate-600/50 px-4 py-2 backdrop-blur-md md:hidden">
       {/* Brand Logo */}
       <div className="pb-1 text-xl font-bold text-[#f83232] 2xl:text-3xl">
         <Link to={"/"}>ResuFusion</Link>
@@ -28,8 +29,9 @@ const MobileNavbar = () => {
           </span>
         )}
         {!user && (
-          <span>
+          <span className="flex">
             <MobileLogin />
+            <MobileRegister />
           </span>
         )}
         <button

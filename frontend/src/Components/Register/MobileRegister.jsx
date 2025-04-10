@@ -3,8 +3,9 @@ import { RiCloseLargeFill } from "react-icons/ri";
 import RegisterForm from "./RegisterForm";
 import { AuthContext } from "../../context/AuthContext";
 
-const Register = () => {
-  const { showRegisterModal, setShowRegisterModal } = useContext(AuthContext); // Register modal state from context
+const MobileRegister = () => {
+  const { showMobileRegisterModal, setShowMobileRegisterModal } =
+    useContext(AuthContext); // Register modal state from context
   const diaRef = useRef(); // Ref for the dialog element
 
   // Open/Close dialog when state changes
@@ -12,27 +13,27 @@ const Register = () => {
     const dialog = diaRef.current;
     if (!dialog) return;
 
-    if (showRegisterModal) {
+    if (showMobileRegisterModal) {
       dialog.showModal();
       document.body.style.overflow = "hidden"; // Lock scroll
     } else {
       dialog.close();
       document.body.style.overflow = ""; // Restore scroll
     }
-  }, [showRegisterModal]);
+  }, [showMobileRegisterModal]);
 
   // Close register modal on resize to mobile
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth < 768;
-      if (isMobile && showRegisterModal) {
-        setShowRegisterModal(false);
+      const isMobile = window.innerWidth >= 768;
+      if (isMobile && showMobileRegisterModal) {
+        setShowMobileRegisterModal(false);
       }
     };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [showRegisterModal, setShowRegisterModal]);
+  }, [showMobileRegisterModal, setShowMobileRegisterModal]);
 
   return (
     <main>
@@ -44,7 +45,7 @@ const Register = () => {
         {/* Close Button */}
         <button
           className="absolute right-0 z-10 m-2"
-          onClick={() => setShowRegisterModal(false)}
+          onClick={() => setShowMobileRegisterModal(false)}
         >
           <RiCloseLargeFill className="m-2 cursor-pointer text-xl text-white" />
         </button>
@@ -55,7 +56,7 @@ const Register = () => {
 
       {/* Sign Up Button */}
       <button
-        onClick={() => setShowRegisterModal(true)}
+        onClick={() => setShowMobileRegisterModal(true)}
         className="mx-1 mt-[2px] rounded-2xl bg-[#ffb0b0] px-3 py-1 font-semibold transition-all hover:cursor-pointer hover:bg-[#ff9090] md:mt-0 md:text-[17px] 2xl:text-xl"
       >
         SignUp
@@ -64,4 +65,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default MobileRegister;

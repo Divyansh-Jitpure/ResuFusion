@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   const [showMobileLoginModal, setShowMobileLoginModal] = useState(false);
+  const [showMobileRegisterModal, setShowMobileRegisterModal] = useState(false);
 
   // Fetch the authenticated user
   const getUser = async () => {
@@ -128,6 +129,9 @@ export const AuthProvider = ({ children }) => {
 
         showMobileLoginModal,
         setShowMobileLoginModal,
+
+        showMobileRegisterModal,
+        setShowMobileRegisterModal,
       }}
     >
       {children}
