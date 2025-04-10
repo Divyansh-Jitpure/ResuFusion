@@ -48,7 +48,7 @@ const MobileRegister = () => {
 
       <button
         onClick={() => setShowMobileRegisterModal(true)}
-        className="mx-1 mt-[2px] rounded-2xl bg-[#ffb0b0] px-3 py-1 font-semibold transition-all hover:bg-[#ff9090] md:hidden"
+        className="mx-1 rounded-2xl bg-[#ffb0b0] px-3 py-1 font-semibold transition-all hover:bg-[#ff9090] md:hidden"
       >
         SignUp
       </button>
