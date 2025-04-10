@@ -40,20 +40,6 @@ const Navbar = () => {
         <Link to={"/about"}>About</Link>
       </div>
 
-      <div className="flex gap-2">
-        {user && (
-          <span className="mt-[2px] md:hidden">
-            <Logout />
-          </span>
-        )}
-        <button
-          className="text-4xl text-red-300 md:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <IoMenu />
-        </button>
-      </div>
-
       {/* Show Login/Register if user is NOT logged in */}
       {showAuthButtonsRoutes.includes(path) && !user && (
         <div className="hidden md:flex">

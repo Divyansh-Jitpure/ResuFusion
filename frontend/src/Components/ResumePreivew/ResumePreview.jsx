@@ -70,14 +70,15 @@ const ResumePreview = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="my-10 mt-22 flex min-h-screen flex-col items-center gap-5">
-        <h2 className="mb-2 cursor-default text-4xl font-semibold text-gray-50">
+        <h2 className="mb-5 cursor-default text-4xl font-semibold text-gray-50 md:mb-2">
           Resume Preview
         </h2>
         <section className="relative">
           {resumeData && (
             <div
               ref={contentRef}
-              className="relative flex min-h-[493px] w-[350px] flex-col bg-white pb-2 md:min-h-[1123px] md:w-[794px] md:scale-100 md:gap-3 md:py-2"
+              // print-area
+              className="relative flex min-h-[493px] w-[350px] flex-col bg-white pb-2 md:min-h-[1123px] md:w-[794px] md:gap-3 md:py-2 print:min-h-[1123px] print:w-[794px] print:gap-3 print:py-2"
             >
               {resumeData.template === "basic" && (
                 <Basic resumeData={resumeData} />
@@ -90,9 +91,9 @@ const ResumePreview = () => {
             data-tooltip-content="Delete Resume"
             data-tooltip-place="right"
             onClick={() => handleDelete()}
-            className="absolute top-10 right-10 text-white md:-right-10"
+            className="absolute -top-7 right-0 text-white md:top-10 md:-right-10"
           >
-            <MdDelete className="cursor-pointer text-2xl" />
+            <MdDelete className="cursor-pointer text-xl md:text-2xl" />
           </span>
           <Tooltip id="delete-tooltip" style={{ padding: "2px 5px" }} />
           <span
@@ -100,9 +101,9 @@ const ResumePreview = () => {
             data-tooltip-content="Edit Resume"
             data-tooltip-place="right"
             onClick={() => handleEdit()}
-            className="absolute top-0 right-10 text-white md:-right-10"
+            className="absolute -top-7 right-6 text-white md:top-0 md:-right-10"
           >
-            <MdEdit className="cursor-pointer text-2xl" />
+            <MdEdit className="cursor-pointer text-xl md:text-2xl" />
           </span>
           <Tooltip id="edit-tooltip" style={{ padding: "2px 5px" }} />
         </section>
