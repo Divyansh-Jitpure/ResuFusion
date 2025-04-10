@@ -4,10 +4,12 @@ const Summary = ({ summary }) => {
   if (summary === "") return "";
   return (
     <div className="no-break">
-      <h2 className="mx-5 border-b pb-1 text-center text-xl font-medium text-gray-700">
+      <h2 className="mx-2 border-b pb-1 text-center text-xs font-medium text-gray-700 md:mx-5 md:text-xl">
         Summary
       </h2>
-      <p className="mx-10 text-gray-600">{summary}</p>
+      <p className="mx-4 text-[8px] text-gray-600 md:mx-10 md:text-base">
+        {summary}
+      </p>
     </div>
   );
 };

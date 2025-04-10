@@ -14,15 +14,15 @@ const Experience = ({ experience }) => {
   return (
     <div className="no-break text-center">
       {/* Section heading */}
-      <h2 className="mx-5 border-b pb-1 text-xl font-medium text-gray-700">
+      <h2 className="mx-2 border-b pb-1 text-center text-xs font-medium text-gray-700 md:mx-5 md:text-xl">
         Experience
       </h2>
 
       {/* Container for all experience entries */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 text-[8px] md:text-base">
         {experience.map((exp, index) => {
           return (
-            <div key={index} className="grid grid-cols-2 px-10">
+            <div key={index} className="mx-4 grid grid-cols-2 md:mx-10">
               {/* Company name and job title */}
               <section className="flex flex-col items-start">
                 <span>{exp.companyName}</span>
@@ -42,7 +42,7 @@ const Experience = ({ experience }) => {
 
               {/* Description spanning full width */}
               {exp.description.length !== 0 && exp.description[0] !== "" && (
-                <section className="col-span-2 ml-5 text-left">
+                <section className="col-span-2 ml-2 text-left md:ml-5">
                   {exp.description.map((des, i) => (
                     <p key={i}>
                       • <span className="text-gray-500">{des}</span>

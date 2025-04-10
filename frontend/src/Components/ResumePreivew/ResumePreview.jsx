@@ -69,7 +69,7 @@ const ResumePreview = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="my-10 mt-22 flex min-h-screen flex-col items-center justify-center gap-5">
+      <div className="my-10 mt-22 flex min-h-screen flex-col items-center gap-5">
         <h2 className="mb-2 cursor-default text-4xl font-semibold text-gray-50">
           Resume Preview
         </h2>
@@ -77,7 +77,7 @@ const ResumePreview = () => {
           {resumeData && (
             <div
               ref={contentRef}
-              className="relative flex min-h-[1123px] w-[794px] flex-col gap-3 bg-white py-2"
+              className="relative flex min-h-[493px] w-[350px] flex-col bg-white pb-2 md:min-h-[1123px] md:w-[794px] md:scale-100 md:gap-3 md:py-2"
             >
               {resumeData.template === "basic" && (
                 <Basic resumeData={resumeData} />
@@ -90,7 +90,7 @@ const ResumePreview = () => {
             data-tooltip-content="Delete Resume"
             data-tooltip-place="right"
             onClick={() => handleDelete()}
-            className="absolute top-10 -right-10 text-white"
+            className="absolute top-10 right-10 text-white md:-right-10"
           >
             <MdDelete className="cursor-pointer text-2xl" />
           </span>
@@ -100,7 +100,7 @@ const ResumePreview = () => {
             data-tooltip-content="Edit Resume"
             data-tooltip-place="right"
             onClick={() => handleEdit()}
-            className="absolute top-0 -right-10 text-white"
+            className="absolute top-0 right-10 text-white md:-right-10"
           >
             <MdEdit className="cursor-pointer text-2xl" />
           </span>
@@ -108,7 +108,7 @@ const ResumePreview = () => {
         </section>
 
         <button
-          className="col-span-2 mx-auto flex w-max items-center gap-2 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium text-white transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
+          className="col-span-2 mx-auto flex w-max items-center gap-2 rounded-2xl bg-[#D84040] px-3 py-1 font-medium text-white transition-all hover:cursor-pointer hover:bg-[#ff2d2d] md:text-[17px]"
           onClick={() => handlePrint(reactToPrintContent)}
           type="button"
         >
