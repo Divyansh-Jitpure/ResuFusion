@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router";
 import { IoMenu } from "react-icons/io5";
 import Logout from "../Logout";
-import Login from "../Login/Login";
+import MobileLogin from "../Login/MobileLogin";
 
 const MobileNavbar = () => {
   const {
@@ -29,7 +29,7 @@ const MobileNavbar = () => {
         )}
         {!user && (
           <span>
-            <Login />
+            <MobileLogin />
           </span>
         )}
         <button

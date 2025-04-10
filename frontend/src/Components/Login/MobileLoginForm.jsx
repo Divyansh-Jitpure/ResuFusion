@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Toaster } from "sonner";
 
-const LoginForm = () => {
-  const { login, showLoginModal } = useContext(AuthContext); // Login function from AuthContext
+const MobileLoginForm = () => {
+  const { login, showMobileLoginModal } = useContext(AuthContext); // Login function from AuthContext
   const [userData, setUserData] = useState({ email: "", password: "" }); // State to manage user input
   const [error, setError] = useState(""); // State to handle errors
 
@@ -24,7 +24,7 @@ const LoginForm = () => {
 
   return (
     <div className="flex h-[60vh] w-[80vw] justify-center md:h-[80vh] md:w-[70vw]">
-      {showLoginModal && <Toaster position="top-center" richColors />}
+      {showMobileLoginModal && <Toaster position="top-center" richColors />}
 
       {/* Left Section => Login Form */}
       <section className="flex flex-col items-center justify-center gap-5 md:w-[40%] md:gap-10 2xl:gap-16">
@@ -94,4 +94,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default MobileLoginForm;

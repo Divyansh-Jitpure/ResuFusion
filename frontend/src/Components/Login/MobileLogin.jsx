@@ -1,45 +1,43 @@
 import React, { useContext, useEffect, useRef } from "react";
-import LoginForm from "./LoginForm";
+import MobileLoginForm from "./MobileLoginForm";
 import { RiCloseLargeFill } from "react-icons/ri";
 import { LuLogIn } from "react-icons/lu";
 import { AuthContext } from "../../context/AuthContext";
 
-const Login = () => {
-  const { showLoginModal, setShowLoginModal } = useContext(AuthContext); // Login modal state from context
-  const diaRef = useRef(); // Ref for the dialog element
+const MobileLogin = () => {
+  const { showMobileLoginModal, setShowMobileLoginModal } =
+    useContext(AuthContext);
+  const diaRef = useRef();
 
-  // Close the login modal
   const closeDia = () => {
     diaRef.current?.close();
-    document.body.style.overflow = ""; // Restore page scrolling
+    document.body.style.overflow = "";
   };
 
-  // Open the login modal
   const openDia = () => {
     diaRef.current?.showModal();
-    document.body.style.overflow = "hidden"; // Prevent background scrolling when modal is open
+    document.body.style.overflow = "hidden";
   };
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth < 768;
+      const isDesktop = window.innerWidth >= 768;
 
-      if (isMobile && showLoginModal) {
-        setShowLoginModal(false); // Close modal on breakpoint switch
+      // Close mobile login modal when resizing to desktop
+      if (isDesktop && showMobileLoginModal) {
+        setShowMobileLoginModal(false);
       }
     };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [showLoginModal, setShowLoginModal]);
+  }, [showMobileLoginModal, setShowMobileLoginModal]);
 
-  // Open/close modal based on state
-  showLoginModal ? openDia() : closeDia();
+  showMobileLoginModal ? openDia() : closeDia();
 
   return (
     <main>
       {/* Login Modal */}
-
       <dialog
         className="m-auto rounded-xl bg-[#1D1616]/80 backdrop-blur-md backdrop:bg-black/40"
         ref={diaRef}
@@ -47,18 +45,18 @@ const Login = () => {
         {/* Close Button */}
         <button
           className="absolute right-0 z-10 m-2"
-          onClick={() => setShowLoginModal(false)}
+          onClick={() => setShowMobileLoginModal(false)}
         >
           <RiCloseLargeFill className="m-2 cursor-pointer text-xl text-white" />
         </button>
 
-        {/* Login Form Component */}
-        <LoginForm />
+        {/* Mobile Login Form Component */}
+        <MobileLoginForm />
       </dialog>
 
       {/* Login Button */}
       <button
-        onClick={() => setShowLoginModal(true)}
+        onClick={() => setShowMobileLoginModal(true)}
         className="mx-1 flex items-center justify-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 font-semibold transition-all hover:cursor-pointer hover:bg-[#ff2d2d] md:text-[17px] 2xl:text-xl"
       >
         Login
@@ -70,4 +68,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default MobileLogin;
