@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     // Navbar wrapper (fixed at the top with a glass effect)
-    <main className="fixed inset-x-0 z-40 mx-2 mt-5 flex items-center justify-between rounded-full bg-slate-600/50 py-2 backdrop-blur-md *:mx-6 md:mx-auto md:w-fit md:px-4">
+    <main className="fixed inset-x-0 z-40 mx-2 mt-5 hidden items-center justify-between rounded-full bg-slate-600/50 py-2 backdrop-blur-md *:mx-6 md:mx-auto md:flex md:w-fit md:px-4">
       {/* Brand Logo */}
       <div className="pb-1 text-2xl font-bold text-[#f83232] 2xl:text-3xl">
         <Link to={"/"}>ResuFusion</Link>
@@ -41,13 +41,6 @@ const Navbar = () => {
       </div>
 
       <div className="flex gap-2">
-        {/* Show Login/Register if user is NOT logged in */}
-        {showAuthButtonsRoutes.includes(path) && !user && (
-          <div className="flex">
-            <Login />
-            <Register />
-          </div>
-        )}
         {user && (
           <span className="mt-[2px] md:hidden">
             <Logout />
@@ -60,6 +53,14 @@ const Navbar = () => {
           <IoMenu />
         </button>
       </div>
+
+      {/* Show Login/Register if user is NOT logged in */}
+      {showAuthButtonsRoutes.includes(path) && !user && (
+        <div className="hidden md:flex">
+          <Login />
+          <Register />
+        </div>
+      )}
 
       {/* Show Dashboard/Logout if user is logged in */}
       {showDashboardRoutes.includes(path) && user && (
