@@ -68,8 +68,9 @@ export const AuthProvider = ({ children }) => {
         });
         await getUser(); // Fetch updated user data
         setUser(res.data.user); // Store user info
-        setShowLoginModal(false); // Close login modal after success
         resolve(res.data);
+        setShowLoginModal(false); // Close login modal after success
+        setShowMobileLoginModal(false); // Close login modal after success
       } catch (err) {
         reject(err.res?.data?.message || "Something went wrong!!");
       }

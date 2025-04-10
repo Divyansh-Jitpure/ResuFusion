@@ -21,10 +21,12 @@ import DrawerMenu from "./Components/Navbar/DrawerMenu";
 function App() {
   const {
     loading,
+    showMobileLoginModal,
     showLoginModal,
     logout,
     user,
     showRegisterModal,
+    showMobileRegisterModal,
     isOpen,
     setIsOpen,
   } = useContext(AuthContext);
@@ -53,11 +55,7 @@ function App() {
   return (
     <div className="bg-linear-to-l from-[#413939] to-[#1D1616]">
       <div
-        style={
-          !showLoginModal && !showRegisterModal
-            ? { display: "block" }
-            : { display: "none" }
-        }
+        className={`${!showMobileLoginModal && !showLoginModal && !showMobileRegisterModal && !showRegisterModal ? "block" : "hidden"}`}
       >
         <ToastManager />
       </div>

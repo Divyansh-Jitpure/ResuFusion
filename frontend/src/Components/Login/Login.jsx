@@ -13,16 +13,30 @@ const Login = () => {
     const dialog = diaRef.current;
     if (!dialog) return;
 
-    if (showLoginModal) {
+    if (showLoginModal && !dialog.open) {
       dialog.showModal();
       document.body.style.overflow = "hidden"; // Lock scroll
-    } else {
+    } else if (!showLoginModal && dialog.open) {
       dialog.close();
       document.body.style.overflow = ""; // Restore scroll
     }
   }, [showLoginModal]);
 
-  // Close login modal on resize to mobile
+  // Ensure scroll unlocks when dialog is closed any other way
+  useEffect(() => {
+    const dialog = diaRef.current;
+    if (!dialog) return;
+
+    const handleClose = () => {
+      document.body.style.overflow = "";
+      setShowLoginModal(false); // Sync state
+    };
+
+    dialog.addEventListener("close", handleClose);
+    return () => dialog.removeEventListener("close", handleClose);
+  }, [setShowLoginModal]);
+
+  // Auto-close login modal on mobile resize
   useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth < 768;
@@ -51,7 +65,7 @@ const Login = () => {
         </button>
 
         {/* Login Form */}
-        <LoginForm />
+        <LoginForm onSuccess={() => setShowLoginModal(false)} />
       </dialog>
 
       {/* Login Button */}
