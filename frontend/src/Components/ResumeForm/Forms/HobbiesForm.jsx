@@ -17,6 +17,7 @@ const HobbiesForm = ({ hobbies, updateFields }) => {
         </label>
         <input
           type="text"
+          className="h-max"
           name="hobbies"
           placeholder="Enter your hobbies"
           onChange={(e) => setInputValue(e.target.value)}

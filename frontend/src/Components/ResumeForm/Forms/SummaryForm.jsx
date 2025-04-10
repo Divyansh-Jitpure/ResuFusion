@@ -5,7 +5,9 @@ const SummaryForm = ({ summary, updateFields }) => {
   return (
     <FormWrapper title="Summary">
       <textarea
-        className="col-span-2"
+        style={{
+          gridColumn: "span 2",
+        }}
         name="summary"
         rows="3"
         cols="50"
