@@ -54,7 +54,7 @@ const TemplateTile = ({ templateName }) => {
         className="z-[9000] m-auto rounded-xl bg-[#1D1616]/80 backdrop-blur-md backdrop:bg-black/40"
       >
         <button
-          className="absolute right-0 z-10 m-[2px] md:right-3"
+          className="absolute top-1 right-1 z-10 m-[2px] md:top-0 md:right-4"
           onClick={() => setShowPrevModal(false)}
         >
           <RiCloseLargeFill className="m-1 cursor-pointer text-xl text-white md:m-2" />

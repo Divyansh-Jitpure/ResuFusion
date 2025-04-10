@@ -2,7 +2,7 @@ import React from "react";
 
 const TemplatePreview = ({ templateName, handleSelectTemplate }) => {
   return (
-    <div className="h-[70vh] w-[80vw] overflow-auto md:h-[90vh] md:w-[60vw]">
+    <div className="h-[60vh] w-[80vw] overflow-auto py-2 md:h-[90vh] md:w-[60vw]">
       {templateName === "basic" ? (
         <>
           <h2 className="my-4 text-2xl font-semibold text-white capitalize 2xl:text-3xl">
