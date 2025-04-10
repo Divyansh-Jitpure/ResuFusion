@@ -78,7 +78,7 @@ const ResumePreview = () => {
             <div
               ref={contentRef}
               // print-area
-              className="relative flex min-h-[493px] w-[350px] flex-col bg-white pb-2 md:min-h-[1123px] md:w-[794px] md:gap-3 md:py-2 print:min-h-[1123px] print:w-[794px] print:gap-3 print:py-2"
+              className="relative flex min-h-[493px] w-[350px] flex-col bg-white pb-2 md:min-h-[1123px] md:w-[794px] md:gap-3 md:py-2 print:min-h-0 print:w-[794px] print:gap-3 print:py-0 print:pb-0"
             >
               {resumeData.template === "basic" && (
                 <Basic resumeData={resumeData} />
