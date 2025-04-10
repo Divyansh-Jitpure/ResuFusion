@@ -83,8 +83,11 @@ const Footer = () => {
       <section className="flex w-[80%] justify-between border-t-2 py-4">
         <p className="mx-auto text-center text-lg text-red-200 md:mx-0 2xl:text-xl">
           © 2025{" "}
-          <span className="rounded-sm bg-[#EEEEEE] px-1 text-[#1D1616]">
+          <span className="relative rounded-sm bg-[#EEEEEE] px-1 text-[#1D1616]">
             ResuFusion
+            <span className="absolute -right-[50px] text-xs text-red-200 md:hidden">
+              Beta v0.7
+            </span>
           </span>{" "}
           <br className="md:hidden" />
           <a
@@ -103,7 +106,7 @@ const Footer = () => {
 
         {/* Version Info */}
         <span className="hidden text-red-200 md:block 2xl:text-lg">
-          Beta v0.6
+          Beta v0.7
         </span>
       </section>
     </div>

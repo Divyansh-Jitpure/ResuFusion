@@ -101,7 +101,7 @@ const ResumePreview = () => {
             data-tooltip-content="Edit Resume"
             data-tooltip-place="right"
             onClick={() => handleEdit()}
-            className="absolute -top-7 right-6 text-white md:top-0 md:-right-10"
+            className="absolute -top-7 right-8 text-white md:top-0 md:-right-10"
           >
             <MdEdit className="cursor-pointer text-xl md:text-2xl" />
           </span>
