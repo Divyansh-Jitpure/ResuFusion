@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     // Main footer container
-    <div className="flex h-55 w-full cursor-default flex-col items-center justify-between rounded-t-4xl bg-linear-to-br from-[#D84040] to-[#8E1616]">
+    <div className="flex h-55 w-full cursor-default flex-col items-center justify-between rounded-t-4xl bg-linear-to-br from-[#D84040] to-[#8E1616] print:hidden">
       {/* Top Section: Logo and Links */}
       <section className="grid h-full w-[80%] grid-cols-1 py-5 md:grid-cols-2">
         {/* Left Side: Logo and Tagline */}

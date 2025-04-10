@@ -109,7 +109,7 @@ const ResumePreview = () => {
         </section>
 
         <button
-          className="col-span-2 mx-auto flex w-max items-center gap-2 rounded-2xl bg-[#D84040] px-3 py-1 font-medium text-white transition-all hover:cursor-pointer hover:bg-[#ff2d2d] md:text-[17px]"
+          className="col-span-2 mx-auto flex w-max items-center gap-2 rounded-2xl bg-[#D84040] px-3 py-1 font-medium text-white transition-all hover:cursor-pointer hover:bg-[#ff2d2d] md:text-[17px] print:hidden"
           onClick={() => handlePrint(reactToPrintContent)}
           type="button"
         >
