@@ -23,12 +23,8 @@ function App() {
     loading,
     showMobileLoginModal,
     showLoginModal,
-    logout,
-    user,
     showRegisterModal,
     showMobileRegisterModal,
-    isOpen,
-    setIsOpen,
   } = useContext(AuthContext);
 
   // Show loading indicator while user data is being fetched

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router";
 import { IoMenu } from "react-icons/io5";
+import { RxCross2 } from "react-icons/rx";
 import Logout from "../Logout";
 import MobileLogin from "../Login/MobileLogin";
 import MobileRegister from "../Register/MobileRegister";
@@ -27,10 +28,14 @@ const MobileNavbar = () => {
           </span>
         )}
         <button
-          className="text-3xl text-red-300 md:hidden"
           onClick={() => setIsOpen(!isOpen)}
+          className="text-red-300 md:hidden"
         >
-          <IoMenu />
+          {isOpen ? (
+            <RxCross2 className="text-3xl" />
+          ) : (
+            <IoMenu className="text-3xl" />
+          )}
         </button>
       </div>
     </nav>
