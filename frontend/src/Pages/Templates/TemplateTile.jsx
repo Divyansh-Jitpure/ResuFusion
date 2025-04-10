@@ -8,7 +8,8 @@ import { RiCloseLargeFill } from "react-icons/ri";
 const TemplateTile = ({ templateName }) => {
   const [showPrevModal, setShowPrevModal] = useState(false);
   const navigate = useNavigate();
-  const { user, setShowLoginModal } = useContext(AuthContext);
+  const { user, setShowLoginModal, setShowMobileLoginModal } =
+    useContext(AuthContext);
   const prevRef = useRef();
 
   // Sync modal with state
@@ -40,7 +41,12 @@ const TemplateTile = ({ templateName }) => {
       document.body.style.overflow = "";
       navigate(`/resumeform/${templateName}`);
     } else if (!user) {
-      setShowLoginModal(true);
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        setShowMobileLoginModal(true);
+      } else {
+        setShowLoginModal(true);
+      }
     } else {
       alert("Available Soon!!");
     }
