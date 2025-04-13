@@ -10,6 +10,18 @@ router.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ error: "User already exists!!" });
+    }
+
+    // Check if username already exists
+    const existingUserName = await User.findOne({ username });
+    if (existingUserName) {
+      return res.status(400).json({ error: "Username already taken!!" });
+    }
+
     // Hash the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -38,7 +50,7 @@ router.post("/login", async (req, res) => {
     // Comparing input password and stored hashed password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
-      return res.status(400).json({ error: "Invalid credentials!!" });
+      return res.status(400).json({ error: "Invalid Email or password!!" });
 
     // Generate JWT token for auth
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {

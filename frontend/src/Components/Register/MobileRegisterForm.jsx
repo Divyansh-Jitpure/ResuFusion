@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { Toaster } from "sonner";
+import { toast, Toaster } from "sonner";
 
 const MobileRegisterForm = () => {
   const { register, setShowMobileRegisterModal, showMobileRegisterModal } =
@@ -11,7 +11,6 @@ const MobileRegisterForm = () => {
     password: "",
   });
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -20,7 +19,7 @@ const MobileRegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (userData.password !== confirmPassword) {
-      setError("Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
     try {
@@ -29,7 +28,7 @@ const MobileRegisterForm = () => {
       setConfirmPassword("");
       setShowMobileRegisterModal(false);
     } catch (err) {
-      setError(err.error || "Something went wrong.");
+      console.error(err || "Signup Failed!!");
     }
   };
 
@@ -38,8 +37,7 @@ const MobileRegisterForm = () => {
       {showMobileRegisterModal && <Toaster position="top-center" richColors />}
       <section className="flex flex-col items-center justify-center gap-5">
         <h2 className="text-3xl font-bold text-[#ff3a3a]">Sign Up</h2>
-        {error && <p className="text-red-500">{error}</p>}
-
+        
         {/* Registration Form */}
         <form
           onSubmit={handleSubmit}

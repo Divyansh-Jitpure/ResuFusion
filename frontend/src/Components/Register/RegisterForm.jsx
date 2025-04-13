@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { Toaster } from "sonner";
+import { Toaster, toast } from "sonner";
 
 const RegisterForm = () => {
   const { register, showRegisterModal } = useContext(AuthContext);
@@ -10,7 +10,6 @@ const RegisterForm = () => {
     password: "",
   });
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -19,7 +18,7 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (userData.password !== confirmPassword) {
-      setError("Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
     try {
@@ -27,7 +26,7 @@ const RegisterForm = () => {
       setUserData({ username: "", email: "", password: "" });
       setConfirmPassword("");
     } catch (err) {
-      setError(err.error || "Something went wrong.");
+      console.error(err || "Signup Failed!!");
     }
   };
 
@@ -39,18 +38,19 @@ const RegisterForm = () => {
         <h2 className="pb-1 text-4xl font-bold text-[#ff3a3a] 2xl:text-5xl">
           Sign Up
         </h2>
-        {error && <p className="text-red-500">{error}</p>}
 
+        {/* Registration Form */}
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center gap-5 2xl:gap-16"
         >
           <div className="flex flex-col gap-2 2xl:gap-3">
+            {/* Username, Email and Passwor Inputs */}
             {["username", "email", "password"].map((field) => (
               <label key={field} className="flex flex-col gap-1 text-white">
                 {field.charAt(0).toUpperCase() + field.slice(1)}
                 <input
-                  className="w-[60vw] rounded border border-slate-300 p-1 text-white md:w-[20vw]"
+                  className="w-[20vw] rounded border border-slate-300 p-1 text-white"
                   type={field === "password" ? "password" : field}
                   placeholder={`Enter ${field}`}
                   name={field}
@@ -60,6 +60,8 @@ const RegisterForm = () => {
                 />
               </label>
             ))}
+
+            {/* Confirm Password Input */}
             <label className="flex flex-col gap-1 text-white">
               Confirm Password
               <input

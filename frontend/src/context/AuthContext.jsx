@@ -50,7 +50,8 @@ export const AuthProvider = ({ children }) => {
         setShowRegisterModal(false); // Close register modal on success
         resolve(res.data);
       } catch (err) {
-        reject(err.res?.data?.message || "Something went wrong!!");
+        console.log("Error - ", err.response?.data.error);
+        reject(err.response?.data.error || "Something went wrong!!");
       }
     });
 
@@ -76,7 +77,8 @@ export const AuthProvider = ({ children }) => {
         setShowLoginModal(false); // Close login modal after success
         setShowMobileLoginModal(false); // Close login modal after success
       } catch (err) {
-        reject(err.res?.data?.message || "Something went wrong!!");
+        // console.log("Error - ", err.response?.data.error);
+        reject(err.response?.data.error || "Something went wrong!!");
       }
     });
 
@@ -103,7 +105,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null); // Reset user state
         resolve(res);
       } catch (err) {
-        reject(err.res?.data?.message || "Logout failed!!");
+        reject(err.response?.data.error || "Logout failed!!");
       }
     });
     toast.promise(logoutPromise, {

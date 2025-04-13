@@ -6,7 +6,6 @@ const MobileLoginForm = () => {
   const { login, showMobileLoginModal, setShowMobileLoginModal } =
     useContext(AuthContext);
   const [userData, setUserData] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -19,7 +18,7 @@ const MobileLoginForm = () => {
       setShowMobileLoginModal(false); // ✅ Close modal on success
       document.body.style.overflow = ""; // ✅ Re-enable scroll
     } catch (err) {
-      setError(err.error || "Login failed");
+      console.error(err.error || "Login failed");
     }
   };
 
@@ -55,7 +54,7 @@ const MobileLoginForm = () => {
                 onChange={handleChange}
               />
             </label>
-            {error && <span className="text-sm text-red-400">{error}</span>}
+            {/* {error && <span className="text-sm text-red-400">{error}</span>} */}
           </div>
           <button
             type="submit"

@@ -5,7 +5,6 @@ import { Toaster } from "sonner";
 const LoginForm = () => {
   const { login, showLoginModal, setShowLoginModal } = useContext(AuthContext);
   const [userData, setUserData] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -18,7 +17,7 @@ const LoginForm = () => {
       setShowLoginModal(false); // ✅ close modal
       document.body.style.overflow = ""; // ✅ reset scroll
     } catch (err) {
-      setError(err.error || "Login failed");
+      console.error(err || "Login failed!!");
     }
   };
 
@@ -56,7 +55,7 @@ const LoginForm = () => {
                 onChange={handleChange}
               />
             </label>
-            {error && <span className="text-sm text-red-400">{error}</span>}
+            {/* {error && <span className="text-sm text-red-400">{error}</span>} */}
           </div>
           <button
             type="submit"
