@@ -3,9 +3,12 @@ import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router";
 
 const DrawerMenu = () => {
+  // The state of the drawer menu
   const { user, isOpen, setIsOpen } = useContext(AuthContext);
+  // Ref to the drawer menu element
   const drawerRef = useRef();
 
+  // Function to close the drawer menu when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (drawerRef.current && !drawerRef.current.contains(e.target)) {
@@ -13,10 +16,12 @@ const DrawerMenu = () => {
       }
     };
 
+    // Add event listener to close the menu when clicking outside of it
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
+    // Cleanup function to remove the event listener
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };

@@ -10,18 +10,29 @@ import { Tooltip } from "react-tooltip";
 import { toast } from "sonner";
 
 const ResumePreview = () => {
+  // Extracting resumeId from URL parameters using useParams hook
   const { resumeId } = useParams();
+
+  // State variables to manage loading state and resume data
+  const [loading, setLoading] = useState(true);
+
+  // Context to access user data
   const { user } = useContext(AuthContext);
+
+  // State variable to store resume data fetched from the server
   const [resumeData, setResumeData] = useState(null);
 
+  // Ref to hold the content to be printed
   const contentRef = useRef(null);
 
   const navigate = useNavigate();
 
+  // Function to handle editing the resume
   const handleEdit = () => {
     navigate(`/resumeform/${resumeId}`);
   };
 
+  // Function to handle deleting the resume
   const handleDelete = async () => {
     const resumeDeletePromise = new Promise(async (resolve, reject) => {
       try {
@@ -43,29 +54,47 @@ const ResumePreview = () => {
     return resumeDeletePromise;
   };
 
+  // Function to handle printing the resume
   const reactToPrintContent = () => {
     return contentRef.current;
   };
 
+  // Using useReactToPrint hook to create a print function
   const handlePrint = useReactToPrint({
     content: () => contentRef.current,
     documentTitle: "ResuFusion",
   });
 
+  // Function to fetch resume data from the server
   const getResumeData = async () => {
     try {
       const rData = await API.get(`/resumes/${user._id}/${resumeId}`);
       setResumeData(rData.data);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
+  // Fetching resume data when the component mounts or when user changes
   useEffect(() => {
     if (user && resumeId) {
       getResumeData();
     }
   }, [user, resumeId]);
+
+  // Show loading indicator while resume data is being fetched
+  if (loading) {
+    return (
+      <div className="flex h-screen flex-col items-center justify-center pb-10">
+        <div className="mx-auto h-20 w-20 animate-spin rounded-full border-6 border-dashed border-[#D84040]"></div>
+        <h2 className="mt-4 text-3xl text-zinc-900 dark:text-white">
+          Loading Resume...
+        </h2>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center">
@@ -78,7 +107,7 @@ const ResumePreview = () => {
             <div
               ref={contentRef}
               // print-area
-              className="relative flex min-h-[493px] w-[350px] flex-col bg-white pb-2 md:min-h-[1123px] md:w-[794px] md:gap-3 md:py-2 print:min-h-0 print:w-[794px] print:gap-3 print:pb-0 print:py-2"
+              className="relative flex min-h-[493px] w-[350px] flex-col bg-white pb-2 md:min-h-[1123px] md:w-[794px] md:gap-3 md:py-2 print:min-h-0 print:w-[794px] print:gap-3 print:py-2 print:pb-0"
             >
               {resumeData.template === "basic" && (
                 <Basic resumeData={resumeData} />

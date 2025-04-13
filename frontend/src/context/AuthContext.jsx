@@ -9,13 +9,17 @@ export const AuthProvider = ({ children }) => {
   // State to store user info
   const [user, setUser] = useState(null);
 
+  // State to manage loading state
   const [loading, setLoading] = useState(true);
 
+  // State to manage Mobile Drawer Menu visibility
   const [isOpen, setIsOpen] = useState(false);
+
   // State to handle modal visibility
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
 
+  // State to handle mobile modal visibility
   const [showMobileLoginModal, setShowMobileLoginModal] = useState(false);
   const [showMobileRegisterModal, setShowMobileRegisterModal] = useState(false);
 
@@ -111,6 +115,7 @@ export const AuthProvider = ({ children }) => {
     return logoutPromise;
   };
 
+  // Context value to be provided to children components
   return (
     <AuthContext.Provider
       value={{
@@ -118,6 +123,7 @@ export const AuthProvider = ({ children }) => {
         register,
         login,
         logout,
+
         loading,
 
         showLoginModal,

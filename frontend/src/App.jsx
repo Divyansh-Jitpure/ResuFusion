@@ -14,7 +14,6 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import ResumePreview from "./Components/ResumePreivew/ResumePreview";
 import "react-tooltip/dist/react-tooltip.css";
 import Footer from "./Components/Footer";
-import Logout from "./Components/Logout";
 import MobileNavbar from "./Components/Navbar/MobileNavbar";
 import DrawerMenu from "./Components/Navbar/DrawerMenu";
 
@@ -57,8 +56,11 @@ function App() {
       </div>
 
       <Router>
+        {/* Navbar component */}
         <Navbar />
+        {/* Mobile Navbar component */}
         <MobileNavbar />
+        {/* Drawer Menu component */}
         <DrawerMenu />
 
         <Routes>
@@ -77,6 +79,7 @@ function App() {
           {/* Resume Preview Page */}
         </Routes>
 
+        {/* Footer component */}
         <Footer />
       </Router>
     </div>

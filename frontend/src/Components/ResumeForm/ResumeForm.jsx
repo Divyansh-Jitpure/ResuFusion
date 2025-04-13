@@ -71,9 +71,15 @@ const InitialData = {
 
 const ResumeForm = () => {
   const navigate = useNavigate();
+  // State to manage form data
   const [data, setData] = useState(InitialData);
+
+  const [resumeDataLoading, setResumeDataLoading] = useState(true);
+
+  // Context to access user data and loading state
   const { user, loading, setShowLoginModal } = useContext(AuthContext);
 
+  // Get the resume ID or template name from URL params
   const { id } = useParams();
 
   // Determine if the id param is a template name or resume ID
@@ -82,50 +88,58 @@ const ResumeForm = () => {
     templateTypes.includes(id) && id,
   );
 
+  // If the id is not a template name, set it as resume ID
   const resId = !templateTypes.includes(id) && id;
 
   // Fetch existing resume data for editing
   useEffect(() => {
     async function getResumeData() {
       if (resId) {
-        const rData = await API.get(`/resumes/${user._id}/${resId}`);
+        try {
+          const rData = await API.get(`/resumes/${user._id}/${resId}`);
 
-        // Format date to yyyy-mm-dd
-        function formattedDate(dateStr) {
-          return dateStr ? dateStr.split("T")[0] : "";
+          // Format date to yyyy-mm-dd
+          function formattedDate(dateStr) {
+            return dateStr ? dateStr.split("T")[0] : "";
+          }
+
+          // Reformat education & experience dates
+          const formattedEducation = rData.data.education.map((edu) => ({
+            ...edu,
+            startYear: formattedDate(edu.startYear),
+            endYear: formattedDate(edu.endYear),
+          }));
+          const formattedExperience = rData.data.experience.map((exp) => ({
+            ...exp,
+            startDate: formattedDate(exp.startDate),
+            endDate: formattedDate(exp.endDate),
+          }));
+
+          // Populate form with fetched data
+          setData({
+            fullName: rData.data.personalInfo.fullName,
+            title: rData.data.personalInfo.title,
+            email: rData.data.personalInfo.email,
+            phoneNumber: rData.data.personalInfo.phone,
+            address: rData.data.personalInfo.address,
+            education: formattedEducation,
+            experience: formattedExperience,
+            projects: rData.data.projects,
+            skills: rData.data.skills,
+            certifications: rData.data.certifications,
+            languages: rData.data.languages,
+            hobbies: rData.data.hobbies,
+            summary: rData.data.summary,
+          });
+          setTemplateName(rData.data.template);
+        } catch (error) {
+          console.error("Failed to fetch resume data:", error);
+        } finally {
+          setResumeDataLoading(false);
         }
-
-        // Reformat education & experience dates
-        const formattedEducation = rData.data.education.map((edu) => ({
-          ...edu,
-          startYear: formattedDate(edu.startYear),
-          endYear: formattedDate(edu.endYear),
-        }));
-        const formattedExperience = rData.data.experience.map((exp) => ({
-          ...exp,
-          startDate: formattedDate(exp.startDate),
-          endDate: formattedDate(exp.endDate),
-        }));
-
-        // Populate form with fetched data
-        setData({
-          fullName: rData.data.personalInfo.fullName,
-          title: rData.data.personalInfo.title,
-          email: rData.data.personalInfo.email,
-          phoneNumber: rData.data.personalInfo.phone,
-          address: rData.data.personalInfo.address,
-          education: formattedEducation,
-          experience: formattedExperience,
-          projects: rData.data.projects,
-          skills: rData.data.skills,
-          certifications: rData.data.certifications,
-          languages: rData.data.languages,
-          hobbies: rData.data.hobbies,
-          summary: rData.data.summary,
-        });
-        setTemplateName(rData.data.template);
       }
     }
+
     getResumeData();
   }, [resId]);
 
@@ -216,6 +230,18 @@ const ResumeForm = () => {
       setShowLoginModal(true); // Show login modal if not logged in
     }
   }, [user, setShowLoginModal]);
+
+  //  Show loading indicator while user data is being fetched when editing resume
+  if (resId && resumeDataLoading) {
+    return (
+      <div className="flex h-screen flex-col items-center justify-center pb-10">
+        <div className="mx-auto h-20 w-20 animate-spin rounded-full border-6 border-dashed border-[#D84040]"></div>
+        <h2 className="mt-4 text-3xl text-zinc-900 dark:text-white">
+          Loading Resume Data...
+        </h2>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto flex min-h-screen w-[90%] justify-center md:w-auto">

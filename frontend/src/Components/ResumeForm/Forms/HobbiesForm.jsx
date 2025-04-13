@@ -36,7 +36,7 @@ const HobbiesForm = ({ hobbies, updateFields }) => {
         {hobbies.map((hobbie, index) => (
           <div
             key={index}
-            className="my-4 flex gap-1 rounded-full bg-[#FF6D60] px-3 py-1 text-white"
+            className="flex gap-1 rounded-full bg-[#FF6D60] px-3 py-1 text-white md:my-1"
           >
             {hobbie}
             <button type="button" onClick={() => handleDeleteHobbies(index)}>

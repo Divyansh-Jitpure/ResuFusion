@@ -34,7 +34,7 @@ const SkillsForm = ({ skills, updateFields }) => {
         {skills.map((skill, index) => (
           <div
             key={index}
-            className="my-4 flex gap-1 rounded-full bg-[#FF6D60] px-3 py-1 text-white"
+            className="flex gap-1 rounded-full bg-[#FF6D60] px-3 py-1 text-white md:my-1"
           >
             {skill}
             <button type="button" onClick={() => handleDeleteSkill(index)}>
