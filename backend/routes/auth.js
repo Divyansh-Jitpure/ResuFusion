@@ -2,13 +2,22 @@ import express, { json } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
-
+  
 const router = express.Router();
 
 // Register Route
 router.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
+
+    // Check if password is strong enough
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
+    if (!passwordRegex.test(password)) {
+      return res.status(400).json({
+        error:
+          "Password must be at least 6 characters long, contain at least one uppercase letter and one special character  (!@#$%^&*, etc.).",
+      });
+    }
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });

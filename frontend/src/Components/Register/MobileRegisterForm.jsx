@@ -3,8 +3,12 @@ import { AuthContext } from "../../context/AuthContext";
 import { toast, Toaster } from "sonner";
 
 const MobileRegisterForm = () => {
-  const { register, setShowMobileRegisterModal, showMobileRegisterModal } =
-    useContext(AuthContext);
+  const {
+    register,
+    setShowMobileRegisterModal,
+    showMobileRegisterModal,
+    // setShowMobileLoginModal,
+  } = useContext(AuthContext);
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -27,6 +31,7 @@ const MobileRegisterForm = () => {
       setUserData({ username: "", email: "", password: "" });
       setConfirmPassword("");
       setShowMobileRegisterModal(false);
+      // setShowMobileLoginModal(true);
     } catch (err) {
       console.error(err || "Signup Failed!!");
     }
@@ -37,7 +42,7 @@ const MobileRegisterForm = () => {
       {showMobileRegisterModal && <Toaster position="top-center" richColors />}
       <section className="flex flex-col items-center justify-center gap-5">
         <h2 className="text-3xl font-bold text-[#ff3a3a]">Sign Up</h2>
-        
+
         {/* Registration Form */}
         <form
           onSubmit={handleSubmit}

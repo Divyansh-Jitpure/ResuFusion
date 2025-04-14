@@ -3,7 +3,11 @@ import { AuthContext } from "../../context/AuthContext";
 import { Toaster, toast } from "sonner";
 
 const RegisterForm = () => {
-  const { register, showRegisterModal } = useContext(AuthContext);
+  const {
+    register,
+    showRegisterModal,
+    //  setShowLoginModal
+  } = useContext(AuthContext);
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -23,6 +27,7 @@ const RegisterForm = () => {
     }
     try {
       await register(userData);
+      // setShowLoginModal(true);
       setUserData({ username: "", email: "", password: "" });
       setConfirmPassword("");
     } catch (err) {
