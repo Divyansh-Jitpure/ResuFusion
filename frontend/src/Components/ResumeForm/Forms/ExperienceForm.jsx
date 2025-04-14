@@ -4,6 +4,19 @@ import FormWrapper from "../FormWrapper";
 import { MdDelete } from "react-icons/md";
 
 const ExperienceForm = ({ experience, updateFields }) => {
+  const handlePresentChange = (index, field, value) => {
+    const updatedExperience = experience.map((exp, i) =>
+      i === index
+        ? {
+            ...exp,
+            [field]: value,
+            endDate: field === "present" && value ? "" : exp.endDate,
+          }
+        : exp,
+    );
+    updateFields({ experience: updatedExperience });
+  };
+
   const addExperience = () => {
     updateFields({
       experience: [
@@ -15,10 +28,16 @@ const ExperienceForm = ({ experience, updateFields }) => {
           country: "",
           startDate: "",
           endDate: "",
+          present: false,
           description: [],
         },
       ],
     });
+  };
+
+  const removeExperience = (index) => {
+    const updatedExperience = experience.filter((_, i) => i !== index);
+    updateFields({ experience: updatedExperience });
   };
 
   const addDescription = (index) => {
@@ -44,17 +63,13 @@ const ExperienceForm = ({ experience, updateFields }) => {
     updateFields({ experience: updatedExperience });
   };
 
-  const removeExperience = (index) => {
-    const updatedExperience = experience.filter((_, i) => i !== index);
-    updateFields({ experience: updatedExperience });
-  };
-
   const handleChange = (index, field, value) => {
     const updatedExperience = experience.map((exp, i) =>
       i === index ? { ...exp, [field]: value } : exp,
     );
     updateFields({ experience: updatedExperience });
   };
+
   return (
     <div className="flex flex-col items-center">
       {experience.map((exp, index) => (
@@ -68,7 +83,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
               required
               type="text"
               name="companyName"
-              placeholder="Enter Company Name"
+              placeholder="Eg. ABC Pvt Ltd"
               value={exp.companyName}
               onChange={(e) =>
                 handleChange(index, "companyName", e.target.value)
@@ -81,7 +96,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
               required
               type="text"
               name="jobTitle"
-              placeholder="Enter Job Title / Role"
+              placeholder="Eg. Software Engineer"
               value={exp.jobTitle}
               onChange={(e) => handleChange(index, "jobTitle", e.target.value)}
             />
@@ -93,7 +108,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
                 required
                 type="text"
                 name="city"
-                placeholder="Enter City"
+                placeholder="Eg. Mumbai"
                 value={exp.city}
                 onChange={(e) => handleChange(index, "city", e.target.value)}
               />
@@ -104,7 +119,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
                 required
                 type="text"
                 name="country"
-                placeholder="Enter Country"
+                placeholder="Eg. India"
                 value={exp.country}
                 onChange={(e) => handleChange(index, "country", e.target.value)}
               />
@@ -116,21 +131,37 @@ const ExperienceForm = ({ experience, updateFields }) => {
               required
               type="date"
               name="startDate"
-              placeholder="Enter Start Date"
               value={exp.startDate}
               onChange={(e) => handleChange(index, "startDate", e.target.value)}
             />
             <label htmlFor={`endDate-${index}`}>
               End Date <span className="text-red-600">*</span>
             </label>
-            <input
-              required
-              type="date"
-              name="endDate"
-              placeholder="Enter End Date"
-              value={exp.endDate}
-              onChange={(e) => handleChange(index, "endDate", e.target.value)}
-            />
+            <div className="col-span-2 md:col-span-1 [&>input]:w-full [&>input]:rounded [&>input]:border [&>input]:p-1 md:[&>input]:w-62 [&>label]:font-semibold">
+              {!exp.present && (
+                <input
+                  required
+                  type="date"
+                  name="endDate"
+                  disabled={ExperienceForm.present}
+                  value={exp.endDate}
+                  onChange={(e) =>
+                    handleChange(index, "endDate", e.target.value)
+                  }
+                />
+              )}
+              <div className="flex gap-2">
+                <label htmlFor="present">Present</label>
+                <input
+                  type="checkbox"
+                  name="present"
+                  checked={exp.present || false}
+                  onChange={(e) => {
+                    handlePresentChange(index, "present", e.target.checked);
+                  }}
+                />
+              </div>
+            </div>
             {exp.description?.map((des, desIndex) => (
               <div
                 className="col-span-2 grid grid-cols-1 gap-2 md:grid-cols-2 [&>label]:font-semibold [&>textarea]:rounded [&>textarea]:border [&>textarea]:p-1"

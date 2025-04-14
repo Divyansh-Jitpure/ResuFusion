@@ -27,6 +27,7 @@ const EducationForm = ({ education, updateFields }) => {
           country: "",
           startYear: "",
           endYear: "",
+          present: false,
         },
       ],
     });
@@ -126,16 +127,13 @@ const EducationForm = ({ education, updateFields }) => {
                 />
               )}
               <div className="flex gap-2">
-                <label className="" htmlFor="present">
-                  Present
-                </label>
+                <label htmlFor="present">Present</label>
                 <input
                   type="checkbox"
                   name="present"
                   checked={edu.present || false}
                   onChange={(e) => {
                     handlePresentChange(index, "present", e.target.checked);
-                    console.log("Present:", e.target.checked, edu.present);
                   }}
                 />
               </div>

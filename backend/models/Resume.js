@@ -21,7 +21,7 @@ const ResumeSchema = new mongoose.Schema(
         city: String,
         country: String,
         startYear: Date,
-        endYear: Date, // !!!!! Make this optional later if someone is working in present and UI aswell
+        endYear: Date,
         present: {
           type: Boolean,
           default: false,
@@ -36,7 +36,11 @@ const ResumeSchema = new mongoose.Schema(
         city: String,
         country: String,
         startDate: Date,
-        endDate: Date, // !!!!! Make this optional later if someone is working in present and UI aswell
+        endDate: Date,
+        present: {
+          type: Boolean,
+          default: false,
+        },
       },
     ],
     projects: [

@@ -39,7 +39,11 @@ const Experience = ({ experience }) => {
                 </article>
                 <article className="text-right text-gray-500">
                   <span>{formattedDate(exp.startDate)}</span> -{" "}
-                  <span>{formattedDate(exp.endDate)}</span>
+                  {exp.present ? (
+                    <span>Present</span>
+                  ) : (
+                    formattedDate(exp.endDate)
+                  )}
                 </article>
               </section>
 

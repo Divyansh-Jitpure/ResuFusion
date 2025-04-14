@@ -31,7 +31,7 @@ const Education = ({ education }) => {
                 <article className="text-gray-500">
                   <span>{formattedDate(item.startYear)}</span> -{" "}
                   {item.present ? (
-                    <span className="text-gray-500">Present</span>
+                    <span>Present</span>
                   ) : (
                     formattedDate(item.endYear)
                   )}

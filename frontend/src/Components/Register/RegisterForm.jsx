@@ -77,7 +77,7 @@ const RegisterForm = () => {
 
           <button
             type="submit"
-            className="rounded-md bg-[#ff3a3a] px-4 py-2 font-medium text-white transition-all hover:bg-[#ff2d2d9c] 2xl:text-xl"
+            className="cursor-pointer rounded-md bg-[#ff3a3a] px-4 py-2 font-medium text-white transition-all hover:bg-[#ff2d2d9c] 2xl:text-xl"
           >
             Sign Up
           </button>

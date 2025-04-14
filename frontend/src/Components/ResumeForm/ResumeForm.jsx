@@ -42,6 +42,7 @@ const InitialData = {
       country: "",
       startDate: "",
       endDate: "",
+      present: false,
       description: [""],
     },
   ],
