@@ -17,11 +17,15 @@ const ResumeSchema = new mongoose.Schema(
     education: [
       {
         degree: String,
-        collage: String,
+        college: String,
         city: String,
         country: String,
         startYear: Date,
         endYear: Date, // !!!!! Make this optional later if someone is working in present and UI aswell
+        present: {
+          type: Boolean,
+          default: false,
+        },
       },
     ],
     experience: [

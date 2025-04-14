@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate, useParams } from "react-router";
 import { useMultiStepForm } from "./useMultiStepForm";
@@ -26,11 +26,12 @@ const InitialData = {
   education: [
     {
       degree: "",
-      collage: "",
+      college: "",
       city: "",
       country: "",
       startYear: "",
       endYear: "",
+      present: false,
     },
   ],
   experience: [
@@ -85,11 +86,14 @@ const ResumeForm = () => {
   // Determine if the id param is a template name or resume ID
   const templateTypes = ["basic", "creative", "modern"];
   const [templateName, setTemplateName] = useState(
-    templateTypes.includes(id) && id,
+    templateTypes.includes(id) ? id : "",
   );
 
   // If the id is not a template name, set it as resume ID
   const resId = !templateTypes.includes(id) && id;
+
+  // Format date to yyyy-mm-dd
+  const formattedDate = (dateStr) => dateStr?.split("T")[0] || "";
 
   // Fetch existing resume data for editing
   useEffect(() => {
@@ -98,22 +102,21 @@ const ResumeForm = () => {
         try {
           const rData = await API.get(`/resumes/${user._id}/${resId}`);
 
-          // Format date to yyyy-mm-dd
-          function formattedDate(dateStr) {
-            return dateStr ? dateStr.split("T")[0] : "";
-          }
-
           // Reformat education & experience dates
-          const formattedEducation = rData.data.education.map((edu) => ({
-            ...edu,
-            startYear: formattedDate(edu.startYear),
-            endYear: formattedDate(edu.endYear),
-          }));
-          const formattedExperience = rData.data.experience.map((exp) => ({
-            ...exp,
-            startDate: formattedDate(exp.startDate),
-            endDate: formattedDate(exp.endDate),
-          }));
+          const formattedEducation = Array.isArray(rData.data.education)
+            ? rData.data.education.map((edu) => ({
+                ...edu,
+                startYear: formattedDate(edu.startYear),
+                endYear: formattedDate(edu.endYear),
+              }))
+            : [];
+          const formattedExperience = Array.isArray(rData.data.experience)
+            ? rData.data.experience.map((exp) => ({
+                ...exp,
+                startDate: formattedDate(exp.startDate),
+                endDate: formattedDate(exp.endDate),
+              }))
+            : [];
 
           // Populate form with fetched data
           setData({
@@ -144,11 +147,9 @@ const ResumeForm = () => {
   }, [resId]);
 
   // Function to update form data fields
-  const updateFields = (fields) => {
-    setData((prev) => {
-      return { ...prev, ...fields };
-    });
-  };
+  const updateFields = useCallback((fields) => {
+    setData((prev) => ({ ...prev, ...fields }));
+  }, []);
 
   // Multi-step form hook
   const { step, steps, currentStepIndex, isFirstStep, isLastStep, back, next } =
@@ -209,7 +210,7 @@ const ResumeForm = () => {
         }
         resolve();
       } catch (err) {
-        reject(console.error("Error submitting resume:", err));
+        reject(err);
       }
     });
 
@@ -218,7 +219,7 @@ const ResumeForm = () => {
       success: resId
         ? "Resume Successfully Updated!!"
         : "Resume Successfully Created!!",
-      error: (errMsg) => errMsg, // Show the specific error message
+      error: (errMsg) => errMsg?.message || "Something went wrong!!", // Show the specific error message
     });
 
     return resumeUpdatePromise;
@@ -228,8 +229,9 @@ const ResumeForm = () => {
   useEffect(() => {
     if (!loading && !user) {
       setShowLoginModal(true); // Show login modal if not logged in
+      return null;
     }
-  }, [user, setShowLoginModal]);
+  }, [user, loading, setShowLoginModal]);
 
   //  Show loading indicator while user data is being fetched when editing resume
   if (resId && resumeDataLoading) {

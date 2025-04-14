@@ -1,5 +1,6 @@
 import React from "react";
 import FormWrapper from "../FormWrapper";
+import { data } from "react-router";
 
 const PersonalInfoForm = ({
   fullName,
@@ -19,7 +20,7 @@ const PersonalInfoForm = ({
         required
         type="text"
         name="fullName"
-        placeholder="Enter Full Name"
+        placeholder="Eg. John Doe"
         value={fullName}
         onChange={(e) => updateFields({ fullName: e.target.value })}
       />
@@ -30,7 +31,7 @@ const PersonalInfoForm = ({
         required
         type="text"
         name="title"
-        placeholder="Enter Title"
+        placeholder="Eg. Software Engineer"
         value={title}
         onChange={(e) => updateFields({ title: e.target.value })}
       />
@@ -41,7 +42,7 @@ const PersonalInfoForm = ({
         required
         type="email"
         name="email"
-        placeholder="Enter Email"
+        placeholder="Eg. john.doe@example.com"
         value={email}
         onChange={(e) => updateFields({ email: e.target.value })}
       />
@@ -52,7 +53,8 @@ const PersonalInfoForm = ({
         required
         type="tel"
         name="phoneNumber"
-        placeholder="Enter Phone Number"
+        pattern="^\+?[0-9]{10,15}$"
+        placeholder="Eg. 1234567890"
         value={phoneNumber}
         onChange={(e) => updateFields({ phoneNumber: e.target.value })}
       />
@@ -62,7 +64,7 @@ const PersonalInfoForm = ({
       <textarea
         required
         name="address"
-        placeholder="Enter Address"
+        placeholder="Eg. 123 Main St, City, Country"
         value={address}
         onChange={(e) => updateFields({ address: e.target.value })}
       />

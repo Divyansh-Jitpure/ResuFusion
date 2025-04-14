@@ -21,7 +21,7 @@ const Education = ({ education }) => {
               className="mx-4 grid grid-cols-2 md:mx-10 print:mx-10"
             >
               <section className="flex flex-col items-start">
-                <span>{item.collage}</span>
+                <span>{item.college}</span>
                 <span className="text-gray-500">{item.degree}</span>
               </section>
               <section className="flex flex-col items-end">
@@ -30,7 +30,11 @@ const Education = ({ education }) => {
                 </article>
                 <article className="text-gray-500">
                   <span>{formattedDate(item.startYear)}</span> -{" "}
-                  <span>{formattedDate(item.endYear)}</span>
+                  {item.present ? (
+                    <span className="text-gray-500">Present</span>
+                  ) : (
+                    formattedDate(item.endYear)
+                  )}
                 </article>
               </section>
             </div>

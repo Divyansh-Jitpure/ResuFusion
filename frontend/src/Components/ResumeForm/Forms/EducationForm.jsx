@@ -3,13 +3,26 @@ import FormWrapper from "../FormWrapper";
 import { MdDelete } from "react-icons/md";
 
 const EducationForm = ({ education, updateFields }) => {
+  const handlePresentChange = (index, field, value) => {
+    const updatedEducation = education.map((edu, i) =>
+      i === index
+        ? {
+            ...edu,
+            [field]: value,
+            endYear: field === "present" && value ? "" : edu.endYear,
+          }
+        : edu,
+    );
+    updateFields({ education: updatedEducation });
+  };
+
   const addEducation = () => {
     updateFields({
       education: [
         ...education,
         {
           degree: "",
-          collage: "",
+          college: "",
           city: "",
           country: "",
           startYear: "",
@@ -36,6 +49,17 @@ const EducationForm = ({ education, updateFields }) => {
       {education.map((edu, index) => (
         <div key={index}>
           <FormWrapper title={`Education - ${index + 1}`}>
+            <label htmlFor={`college-${index}`}>
+              University/College <span className="text-red-600">*</span>
+            </label>
+            <input
+              required
+              type="text"
+              name="college"
+              placeholder="Eg. XYZ University"
+              value={edu.college}
+              onChange={(e) => handleChange(index, "college", e.target.value)}
+            />
             <label htmlFor={`degree-${index}`}>
               Degree <span className="text-red-600">*</span>
             </label>
@@ -44,21 +68,11 @@ const EducationForm = ({ education, updateFields }) => {
               required
               type="text"
               name={`degree-${index}`}
-              placeholder="Enter Degree"
+              placeholder="Eg. B.Tech. in Computer Science"
               value={edu.degree}
               onChange={(e) => handleChange(index, "degree", e.target.value)}
             />
-            <label htmlFor={`collage-${index}`}>
-              University/College <span className="text-red-600">*</span>
-            </label>
-            <input
-              required
-              type="text"
-              name="collage"
-              placeholder="Enter University/College"
-              value={edu.collage}
-              onChange={(e) => handleChange(index, "collage", e.target.value)}
-            />
+
             <div className="col-span-2 grid grid-cols-1 gap-2 md:grid-cols-4 [&>input]:rounded [&>input]:border [&>input]:p-1 md:[&>input]:w-30 [&>label]:font-semibold">
               <label htmlFor={`city-${index}`}>
                 City <span className="text-red-600">*</span>
@@ -67,7 +81,7 @@ const EducationForm = ({ education, updateFields }) => {
                 required
                 type="text"
                 name="city"
-                placeholder="Enter City"
+                placeholder="Eg. Mumbai"
                 value={edu.city}
                 onChange={(e) => handleChange(index, "city", e.target.value)}
               />
@@ -78,7 +92,7 @@ const EducationForm = ({ education, updateFields }) => {
                 required
                 type="text"
                 name="country"
-                placeholder="Enter Country"
+                placeholder="Eg. India"
                 value={edu.country}
                 onChange={(e) => handleChange(index, "country", e.target.value)}
               />
@@ -97,15 +111,35 @@ const EducationForm = ({ education, updateFields }) => {
             <label htmlFor={`endYear-${index}`}>
               End Year <span className="text-red-600">*</span>
             </label>
-            <input
-              required
-              type="date"
-              name="endYear"
-              placeholder="Enter End Year"
-              value={edu.endYear}
-              onChange={(e) => handleChange(index, "endYear", e.target.value)}
-            />
-
+            <div className="col-span-2 md:col-span-1 [&>input]:w-full [&>input]:rounded [&>input]:border [&>input]:p-1 md:[&>input]:w-62 [&>label]:font-semibold">
+              {!edu.present && (
+                <input
+                  required
+                  type="date"
+                  name="endYear"
+                  placeholder="Enter End Year"
+                  disabled={edu.present}
+                  value={edu.endYear}
+                  onChange={(e) =>
+                    handleChange(index, "endYear", e.target.value)
+                  }
+                />
+              )}
+              <div className="flex gap-2">
+                <label className="" htmlFor="present">
+                  Present
+                </label>
+                <input
+                  type="checkbox"
+                  name="present"
+                  checked={edu.present || false}
+                  onChange={(e) => {
+                    handlePresentChange(index, "present", e.target.checked);
+                    console.log("Present:", e.target.checked, edu.present);
+                  }}
+                />
+              </div>
+            </div>
             <button
               className="col-span-2 mx-auto flex w-max items-center gap-1 rounded-2xl bg-[#D84040] px-3 py-1 text-[17px] font-medium text-white transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
               type="button"
