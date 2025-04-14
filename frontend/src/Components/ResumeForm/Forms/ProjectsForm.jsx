@@ -67,7 +67,8 @@ const ProjectsForm = ({ projects, updateFields }) => {
               required
               type="text"
               name="projectName"
-              placeholder="Enter Project Name"
+              placeholder="Eg. Weather App, Blog Platform"
+              title="Eg. Weather App, Blog Platform"
               value={project.projectName}
               onChange={(e) =>
                 handleChange(index, "projectName", e.target.value)
@@ -77,7 +78,9 @@ const ProjectsForm = ({ projects, updateFields }) => {
             <input
               type="text"
               name="projectLink"
-              placeholder="Enter Project Link"
+              placeholder="Eg. https://example.com/"
+              title="Eg. https://example.com/"
+              pattern="https?://.+"
               value={project.projectLink}
               onChange={(e) =>
                 handleChange(index, "projectLink", e.target.value)
@@ -90,7 +93,8 @@ const ProjectsForm = ({ projects, updateFields }) => {
               required
               type="text"
               name="techStack"
-              placeholder="Enter Skills / Teck Stack"
+              placeholder="Eg. Angular, Express.js, Teamwork"
+              title="Eg. Angular, Express.js, Teamwork"
               value={project.techStack}
               onChange={(e) => handleChange(index, "techStack", e.target.value)}
             />
@@ -106,7 +110,8 @@ const ProjectsForm = ({ projects, updateFields }) => {
                   <textarea
                     className="w-full"
                     name="description"
-                    placeholder="Enter Description"
+                    placeholder="Eg. Built a REST API for user authentication"
+                    title="Eg. Built a REST API for user authentication"
                     rows="1"
                     value={des}
                     onChange={(e) => {

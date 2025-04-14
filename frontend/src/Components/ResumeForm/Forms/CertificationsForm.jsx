@@ -37,18 +37,20 @@ const Certifications = ({ certifications, updateFields }) => {
               type="text"
               name="certification"
               autoFocus
-              placeholder="Enter Certification Name"
+              placeholder="Eg. AWS Certified Solutions Architect"
+              title="Eg. AWS Certified Solutions Architect"
               value={cert.certification}
               onChange={(e) =>
                 handleChange(index, "certification", e.target.value)
               }
             />
-            <label htmlFor={`description-${index}`}>Description</label>
+            <label htmlFor={`description-${index}`}>Description / Org.</label>
             <textarea
               type="text"
               name="description"
               rows={1}
-              placeholder="Enter Description"
+              placeholder="Eg. Amazon Web Services"
+              title="Eg. Amazon Web Services"
               value={cert.description}
               onChange={(e) =>
                 handleChange(index, "description", e.target.value)

@@ -38,7 +38,8 @@ const LanguagesForm = ({ languages, updateFields }) => {
               name="language"
               autoFocus
               // required
-              placeholder="Enter language"
+              placeholder="Eg. English, Hindi, Spanish"
+              title="Eg. English, Hindi, Spanish"
               value={lang.language}
               onChange={(e) => handleChange(index, "language", e.target.value)}
             />

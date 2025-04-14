@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FormWrapper from "../FormWrapper";
 import { IoClose } from "react-icons/io5";
+import { FaArrowDown } from "react-icons/fa";
 
 const SkillsForm = ({ skills, updateFields }) => {
   const [inputValue, setInputValue] = useState("");
@@ -14,20 +15,35 @@ const SkillsForm = ({ skills, updateFields }) => {
         <label className="text-center" htmlFor="skills">
           Write down your skill and press "Enter"
         </label>
-        <input
-          type="text"
-          name="skills"
-          placeholder="Enter your skills"
-          onChange={(e) => setInputValue(e.target.value)}
-          value={inputValue}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && inputValue !== "") {
-              e.preventDefault();
-              updateFields({ skills: [...skills, inputValue] });
-              setInputValue("");
-            }
-          }}
-        />
+        <span className="flex items-center gap-2 [&>input]:w-full [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
+          <input
+            type="text"
+            name="skills"
+            title="Enter your skills here"
+            placeholder="Eg. JavaScript, React, Teamwork"
+            onChange={(e) => setInputValue(e.target.value)}
+            value={inputValue}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && inputValue !== "") {
+                e.preventDefault();
+                updateFields({ skills: [...skills, inputValue] });
+                setInputValue("");
+              }
+            }}
+          />
+          <button
+            type="button"
+            onClick={() => {
+              if (inputValue !== "") {
+                updateFields({ skills: [...skills, inputValue] });
+                setInputValue("");
+              }
+            }}
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border bg-[#FF6D60] text-white hover:bg-[#FF6D60]/80 active:bg-[#FF6D60]/90"
+          >
+            <FaArrowDown />
+          </button>
+        </span>
       </FormWrapper>
       {/* Skill Badges */}
       <div className="flex flex-wrap gap-2">

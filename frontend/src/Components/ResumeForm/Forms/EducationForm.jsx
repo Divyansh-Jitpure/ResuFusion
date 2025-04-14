@@ -58,6 +58,7 @@ const EducationForm = ({ education, updateFields }) => {
               type="text"
               name="college"
               placeholder="Eg. XYZ University"
+              title="Eg. XYZ University"
               value={edu.college}
               onChange={(e) => handleChange(index, "college", e.target.value)}
             />
@@ -70,6 +71,7 @@ const EducationForm = ({ education, updateFields }) => {
               type="text"
               name={`degree-${index}`}
               placeholder="Eg. B.Tech. in Computer Science"
+              title="Eg. B.Tech. in Computer Science"
               value={edu.degree}
               onChange={(e) => handleChange(index, "degree", e.target.value)}
             />
@@ -83,6 +85,7 @@ const EducationForm = ({ education, updateFields }) => {
                 type="text"
                 name="city"
                 placeholder="Eg. Mumbai"
+                title="Eg. Mumbai"
                 value={edu.city}
                 onChange={(e) => handleChange(index, "city", e.target.value)}
               />
@@ -94,6 +97,7 @@ const EducationForm = ({ education, updateFields }) => {
                 type="text"
                 name="country"
                 placeholder="Eg. India"
+                title="Eg. India"
                 value={edu.country}
                 onChange={(e) => handleChange(index, "country", e.target.value)}
               />
@@ -106,6 +110,7 @@ const EducationForm = ({ education, updateFields }) => {
               type="date"
               name="startYear"
               placeholder="Enter Start Year"
+              title="Enter Start Year"
               value={edu.startYear}
               onChange={(e) => handleChange(index, "startYear", e.target.value)}
             />
@@ -119,6 +124,7 @@ const EducationForm = ({ education, updateFields }) => {
                   type="date"
                   name="endYear"
                   placeholder="Enter End Year"
+                  title="Enter End Year"
                   disabled={edu.present}
                   value={edu.endYear}
                   onChange={(e) =>

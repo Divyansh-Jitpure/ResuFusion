@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FormWrapper from "../FormWrapper";
 import { IoClose } from "react-icons/io5";
+import { FaArrowDown } from "react-icons/fa";
 
 const HobbiesForm = ({ hobbies, updateFields }) => {
   const [inputValue, setInputValue] = useState("");
@@ -15,21 +16,36 @@ const HobbiesForm = ({ hobbies, updateFields }) => {
         <label htmlFor="hobbies" className="text-center">
           Write down your hobbies and press "Enter"
         </label>
-        <input
-          type="text"
-          className="h-max"
-          name="hobbies"
-          placeholder="Enter your hobbies"
-          onChange={(e) => setInputValue(e.target.value)}
-          value={inputValue}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && inputValue !== "") {
-              e.preventDefault();
-              updateFields({ hobbies: [...hobbies, inputValue] });
-              setInputValue("");
-            }
-          }}
-        />
+        <span className="flex items-center gap-2 [&>input]:w-full [&>input]:rounded [&>input]:border [&>input]:p-1 [&>label]:font-semibold">
+          <input
+            type="text"
+            className="h-max"
+            name="hobbies"
+            placeholder="Eg. Reading, Traveling, Cooking"
+            title="Eg. Reading, Traveling, Cooking"
+            onChange={(e) => setInputValue(e.target.value)}
+            value={inputValue}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && inputValue !== "") {
+                e.preventDefault();
+                updateFields({ hobbies: [...hobbies, inputValue] });
+                setInputValue("");
+              }
+            }}
+          />
+          <button
+            type="button"
+            onClick={() => {
+              if (inputValue !== "") {
+                updateFields({ hobbies: [...hobbies, inputValue] });
+                setInputValue("");
+              }
+            }}
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border bg-[#FF6D60] text-white hover:bg-[#FF6D60]/80 active:bg-[#FF6D60]/90"
+          >
+            <FaArrowDown />
+          </button>
+        </span>
       </FormWrapper>
       {/* Skill Badges */}
       <div className="flex flex-wrap gap-2">

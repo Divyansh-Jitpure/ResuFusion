@@ -13,7 +13,7 @@ const SummaryForm = ({ summary, updateFields }) => {
         cols="50"
         // required
         title="Suggested: Add a brief summary or objective to highlight your skills and goals."
-        placeholder="Write your summary here"
+        placeholder="Write a brief summary or objective to highlight your skills and goals here"
         value={summary}
         onChange={(e) => updateFields({ summary: e.target.value })}
       />

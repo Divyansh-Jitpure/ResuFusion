@@ -84,6 +84,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
               type="text"
               name="companyName"
               placeholder="Eg. ABC Pvt Ltd"
+              title="Eg. ABC Pvt Ltd"
               value={exp.companyName}
               onChange={(e) =>
                 handleChange(index, "companyName", e.target.value)
@@ -97,6 +98,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
               type="text"
               name="jobTitle"
               placeholder="Eg. Software Engineer"
+              title="Eg. Software Engineer"
               value={exp.jobTitle}
               onChange={(e) => handleChange(index, "jobTitle", e.target.value)}
             />
@@ -109,6 +111,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
                 type="text"
                 name="city"
                 placeholder="Eg. Mumbai"
+                title="Eg. Mumbai"
                 value={exp.city}
                 onChange={(e) => handleChange(index, "city", e.target.value)}
               />
@@ -120,22 +123,24 @@ const ExperienceForm = ({ experience, updateFields }) => {
                 type="text"
                 name="country"
                 placeholder="Eg. India"
+                title="Eg. India"
                 value={exp.country}
                 onChange={(e) => handleChange(index, "country", e.target.value)}
               />
             </div>
             <label htmlFor={`startDate-${index}`}>
-              Start Date <span className="text-red-600">*</span>
+              Start Year <span className="text-red-600">*</span>
             </label>
             <input
               required
               type="date"
               name="startDate"
+              title="Enter Start Year"
               value={exp.startDate}
               onChange={(e) => handleChange(index, "startDate", e.target.value)}
             />
             <label htmlFor={`endDate-${index}`}>
-              End Date <span className="text-red-600">*</span>
+              End Year <span className="text-red-600">*</span>
             </label>
             <div className="col-span-2 md:col-span-1 [&>input]:w-full [&>input]:rounded [&>input]:border [&>input]:p-1 md:[&>input]:w-62 [&>label]:font-semibold">
               {!exp.present && (
@@ -143,6 +148,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
                   required
                   type="date"
                   name="endDate"
+                  title="Enter End Year"
                   disabled={ExperienceForm.present}
                   value={exp.endDate}
                   onChange={(e) =>
@@ -155,6 +161,7 @@ const ExperienceForm = ({ experience, updateFields }) => {
                 <input
                   type="checkbox"
                   name="present"
+                  title="Check to set Present"
                   checked={exp.present || false}
                   onChange={(e) => {
                     handlePresentChange(index, "present", e.target.checked);
@@ -174,7 +181,8 @@ const ExperienceForm = ({ experience, updateFields }) => {
                   <textarea
                     className="w-full"
                     name="description"
-                    placeholder="Enter Description"
+                    placeholder="Eg. Developed a web application using React"
+                    title="Eg. Developed a web application using React"
                     rows="1"
                     value={des}
                     onChange={(e) => {
