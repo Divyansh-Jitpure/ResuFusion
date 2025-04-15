@@ -2,19 +2,19 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate, useParams } from "react-router";
 import { useMultiStepForm } from "./useMultiStepForm";
+import API from "../../utils/api";
+import { toast } from "sonner";
 
 // Importing all form steps
 import PersonalInfoForm from "./Forms/PersonalInfoForm";
 import EducationForm from "./Forms/EducationForm";
 import SkillsForm from "./Forms/SkillsForm";
-import API from "../../utils/api";
 import SummaryForm from "./Forms/SummaryForm";
 import ExperienceForm from "./Forms/ExperienceForm";
 import Certifications from "./Forms/CertificationsForm";
 import ProjectsForm from "./Forms/ProjectsForm";
 import LanguagesForm from "./Forms/LanguagesForm";
 import HobbiesForm from "./Forms/HobbiesForm";
-import { toast } from "sonner";
 
 // Initial empty form data
 const InitialData = {
@@ -226,6 +226,51 @@ const ResumeForm = () => {
     return resumeUpdatePromise;
   };
 
+  const handleFinishEditing = async () => {
+    // Final formatted data to send to backend
+    const formattedData = {
+      userId: user._id,
+      personalInfo: {
+        fullName: data.fullName,
+        title: data.title,
+        email: data.email,
+        phone: data.phoneNumber,
+        address: data.address,
+      },
+      experience: data.experience,
+      projects: data.projects,
+      education: data.education,
+      skills: data.skills,
+      certifications: data.certifications,
+      summary: data.summary,
+      languages: data.languages,
+      hobbies: data.hobbies,
+      template: templateName,
+    };
+
+    // Show toast while updating resume
+    const resumeUpdatePromise = new Promise(async (resolve, reject) => {
+      if (resId) {
+        try {
+          await API.put(`/resumes/${resId}`, formattedData);
+          navigate(`/resumePreview/${resId}`);
+
+          resolve();
+        } catch (err) {
+          reject(err);
+        }
+      }
+    });
+
+    toast.promise(resumeUpdatePromise, {
+      loading: "Updating Resume...",
+      success: "Resume Successfully Updated!!",
+      error: (errMsg) => errMsg?.message || "Something went wrong!!", // Show the specific error message
+    });
+
+    return resumeUpdatePromise;
+  };
+
   // Redirect to login if not authenticated
   useEffect(() => {
     if (!loading && !user) {
@@ -288,8 +333,23 @@ const ResumeForm = () => {
                   : "mx-1 flex items-center gap-1 rounded-lg bg-[#ffb0b0] px-3 py-1 text-lg font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
               }
             >
-              {isLastStep ? "Finish" : "Next"}
+              {resId
+                ? isLastStep
+                  ? "Finish Editing"
+                  : "Next"
+                : isLastStep
+                  ? "Finish"
+                  : "Next"}
             </button>
+            {resId && !isLastStep && (
+              <button
+                onClick={handleFinishEditing}
+                type="button"
+                className="mx-1 flex items-center gap-1 rounded-lg bg-[#D84040] px-3 py-1 text-lg font-medium transition-all hover:cursor-pointer hover:bg-[#ff2d2d]"
+              >
+                Finish Editing
+              </button>
+            )}
           </div>
         </form>
       </div>
