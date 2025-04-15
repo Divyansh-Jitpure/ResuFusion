@@ -8,6 +8,7 @@ const Logout = () => {
   const navigate = useNavigate();
 
   return (
+    // Logout button
     <button
       onClick={async () => {
         await logout(); // Call logout function
