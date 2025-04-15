@@ -58,6 +58,9 @@ const RegisterForm = () => {
                   className="w-[20vw] rounded border border-slate-300 p-1 text-white"
                   type={field === "password" ? "password" : field}
                   placeholder={`Enter ${field}`}
+                  title={
+                    "Password must be at least 6 characters long, contain at least one uppercase letter and one special character (!@#$%^&*, etc.)."
+                  }
                   name={field}
                   value={userData[field]}
                   onChange={handleChange}
@@ -72,7 +75,8 @@ const RegisterForm = () => {
               <input
                 className="rounded border border-slate-300 p-1"
                 type="password"
-                placeholder="Confirm Password"
+                placeholder="Confirm password"
+                title="Confirm password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required

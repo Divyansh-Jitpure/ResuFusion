@@ -9,16 +9,35 @@ const MobileLogin = () => {
     useContext(AuthContext);
   const diaRef = useRef();
 
-  const closeDia = () => {
-    diaRef.current?.close();
-    document.body.style.overflow = "";
-  };
+  // Open/Close dialog when state changes
+  useEffect(() => {
+    const dialog = diaRef.current;
+    if (!dialog) return;
 
-  const openDia = () => {
-    diaRef.current?.showModal();
-    document.body.style.overflow = "hidden";
-  };
+    if (showMobileLoginModal && !dialog.open) {
+      dialog.showModal();
+      document.body.style.overflow = "hidden"; // Lock scroll
+    } else if (!showMobileLoginModal && dialog.open) {
+      dialog.close();
+      document.body.style.overflow = ""; // Restore scroll
+    }
+  }, [showMobileLoginModal]);
 
+  // Ensure scroll unlocks when dialog is closed any other way
+  useEffect(() => {
+    const dialog = diaRef.current;
+    if (!dialog) return;
+
+    const handleClose = () => {
+      document.body.style.overflow = "";
+      setShowMobileLoginModal(false); // Sync state
+    };
+
+    dialog.addEventListener("close", handleClose);
+    return () => dialog.removeEventListener("close", handleClose);
+  }, [setShowMobileLoginModal]);
+
+  // Auto-close login modal on mobile resize
   useEffect(() => {
     const handleResize = () => {
       const isDesktop = window.innerWidth >= 768;
@@ -33,7 +52,7 @@ const MobileLogin = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [showMobileLoginModal, setShowMobileLoginModal]);
 
-  showMobileLoginModal ? openDia() : closeDia();
+  // showMobileLoginModal ? openDia() : closeDia();
 
   return (
     <main>

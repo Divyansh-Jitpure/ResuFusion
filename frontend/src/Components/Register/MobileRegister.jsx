@@ -8,6 +8,7 @@ const MobileRegister = () => {
     useContext(AuthContext);
   const diaRef = useRef();
 
+  // Open/Close dialog when state changes
   useEffect(() => {
     const dialog = diaRef.current;
     if (!dialog) return;
@@ -21,6 +22,21 @@ const MobileRegister = () => {
     }
   }, [showMobileRegisterModal]);
 
+  // Ensure scroll unlocks when dialog is closed any other way
+  useEffect(() => {
+    const dialog = diaRef.current;
+    if (!dialog) return;
+
+    const handleClose = () => {
+      document.body.style.overflow = "";
+      setShowMobileRegisterModal(false); // Sync state
+    };
+
+    dialog.addEventListener("close", handleClose);
+    return () => dialog.removeEventListener("close", handleClose);
+  }, [setShowMobileRegisterModal]);
+
+  // Auto-close register modal on mobile resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768 && showMobileRegisterModal) {

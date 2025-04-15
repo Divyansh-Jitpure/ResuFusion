@@ -7,19 +7,35 @@ const Register = () => {
   const { showRegisterModal, setShowRegisterModal } = useContext(AuthContext);
   const diaRef = useRef();
 
+  // Open/Close dialog when state changes
   useEffect(() => {
     const dialog = diaRef.current;
     if (!dialog) return;
 
-    if (showRegisterModal) {
+    if (showRegisterModal && !dialog.open) {
       dialog.showModal();
-      document.body.style.overflow = "hidden";
-    } else {
+      document.body.style.overflow = "hidden"; // Lock scroll
+    } else if (!showRegisterModal && dialog.open) {
       dialog.close();
-      document.body.style.overflow = "";
+      document.body.style.overflow = ""; // Restore scroll
     }
   }, [showRegisterModal]);
 
+  // Ensure scroll unlocks when dialog is closed any other way
+  useEffect(() => {
+    const dialog = diaRef.current;
+    if (!dialog) return;
+
+    const handleClose = () => {
+      document.body.style.overflow = "";
+      setShowRegisterModal(false); // Sync state
+    };
+
+    dialog.addEventListener("close", handleClose);
+    return () => dialog.removeEventListener("close", handleClose);
+  }, [setShowRegisterModal]);
+
+  // Auto-close register modal on mobile resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768 && showRegisterModal) {
