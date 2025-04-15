@@ -11,7 +11,7 @@ const About = () => {
       </h1>
 
       {/* Description */}
-      <p className="w-[80%] text-center text-xl text-gray-300 md:w-1/2">
+      <p className="w-[80%] text-center text-xl text-gray-300 md:w-[70%] 2xl:w-1/2">
         ResuFusion is a powerful and easy-to-use resume builder that helps you
         create stunning, professional resumes effortlessly. Whether you're a job
         seeker, a student, or a professional, ResuFusion gives you the tools to
@@ -41,6 +41,19 @@ const About = () => {
       >
         Get Started Now 🚀
       </button>
+
+      {/* Contact Information */}
+      <div className="w-[80%] text-center text-xl text-gray-300 md:w-[70%]">
+        You can conatct us at{" "}
+        <a
+          className="text-red-300 hover:text-red-400 active:text-red-400"
+          href="https://divyansh-jitpure.web.app/"
+          target="_blank"
+        >
+          https://divyansh-jitpure.web.app/
+        </a>{" "}
+        for any queries or suggestions.
+      </div>
     </div>
   );
 };
