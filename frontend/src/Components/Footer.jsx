@@ -85,8 +85,8 @@ const Footer = () => {
           © 2025{" "}
           <span className="relative rounded-sm bg-[#EEEEEE] px-1 text-[#1D1616]">
             ResuFusion
-            <span className="absolute -right-[50px] text-xs text-red-200 md:hidden">
-              Beta v0.9
+            <span className="absolute -right-[24px] text-xs text-red-200 md:hidden">
+              v1.0
             </span>
           </span>{" "}
           <br className="md:hidden" />
@@ -105,9 +105,7 @@ const Footer = () => {
         </p>
 
         {/* Version Info */}
-        <span className="hidden text-red-200 md:block 2xl:text-lg">
-          Beta v0.9
-        </span>
+        <span className="hidden text-red-200 md:block 2xl:text-lg">v1.0</span>
       </section>
     </div>
   );
