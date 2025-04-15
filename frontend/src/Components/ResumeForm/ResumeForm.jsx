@@ -50,7 +50,7 @@ const InitialData = {
     {
       projectName: "",
       projectLink: "",
-      teckStack: "",
+      techStack: "",
       description: [""],
     },
   ],
@@ -153,24 +153,89 @@ const ResumeForm = () => {
   }, []);
 
   // Multi-step form hook
-  const { step, steps, currentStepIndex, isFirstStep, isLastStep, back, next } =
-    useMultiStepForm([
-      <PersonalInfoForm {...data} updateFields={updateFields} />,
-      <SummaryForm {...data} updateFields={updateFields} />,
-      <EducationForm education={data.education} updateFields={updateFields} />,
-      <ExperienceForm
-        experience={data.experience}
-        updateFields={updateFields}
-      />,
-      <SkillsForm {...data} updateFields={updateFields} />,
-      <Certifications
-        certifications={data.certifications}
-        updateFields={updateFields}
-      />,
-      <ProjectsForm projects={data.projects} updateFields={updateFields} />,
-      <LanguagesForm languages={data.languages} updateFields={updateFields} />,
-      <HobbiesForm hobbies={data.hobbies} updateFields={updateFields} />,
-    ]);
+  const {
+    step,
+    steps,
+    currentStepIndex,
+    isFirstStep,
+    isLastStep,
+    back,
+    next,
+    goTo,
+  } = useMultiStepForm([
+    <PersonalInfoForm {...data} updateFields={updateFields} />,
+    <SummaryForm {...data} updateFields={updateFields} />,
+    <EducationForm education={data.education} updateFields={updateFields} />,
+    <ExperienceForm experience={data.experience} updateFields={updateFields} />,
+    <SkillsForm {...data} updateFields={updateFields} />,
+    <Certifications
+      certifications={data.certifications}
+      updateFields={updateFields}
+    />,
+    <ProjectsForm projects={data.projects} updateFields={updateFields} />,
+    <LanguagesForm languages={data.languages} updateFields={updateFields} />,
+    <HobbiesForm hobbies={data.hobbies} updateFields={updateFields} />,
+  ]);
+
+  const validateAllSteps = () => {
+    // Basic Info
+    if (
+      !data.fullName.trim() ||
+      !data.title.trim() ||
+      !data.email.trim() ||
+      !data.phoneNumber.trim() ||
+      !data.address.trim()
+    ) {
+      // console.log("❌ Missing basic info");
+      return false;
+    }
+
+    // Education
+    if (
+      !data.education.length ||
+      data.education.some(
+        (e) =>
+          !e.degree.trim() ||
+          !e.college.trim() ||
+          !e.city.trim() ||
+          !e.country.trim() ||
+          !e.startYear.trim() ||
+          (!e.present && !e.endYear.trim()),
+      )
+    ) {
+      // console.log("❌ Missing education info");
+      return false;
+    }
+
+    // Experience
+    if (
+      !data.experience.length ||
+      data.experience.some(
+        (e) =>
+          !e.companyName.trim() ||
+          !e.jobTitle.trim() ||
+          !e.city.trim() ||
+          !e.country.trim() ||
+          !e.startDate.trim() ||
+          (!e.present && !e.endDate.trim()),
+      )
+    ) {
+      // console.log("❌ Missing experience info");
+      return false;
+    }
+
+    // Projects
+    if (
+      !data.projects.length ||
+      data.projects.some((p) => !p.projectName.trim() || !p.techStack.trim())
+    ) {
+      // console.log("❌ Missing projects info");
+      return false;
+    }
+
+    // console.log("✅ All fields validated successfully!");
+    return true;
+  };
 
   // Form submission handler
   const handleSubmit = async (e) => {
@@ -227,6 +292,16 @@ const ResumeForm = () => {
   };
 
   const handleFinishEditing = async () => {
+    const valid = validateAllSteps();
+    // console.log("✅ Form Valid:", valid);
+
+    if (!valid) {
+      toast.error("Please fill all required fields before finishing.");
+      return;
+    }
+
+    // toast("🎉 Looks valid, submitting...");
+
     // Final formatted data to send to backend
     const formattedData = {
       userId: user._id,
@@ -254,7 +329,6 @@ const ResumeForm = () => {
         try {
           await API.put(`/resumes/${resId}`, formattedData);
           navigate(`/resumePreview/${resId}`);
-
           resolve();
         } catch (err) {
           reject(err);
