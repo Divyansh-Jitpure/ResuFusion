@@ -407,6 +407,7 @@ const ResumeForm = () => {
                   : "mx-1 flex h-max items-center gap-1 rounded-lg bg-[#ffb0b0] px-3 py-1 text-lg font-medium transition-all hover:cursor-pointer hover:bg-[#ff9090]"
               }
             >
+              {/* // Submit button text */}
               {resId
                 ? isLastStep
                   ? "Finish Editing"
