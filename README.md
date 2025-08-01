@@ -29,10 +29,10 @@ ResuFusion is a **MERN stack** resume builder that allows users to **create, edi
 
 ---
 
-##📄 License
+## 📄 License
 This project is licensed under the MIT License.
 
-##💬 Connect
+## 💬 Connect
 Feel free to reach out if you have any feedback or feature requests!
 - 📧 divyanshjitpure@gmail.com
 - 🌐 divyansh-jitpure.web.app
@@ -42,7 +42,7 @@ Feel free to reach out if you have any feedback or feature requests!
 
 | Form View | Live Preview | PDF Download |
 |----------|--------------|---------------|
-| ![Form](./screenshots/form-view.png) | ![Preview](./screenshots/live-preview.png) | ![PDF](./screenshots/pdf-download.png) |
+| ![Form](./screenshots/form-view.png) | ![Preview](./screenshots/live-preview.png) 
 
 > (Add your screenshots to a `/screenshots` folder in the repo)
 
