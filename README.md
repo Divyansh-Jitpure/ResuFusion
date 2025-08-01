@@ -44,6 +44,6 @@ Feel free to reach out if you have any feedback or feature requests!
 |----------|--------------|---------------|
 | ![Form](./screenshots/form-view.png) | ![Preview](./screenshots/live-preview.png) 
 
-> (Add your screenshots to a `/screenshots` folder in the repo)
+
 
 ---
